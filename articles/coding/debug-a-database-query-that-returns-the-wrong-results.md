@@ -1,3 +1,18 @@
+---
+title: "Debug a Database Query That Returns the Wrong Results"
+category: coding
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - database
+  - sql
+  - debugging
+  - queries
+---
 # How to Debug a Database Query That Returns the Wrong Results
 
 A database query that returns the wrong results is one of the most dangerous kinds of bugs because the query usually looks reasonable.
