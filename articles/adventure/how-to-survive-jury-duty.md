@@ -1,3 +1,19 @@
+---
+title: "How to Survive Jury Duty"
+category: bureaucracy
+type: guide
+chaos: 5
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - jury-duty
+  - court
+  - paperwork
+  - south-africa
+---
 # How to Survive Jury Duty
 
 Congratulations.
