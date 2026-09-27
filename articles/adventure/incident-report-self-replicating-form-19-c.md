@@ -1,3 +1,20 @@
+---
+title: "Incident Report: Self-Replicating Form 19-C"
+category: emergency
+type: incident
+chaos: 7
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - documentation-team
+  - greg
+tags:
+  - form-19-c
+  - incident
+  - containment
+  - bureaucratic-anomaly
+---
 # EstroBunny Incident Report: The Self-Replicating Form 19-C
 
 **Incident ID:** EB-ADMIN-19C  
