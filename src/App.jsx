@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const articleFiles = import.meta.glob("../articles/**/*.md", {
   query: "?raw",
@@ -210,17 +212,26 @@ function extractHeadings(body) {
 }
 
 function renderArticleBody(body) {
-  return body.split("\n").map((line, i) => {
-    const trimmed = line.trim();
-    if (!trimmed) return <div className="article-spacer" key={i}/>;
-    if (trimmed.startsWith("# ")) return <h2 key={i}>{trimmed.slice(2)}</h2>;
-    if (trimmed.startsWith("## ")) return <h2 id={headingId(trimmed.slice(3), i)} key={i}>{trimmed.slice(3)}</h2>;
-    if (trimmed.startsWith("### ")) return <h3 id={headingId(trimmed.slice(4), i)} key={i}>{trimmed.slice(4)}</h3>;
-    if (trimmed.startsWith("> ")) return <blockquote key={i}>{trimmed.slice(2)}</blockquote>;
-    if (trimmed.startsWith("- ")) return <li key={i}>{trimmed.slice(2)}</li>;
-    if (trimmed.startsWith("`") && trimmed.endsWith("`")) return <pre key={i}>{trimmed.slice(1,-1)}</pre>;
-    return <p key={i}>{trimmed}</p>;
-  });
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        h1: ({children}) => <h2>{children}</h2>,
+        h2: ({children}) => {
+          const text = String(children);
+          return <h2 id={headingId(text, text.length)}>{children}</h2>;
+        },
+        h3: ({children}) => {
+          const text = String(children);
+          return <h3 id={headingId(text, text.length)}>{children}</h3>;
+        },
+        a: ({href, children}) => <a href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel={href?.startsWith("http") ? "noreferrer" : undefined}>{children}</a>,
+        pre: ({children}) => <pre>{children}</pre>
+      }}
+    >
+      {body}
+    </ReactMarkdown>
+  );
 }
 
 function ArticlePage({article,onBack}) {
