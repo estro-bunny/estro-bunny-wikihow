@@ -1,3 +1,20 @@
+---
+title: "Fencing, Quorum, and Single-Writer Guarantees for Database Failover"
+category: technical-operations
+type: field-manual
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - failover
+  - fencing
+  - quorum
+  - single-writer
+---
 # How to Use Fencing, Quorum, and Single-Writer Guarantees During Database Failover
 
 The database team has recovered from split-brain.
