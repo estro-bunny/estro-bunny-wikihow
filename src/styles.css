@@ -121,3 +121,12 @@ footer{padding:20px 0 30px;display:flex;justify-content:space-between;color:#665
   .wiki-body th,.wiki-body td{padding:8px 9px;min-width:100px}
   .wiki-body pre{font-size:10px;line-height:1.55}
 }
+
+/* Article reading progress */
+.reading-progress{position:fixed;top:0;left:0;right:0;z-index:1000;height:22px;display:flex;align-items:center;gap:7px;padding:0 9px;background:rgba(5,4,8,.82);border-bottom:1px solid rgba(255,79,216,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);pointer-events:none;}
+.reading-progress-track{position:relative;display:block;flex:1;height:3px;overflow:hidden;border:1px solid rgba(255,79,216,.22);background:rgba(255,255,255,.055);box-shadow:0 0 12px rgba(255,79,216,.08);}
+.reading-progress-fill{display:block;height:100%;min-width:0;background:linear-gradient(90deg,var(--pink),var(--cyan));box-shadow:0 0 10px rgba(255,79,216,.5),0 0 18px rgba(85,217,255,.22);transition:width .12s linear;}
+.reading-progress-value{flex:0 0 31px;color:var(--pink);font:800 7px/1 "JetBrains Mono",monospace;letter-spacing:.04em;text-align:right;text-shadow:0 0 8px rgba(255,79,216,.3);}
+.reading-progress[aria-valuenow="100"] .reading-progress-fill{box-shadow:0 0 12px rgba(85,217,255,.65),0 0 22px rgba(255,79,216,.3);}
+@media(prefers-reduced-motion:reduce){.reading-progress-fill{transition:none}}
+@media(max-width:650px){.reading-progress{height:18px;padding:0 6px;gap:5px}.reading-progress-track{height:2px}.reading-progress-value{flex-basis:27px;font-size:6px}}
