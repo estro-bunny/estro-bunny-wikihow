@@ -1,3 +1,19 @@
+---
+title: "Respond to a Database Failover or Replica Promotion Incident"
+category: technical-operations
+type: runbook
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - failover
+  - replica
+  - incident-response
+---
 # How to Respond to a Database Failover or Replica-Promotion Incident
 
 The primary database is unavailable.
