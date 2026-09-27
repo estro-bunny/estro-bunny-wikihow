@@ -226,6 +226,27 @@ function renderArticleBody(body) {
 function ArticlePage({article,onBack}) {
   const headings = useMemo(() => extractHeadings(article.body), [article.body]);
   const [activeHeading, setActiveHeading] = useState(headings[0]?.id || "");
+  const restoredScrollRef = useRef(false);
+  const scrollKey = `estrobunny-wikihow-article-scroll-${article.slug}`;
+
+  useEffect(() => {
+    restoredScrollRef.current = false;
+    let saved = null;
+    try {
+      saved = JSON.parse(sessionStorage.getItem(scrollKey) || "null");
+    } catch {
+      saved = null;
+    }
+    if (!saved || typeof saved.y !== "number") {
+      restoredScrollRef.current = true;
+      return undefined;
+    }
+    const timer = window.setTimeout(() => {
+      window.scrollTo({ left: saved.x || 0, top: saved.y, behavior: "instant" });
+      restoredScrollRef.current = true;
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [article.slug, scrollKey]);
   const restoredSectionRef = useRef(false);
 
   useEffect(() => {
@@ -273,6 +294,28 @@ function ArticlePage({article,onBack}) {
     });
     return () => observer.disconnect();
   }, [headings]);
+
+  useEffect(() => {
+    const saveScroll = () => {
+      if (!restoredScrollRef.current) return;
+      try {
+        sessionStorage.setItem(scrollKey, JSON.stringify({
+          x: window.scrollX,
+          y: window.scrollY
+        }));
+      } catch {
+        // Storage may be unavailable.
+      }
+    };
+    const onPageHide = () => saveScroll();
+    window.addEventListener("scroll", saveScroll, { passive: true });
+    window.addEventListener("pagehide", onPageHide);
+    return () => {
+      saveScroll();
+      window.removeEventListener("scroll", saveScroll);
+      window.removeEventListener("pagehide", onPageHide);
+    };
+  }, [scrollKey]);
   const index = articles.findIndex(item => item.path === article.path);
   const previous = index > 0 ? articles[index - 1] : null;
   const next = index < articles.length - 1 ? articles[index + 1] : null;
