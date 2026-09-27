@@ -1,3 +1,20 @@
+---
+title: "How to Survive the Administrative Appeals Process"
+category: bureaucracy
+type: procedure
+chaos: 7
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - administrative-law
+  - appeals
+  - forms
+  - paja
+  - south-africa
+---
 # How to Survive the Administrative Appeals Process
 
 EstroBunny has survived jury duty.
