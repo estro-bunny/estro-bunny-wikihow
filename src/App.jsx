@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const articleFiles = import.meta.glob("../articles/**/*.md", {
   query: "?raw",
@@ -88,8 +88,20 @@ function slugFromPath(path) {
   return path.split("/").pop().replace(/\.md$/, "");
 }
 
+function routeSlug() {
+  const match = window.location.pathname.match(/^\/articles\/([^/]+)\/?$/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function navigate(path) {
+  window.history.pushState({}, "", path);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+}
+
 export default function App() {
   const [view, setView] = useState("articles");
+  const [route, setRoute] = useState(routeSlug());
+  useEffect(() => { const onPop = () => setRoute(routeSlug()); window.addEventListener("popstate", onPop); return () => window.removeEventListener("popstate", onPop); }, []);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [type, setType] = useState("all");
@@ -97,7 +109,6 @@ export default function App() {
   const [status, setStatus] = useState("all");
   const [character, setCharacter] = useState("all");
   const [tag, setTag] = useState("all");
-  const [selected, setSelected] = useState(null);
   const [level, setLevel] = useState(3);
   const [copies, setCopies] = useState(3);
   const [ducks] = useState(6);
@@ -122,6 +133,12 @@ export default function App() {
   const clearFilters = () => {
     setQuery(""); setCategory("all"); setType("all"); setChaos("all"); setStatus("all"); setCharacter("all"); setTag("all");
   };
+
+  if (route) {
+    const article = articles.find(item => slugFromPath(item.path) === route);
+    if (article) return <ArticlePage article={article} onBack={() => navigate("/")} />;
+    return <NotFound onBack={() => navigate("/")} />;
+  }
 
   if (view === "console") {
     return <ContainmentConsole {...{level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs}} onBack={() => setView("articles")} />;
@@ -159,12 +176,11 @@ export default function App() {
 
       <section className="article-toolbar"><span>{filtered.length === 1 ? "1 DOCUMENT" : filtered.length + " DOCUMENTS"} MATCHED</span><span>METADATA-DRIVEN // PATHS PRESERVED</span></section>
       <section className="article-grid">
-        {filtered.map(article => <ArticleCard key={article.path} article={article} onOpen={() => setSelected(article)} />)}
+        {filtered.map(article => <ArticleCard key={article.path} article={article} onOpen={() => navigate("/articles/"+slugFromPath(article.path))} />)}
       </section>
       {!filtered.length && <div className="empty-state panel"><strong>NO DOCUMENTS FOUND.</strong><span>The filters have achieved containment. This is suspicious.</span><button onClick={clearFilters}>RESTORE CHAOS</button></div>}
     </main>
     <footer><span>ESTROBUNNY WIKIHOW // CONTENT INDEX</span><span>still here 🏳️‍⚧️</span><span>STATUS: {filtered.length ? "OPERATIONAL" : "CONTAINED"}</span></footer>
-    {selected && <ArticleModal article={selected} onClose={() => setSelected(null)} />}
   </div>;
 }
 
