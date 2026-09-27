@@ -1,3 +1,19 @@
+---
+title: "How to Take Over the World"
+category: villainy
+type: guide
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - world-domination
+  - open-source
+  - software
+  - supervillain
+---
 # How to Take Over the World
 
 Excellent.
