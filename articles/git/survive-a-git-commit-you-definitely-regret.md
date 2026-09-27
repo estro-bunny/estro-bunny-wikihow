@@ -1,3 +1,18 @@
+---
+title: "How to Survive a Git Commit You Definitely Regret"
+category: coding
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - git
+  - version-control
+  - commits
+  - debugging
+---
 # How to Survive a Git Commit You Definitely Regret
 
 *A serious guide for developers who have made a series of decisions.*
