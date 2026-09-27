@@ -1,3 +1,19 @@
+---
+title: "How to Rob a Bank"
+category: fictional-crime
+type: guide
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - fictional-heist
+  - bank
+  - rubber-ducks
+  - parody
+---
 # How to Rob a Bank
 
 Congratulations.
