@@ -1,3 +1,18 @@
+---
+title: "Debug a Broken API Request Without Blaming the Server"
+category: coding
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - api
+  - debugging
+  - http
+  - networking
+---
 # How to Debug a Broken API Request Without Blaming the Server
 
 APIs are usually not mysterious. A request is sent, the server receives it, something happens, and a response comes back. When that chain breaks, however, it is tempting to stare at the network tab and declare the entire internet personally responsible.
