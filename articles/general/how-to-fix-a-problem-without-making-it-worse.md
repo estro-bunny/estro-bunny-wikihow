@@ -1,3 +1,18 @@
+---
+title: "How to Fix a Problem Without Making It Worse"
+category: questionable-decisions
+type: guide
+chaos: 2
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - problem-solving
+  - debugging
+  - decision-making
+  - escalation
+---
 # How to Fix a Problem Without Making It Worse
 
 Problems happen.
