@@ -4,7 +4,7 @@ Congratulations. You have selected a task that begins as a crime, continues as a
 
 > **Warning:** This article does not provide instructions for kidnapping, capturing, trapping, restraining, transporting, hiding, buying, stealing, or otherwise acquiring a real monkey.
 >
-> Real monkeys are wild animals. Do not corner, chase, touch, feed, capture, or keep one as a pet. If a monkey is injured, trapped, or causing a persistent problem, contact the appropriate wildlife authority, SPCA, or licensed wildlife rehabilitator instead. citeturn0search3turn0search14
+> Real monkeys are wild animals. Do not corner, chase, touch, feed, capture, or keep one as a pet. If a monkey is injured, trapped, or causing a persistent problem, contact the appropriate wildlife authority, SPCA, or licensed wildlife rehabilitator instead. [wildlife rescue guidance](https://theiwrc.org/wildlife-rescue-what-not-to-do/) and [South African vervet monkey guidance](https://www.kznhunters.co.za/wp-content/uploads/2020/08/Technical-Guide-Vervet-Monkey-29-06-2020.pdf)
 
 ## Things You'll Need
 
@@ -28,7 +28,7 @@ If there is a real monkey standing in front of you, stop.
 
 Do not approach it to determine its species, rank, political affiliation, favorite operating system, or whether it would look good in your bedroom.
 
-Wildlife guidance recommends giving primates space and avoiding feeding or direct interaction. citeturn0search0turn0search13
+Wildlife guidance recommends giving primates space and avoiding feeding or direct interaction. [Bambelela monkey guidance](https://bambelela.org.za/) and [responsible primate-watching guidance](https://human-primate-interactions.org/wp-content/uploads/2023/07/recommendations-for-responsible-african-and-eurasian-monkey-watching.pdf)
 
 EstroBunny has already opened a spreadsheet.
 
@@ -97,7 +97,7 @@ Then follow their instructions.
 
 Do not improvise a rescue operation because you watched three documentaries and one TikTok.
 
-Wildlife professionals exist specifically because wildlife is considerably less interested in your five-step plan than you are. citeturn0search1turn0search3
+Wildlife professionals exist specifically because wildlife is considerably less interested in your five-step plan than you are. [Kenya Wildlife Service guidance](https://kws.go.ke/why-do-monkeys-and-baboons-venture-into-homes-and-estates/) and [wildlife rescue guidance](https://theiwrc.org/wildlife-rescue-what-not-to-do/)
 
 ## Step 5: Apply for the Completely Fictional Monkey Permit
 
@@ -131,7 +131,7 @@ Because this is EstroBunny WikiHow, the documentation team has created **FORM EB
 
 **Application status:** DENIED
 
-South African authorities note that certain restricted wildlife activities can require permits, and unauthorized restricted activities can carry serious penalties. The exact rules depend on the species, activity, and applicable provincial/national framework. citeturn1search0
+South African authorities note that certain restricted wildlife activities can require permits, and unauthorized restricted activities can carry serious penalties. The exact rules depend on the species, activity, and applicable provincial/national framework. [South African DFFE TOPS permit guidance](https://www.dffe.gov.za/bc_permit_tops)
 
 EstroBunny has discovered bureaucracy.
 
@@ -209,7 +209,7 @@ Continue writing.
 
 **Level 2 — Monkey Seen In The Wild**
 
-Keep your distance. Do not feed or approach it. citeturn0search0turn0search13
+Keep your distance. Do not feed or approach it. [Bambelela monkey guidance](https://bambelela.org.za/) and [responsible primate-watching guidance](https://human-primate-interactions.org/wp-content/uploads/2023/07/recommendations-for-responsible-african-and-eurasian-monkey-watching.pdf)
 
 **Level 3 — Monkey Appears Injured or Trapped**
 
@@ -235,7 +235,7 @@ Wild animals remain wild animals even when they are adorable.
 
 ### Mistake: Feeding the Monkey
 
-Do not. Feeding wild primates can alter their behaviour and increase conflict with humans. citeturn0search5turn0search6
+Do not. Feeding wild primates can alter their behaviour and increase conflict with humans. [Durban & Coast SPCA guidance](https://spcadbn.org.za/monkeys-matter-how-to-co-exist-peacefully-with-our-wildlife/) and [Wildlife SOS guidance](https://news.wildlifesos.org/why-you-should-not-feed-monkeys/)
 
 ### Mistake: Trying to Rescue It Yourself
 
@@ -243,7 +243,7 @@ Good intentions do not replace wildlife expertise. Contact a qualified rehabilit
 
 ### Mistake: Assuming You Can Keep It Because You Found It
 
-Finding wildlife does not automatically make you its owner. Wildlife possession and rehabilitation can be regulated and may require permits. citeturn0search2turn1search0
+Finding wildlife does not automatically make you its owner. Wildlife possession and rehabilitation can be regulated and may require permits. [International Wildlife Rehabilitation Council guidance](https://theiwrc.org/juvenile-animals/) and [South African DFFE TOPS permit guidance](https://www.dffe.gov.za/bc_permit_tops/)
 
 ### Mistake: Asking EstroBunny for Advice
 
