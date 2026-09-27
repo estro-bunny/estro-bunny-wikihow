@@ -1,3 +1,18 @@
+---
+title: "Tell If Your CSS Is Broken or Just Feeling Silly"
+category: coding
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - css
+  - debugging
+  - layout
+  - frontend
+---
 # How to Tell If Your CSS Is Broken or Just Feeling Silly
 
 *A serious guide for determining whether your stylesheet contains a technical problem, a personal grudge, or both.*
