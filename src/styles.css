@@ -80,3 +80,17 @@ footer{padding:20px 0 30px;display:flex;justify-content:space-between;color:#665
   .article-nav{min-height:84px}
   .article-pagination>span{font-size:6px}
 }
+
+.toc-mobile-header{display:none}
+@media(max-width:650px){
+  .toc-mobile-header{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;color:#d7cad8;background:rgba(255,255,255,.018);border:1px solid rgba(255,79,216,.14);text-align:left;cursor:pointer}
+  .toc-mobile-header span{display:grid;gap:4px;min-width:0}
+  .toc-mobile-header small{color:#756b7d;font:800 7px "JetBrains Mono",monospace;letter-spacing:.1em}
+  .toc-mobile-header strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--pink);font:800 10px "JetBrains Mono",monospace}
+  .toc-mobile-header b{flex:0 0 25px;color:var(--cyan);font:800 18px "JetBrains Mono",monospace;text-align:center}
+  .toc-desktop-label{display:none}
+  .toc nav{display:none;max-height:38vh}
+  .toc.toc-open nav{display:grid;margin-top:8px}
+  .toc.toc-open .toc-meta{display:block}
+  .toc-meta{display:none}
+}
