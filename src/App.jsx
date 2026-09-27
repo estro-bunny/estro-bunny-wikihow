@@ -198,17 +198,40 @@ function ArticleCard({article,onOpen}) {
   </article>;
 }
 
-function ArticleModal({article,onClose}) {
-  return <div className="modal-backdrop" onClick={onClose}><article className="article-modal panel" onClick={e => e.stopPropagation()}>
-    <button className="modal-close" onClick={onClose}>×</button>
-    <div className="eyebrow">ARTICLE // {slugFromPath(article.path)}</div>
-    <h1>{article.title}</h1>
-    <div className="modal-badges"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>{article.status.toUpperCase()}</span></div>
-    <div className="modal-tags">{article.tags?.map(item => <span key={item}>#{item}</span>)}</div>
-    <pre className="article-body">{article.body}</pre>
-  </article></div>;
+function renderArticleBody(body) {
+  return body.split("\n").map((line, i) => {
+    const trimmed = line.trim();
+    if (!trimmed) return <div className="article-spacer" key={i}/>;
+    if (trimmed.startsWith("# ")) return <h2 key={i}>{trimmed.slice(2)}</h2>;
+    if (trimmed.startsWith("## ")) return <h2 key={i}>{trimmed.slice(3)}</h2>;
+    if (trimmed.startsWith("### ")) return <h3 key={i}>{trimmed.slice(4)}</h3>;
+    if (trimmed.startsWith("> ")) return <blockquote key={i}>{trimmed.slice(2)}</blockquote>;
+    if (trimmed.startsWith("- ")) return <li key={i}>{trimmed.slice(2)}</li>;
+    if (trimmed.startsWith("`") && trimmed.endsWith("`")) return <pre key={i}>{trimmed.slice(1,-1)}</pre>;
+    return <p key={i}>{trimmed}</p>;
+  });
 }
 
+function ArticlePage({article,onBack}) {
+  const related = articles.filter(item => item.path !== article.path && (item.category === article.category || item.type === article.type)).slice(0,4);
+  return <div className="app wiki-page">
+    <div className="scanlines"/>
+    <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span></div></header>
+    <main>
+      <div className="wiki-nav"><button className="back-button" onClick={onBack}>← ALL ARTICLES</button><span>ESTROBUNNY WIKIHOW / {article.category.toUpperCase()}</span></div>
+      <article className="wiki-layout">
+        <aside className="wiki-sidebar panel"><div className="eyebrow">DOCUMENT CLASSIFICATION</div><div className="wiki-class"><b>{categoryLabels[article.category]}</b><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>STATUS: {article.status.toUpperCase()}</span></div><div className="eyebrow">CHARACTERS</div><div className="sidebar-tags">{(article.characters || []).map(x => <span key={x}>🐰 {x}</span>)}</div><div className="eyebrow">TAGS</div><div className="sidebar-tags">{(article.tags || []).map(x => <span key={x}>#{x}</span>)}</div></aside>
+        <section className="wiki-article panel"><div className="eyebrow">WIKIHOW ARTICLE // {slugFromPath(article.path)}</div><h1>{article.title}</h1><div className="wiki-meta"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>CHAOS {article.chaos}</span></div><div className="wiki-rule"/><div className="wiki-body">{renderArticleBody(article.body)}</div><div className="wiki-end"><strong>YOU HAVE REACHED THE END OF THE DOCUMENT.</strong><span>The documentation remains operational.</span><button className="console-launch" onClick={onBack}>← RETURN TO ARTICLE INDEX</button></div></section>
+      </article>
+      <section className="related-section"><div className="eyebrow">RELATED DOCUMENTATION</div><h2>YOU MAY ALSO NEED THESE.</h2><div className="related-grid">{related.map(item => <button key={item.path} className="related-card panel" onClick={() => navigate("/articles/"+slugFromPath(item.path))}><span>{typeLabels[item.type]}</span><b>{item.title}</b><small>{categoryLabels[item.category]} · CHAOS {item.chaos}</small></button>)}</div></section>
+    </main>
+    <footer><span>ESTROBUNNY WIKIHOW // ARTICLE</span><span>still here 🏳️‍⚧️</span><span>STATUS: {article.status.toUpperCase()}</span></footer>
+  </div>;
+}
+
+function NotFound({onBack}) {
+  return <div className="app library-app"><main><div className="empty-state panel"><strong>404 // DOCUMENT NOT FOUND</strong><span>This article has escaped containment.</span><button onClick={onBack}>RETURN TO INDEX</button></div></main></div>;
+}
 function ContainmentConsole({level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,onBack}) {
   const current = levels[level];
   const completed = Object.values(checklist).filter(Boolean).length;
