@@ -1,92 +1,220 @@
 import { useMemo, useState } from "react";
 
-const levels = [
-  { id: 0, name: "NORMAL", color: "cyan", desc: "Form 19-C is behaving normally." },
-  { id: 1, name: "UNUSUAL PAPERWORK", color: "yellow", desc: "A new form has appeared unexpectedly." },
-  { id: 2, name: "CONTRADICTORY", color: "orange", desc: "Two documents now disagree." },
-  { id: 3, name: "SELF-REPLICATION", color: "red", desc: "Additional copies are appearing." },
-  { id: 4, name: "BUREAUCRATIC RECURSION", color: "red", desc: "The forms require each other." },
-  { id: 5, name: "ADMINISTRATIVE CATASTROPHE", color: "magenta", desc: "A form explaining a form has appeared." }
-];
-const checklistSeed = ["Original Form 19-C identified","Current version preserved","Contradictory instructions recorded","Photocopier secured","Printer secured","Unnecessary stationery removed","Authoritative clarification requested","EstroBunny removed from the printer area","Greg kept outside the evidence register","Rubber ducks accounted for"];
-const initialLogs = [
-  ["21:14:02","SYSTEM","Form 19-C containment console initialized."],
-  ["21:14:09","SCAN","Original document located. No immediate replication detected."],
-  ["21:14:31","WARN","Form 19-C(a) references Form 19-C(b)."],
-  ["21:14:32","WARN","Form 19-C(b) references Form 19-C(a)."],
-  ["21:14:47","ESTROBUNNY","I have an idea."],
-  ["21:14:48","SYSTEM","ESCALATION RECOMMENDED."]
-];
+const articleFiles = import.meta.glob("../articles/**/*.md", {
+  query: "?raw",
+  import: "default",
+  eager: true
+});
+
+const categoryLabels = {
+  coding: "💻 Coding",
+  "internet-chaos": "🌐 Internet Chaos",
+  life: "🧠 Life",
+  bureaucracy: "⚖️ Bureaucracy",
+  adventure: "🏴‍☠️ Adventure",
+  villainy: "🦹 Villainy",
+  "fictional-crime": "🕵️ Fictional Crime",
+  emergency: "🚨 Emergency",
+  "technical-operations": "🔧 Technical Operations",
+  "estro-bunny": "🐰 EstroBunny",
+  "questionable-decisions": "❓ Questionable Decisions"
+};
+
+const typeLabels = {
+  guide: "GUIDE",
+  procedure: "PROCEDURE",
+  runbook: "RUNBOOK",
+  incident: "INCIDENT",
+  containment: "CONTAINMENT",
+  checklist: "CHECKLIST",
+  template: "TEMPLATE",
+  reference: "REFERENCE",
+  memo: "MEMO",
+  "field-manual": "FIELD MANUAL",
+  "case-file": "CASE FILE",
+  redacted: "REDACTED"
+};
+
+const chaosLabels = {
+  1: "🟢 REASONABLE",
+  2: "🟡 SUSPICIOUS",
+  3: "🟠 CONCERNING",
+  4: "🔴 CHAOTIC",
+  5: "🟣 ESTROBUNNY",
+  6: "⚫ ABSOLUTELY NOT",
+  7: "☢️ DOCUMENTATION HAS FAILED"
+};
+
+function parseFrontmatter(raw, path) {
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return null;
+  const lines = match[1].split("\n");
+  const meta = { characters: [], tags: [] };
+  let listKey = null;
+  for (const line of lines) {
+    if (/^\s*- /.test(line) && listKey) {
+      meta[listKey].push(line.replace(/^\s*- /, "").trim());
+      continue;
+    }
+    const pair = line.match(/^([\w-]+):\s*(.*)$/);
+    if (!pair) continue;
+    const key = pair[1];
+    let value = pair[2].trim();
+    if (value === "") {
+      if (key === "characters" || key === "tags") {
+        listKey = key;
+        meta[key] = [];
+      }
+      continue;
+    }
+    listKey = null;
+    if (value === "true") value = true;
+    else if (value === "false") value = false;
+    else if (/^\d+$/.test(value)) value = Number(value);
+    else if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) value = value.slice(1, -1);
+    meta[key] = value;
+  }
+  return { ...meta, path, body: match[2].trim() };
+}
+
+const articles = Object.entries(articleFiles)
+  .map(([path, raw]) => parseFrontmatter(raw, path))
+  .filter(Boolean)
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const unique = key => [...new Set(articles.flatMap(a => Array.isArray(a[key]) ? a[key] : [a[key]]).filter(Boolean))].sort();
+
+function slugFromPath(path) {
+  return path.split("/").pop().replace(/\.md$/, "");
+}
 
 export default function App() {
-  const [level,setLevel] = useState(3);
-  const [copies,setCopies] = useState(3);
-  const [ducks,setDucks] = useState(6);
-  const [terminal,setTerminal] = useState(false);
-  const [checklist,setChecklist] = useState(() => Object.fromEntries(checklistSeed.map((_,i)=>[i,false])));
-  const [logs,setLogs] = useState(initialLogs);
+  const [view, setView] = useState("articles");
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("all");
+  const [type, setType] = useState("all");
+  const [chaos, setChaos] = useState("all");
+  const [status, setStatus] = useState("all");
+  const [character, setCharacter] = useState("all");
+  const [tag, setTag] = useState("all");
+  const [selected, setSelected] = useState(null);
+  const [level, setLevel] = useState(3);
+  const [copies, setCopies] = useState(3);
+  const [ducks] = useState(6);
+  const [terminal, setTerminal] = useState(false);
+  const [checklist, setChecklist] = useState(() => Object.fromEntries(checklistSeed.map((_, i) => [i, false])));
+  const [logs, setLogs] = useState(initialLogs);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return articles.filter(article => {
+      const haystack = [article.title, article.category, article.type, article.status, ...(article.characters || []), ...(article.tags || [])].join(" ").toLowerCase();
+      return (!q || haystack.includes(q))
+        && (category === "all" || article.category === category)
+        && (type === "all" || article.type === type)
+        && (chaos === "all" || String(article.chaos) === chaos)
+        && (status === "all" || article.status === status)
+        && (character === "all" || article.characters?.includes(character))
+        && (tag === "all" || article.tags?.includes(tag));
+    });
+  }, [query, category, type, chaos, status, character, tag]);
+
+  const clearFilters = () => {
+    setQuery(""); setCategory("all"); setType("all"); setChaos("all"); setStatus("all"); setCharacter("all"); setTag("all");
+  };
+
+  if (view === "console") {
+    return <ContainmentConsole {...{level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs}} onBack={() => setView("articles")} />;
+  }
+
+  return <div className="app library-app">
+    <div className="scanlines"/>
+    <header className="topbar">
+      <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div>
+      <div className="top-status"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span></div>
+    </header>
+    <main>
+      <section className="library-hero panel">
+        <div>
+          <div className="eyebrow">☣ DOCUMENTATION INDEX</div>
+          <h1>ESTROBUNNY <span>WIKIHOW</span></h1>
+          <p className="subtitle">PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</p>
+          <p className="lede">Browse the documentation. Filter the chaos. Pretend this was always the plan.</p>
+        </div>
+        <button className="console-launch" onClick={() => setView("console")}>OPEN FORM 19-C CONSOLE ↗</button>
+      </section>
+
+      <section className="filter-panel panel">
+        <div className="panel-head"><div><span className="eyebrow">CONTENT DISCOVERY</span><h2>FILTER THE CHAOS</h2></div><span className="count">{filtered.length}/{articles.length}</span></div>
+        <div className="search-row"><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search title, category, character, tag..." aria-label="Search articles"/><button className="clear-button" onClick={clearFilters}>RESET</button></div>
+        <div className="filters">
+          <Filter label="CATEGORY" value={category} setValue={setCategory} options={Object.keys(categoryLabels)} labels={categoryLabels}/>
+          <Filter label="TYPE" value={type} setValue={setType} options={Object.keys(typeLabels)} labels={typeLabels}/>
+          <Filter label="CHAOS" value={chaos} setValue={setChaos} options={Object.keys(chaosLabels)} labels={chaosLabels}/>
+          <Filter label="STATUS" value={status} setValue={setStatus} options={unique("status")} labels={Object.fromEntries(unique("status").map(x => [x, x.toUpperCase()]))}/>
+          <Filter label="CHARACTER" value={character} setValue={setCharacter} options={unique("characters")} labels={Object.fromEntries(unique("characters").map(x => [x, x]))}/>
+          <Filter label="TAG" value={tag} setValue={setTag} options={unique("tags")} labels={Object.fromEntries(unique("tags").map(x => [x, "#"+x]))}/>
+        </div>
+      </section>
+
+      <section className="article-toolbar"><span>{filtered.length === 1 ? "1 DOCUMENT" : filtered.length + " DOCUMENTS"} MATCHED</span><span>METADATA-DRIVEN // PATHS PRESERVED</span></section>
+      <section className="article-grid">
+        {filtered.map(article => <ArticleCard key={article.path} article={article} onOpen={() => setSelected(article)} />)}
+      </section>
+      {!filtered.length && <div className="empty-state panel"><strong>NO DOCUMENTS FOUND.</strong><span>The filters have achieved containment. This is suspicious.</span><button onClick={clearFilters}>RESTORE CHAOS</button></div>}
+    </main>
+    <footer><span>ESTROBUNNY WIKIHOW // CONTENT INDEX</span><span>still here 🏳️‍⚧️</span><span>STATUS: {filtered.length ? "OPERATIONAL" : "CONTAINED"}</span></footer>
+    {selected && <ArticleModal article={selected} onClose={() => setSelected(null)} />}
+  </div>;
+}
+
+function Filter({label,value,setValue,options,labels}) {
+  return <label className="filter"><span>{label}</span><select value={value} onChange={e => setValue(e.target.value)}><option value="all">ALL</option>{options.map(option => <option key={option} value={option}>{labels?.[option] ?? option}</option>)}</select></label>;
+}
+
+function ArticleCard({article,onOpen}) {
+  return <article className="article-card panel">
+    <div className="card-top"><span className="category-badge">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge chaos-"+article.chaos}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
+    <h2>{article.title}</h2>
+    <div className="card-meta"><span>{typeLabels[article.type] || article.type}</span><span>{article.status.toUpperCase()}</span></div>
+    <div className="tag-cloud">{article.tags?.slice(0,5).map(item => <span key={item}>#{item}</span>)}</div>
+    <div className="card-footer"><span>{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS REGISTERED"}</span><button onClick={onOpen}>OPEN ARTICLE →</button></div>
+  </article>;
+}
+
+function ArticleModal({article,onClose}) {
+  return <div className="modal-backdrop" onClick={onClose}><article className="article-modal panel" onClick={e => e.stopPropagation()}>
+    <button className="modal-close" onClick={onClose}>×</button>
+    <div className="eyebrow">ARTICLE // {slugFromPath(article.path)}</div>
+    <h1>{article.title}</h1>
+    <div className="modal-badges"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>{article.status.toUpperCase()}</span></div>
+    <div className="modal-tags">{article.tags?.map(item => <span key={item}>#{item}</span>)}</div>
+    <pre className="article-body">{article.body}</pre>
+  </article></div>;
+}
+
+function ContainmentConsole({level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,onBack}) {
   const current = levels[level];
   const completed = Object.values(checklist).filter(Boolean).length;
   const containment = Math.round(completed / checklistSeed.length * 100);
   const state = level >= 5 ? "CATASTROPHIC" : level >= 3 ? "ACTIVE" : "STABLE";
-  const progress = useMemo(() => [8,30,55,76,92,100][level], [level]);
-
+  const progress = [8,30,55,76,92,100][level];
   const addLog = (source,message) => setLogs(items => [...items,[new Date().toLocaleTimeString("en-ZA",{hour12:false}),source,message]].slice(-10));
-  const escalate = (next = Math.min(5,level+1)) => { setLevel(next); setCopies(n=>n+(next>=3?1:0)); addLog("ALERT",`Alert level raised to ${next}: ${levels[next].name}.`); };
-  const toggle = i => setChecklist(s=>({...s,[i]:!s[i]}));
-  const contain = () => { setLevel(2); setCopies(n=>Math.max(3,n-1)); addLog("CONTAINMENT","Containment attempt initiated. Paperwork freeze active."); };
+  const escalate = (next = Math.min(5,level+1)) => { setLevel(next); setCopies(n => n + (next >= 3 ? 1 : 0)); addLog("ALERT", "Alert level raised to "+next+": "+levels[next].name+"."); };
+  const toggle = i => setChecklist(s => ({...s,[i]:!s[i]}));
+  const contain = () => { setLevel(2); setCopies(n => Math.max(3,n-1)); addLog("CONTAINMENT","Containment attempt initiated. Paperwork freeze active."); };
   const openTerminal = () => { setTerminal(true); addLog("ESTROBUNNY","Terminal opened. Documentation Team notified."); };
 
-  return <div className={`app level-${level}`}>
-    <div className="scanlines"/>
-    <header className="topbar">
-      <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>ADMINISTRATIVE ANOMALY CONTAINMENT NETWORK</span></div></div>
-      <div className="top-status"><span className="dot"/> SYSTEM ONLINE <span className="version">EB-IR-19C / v0.1</span></div>
-    </header>
+  return <div className={"app level-"+level}><div className="scanlines"/>
+    <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>ADMINISTRATIVE ANOMALY CONTAINMENT NETWORK</span></div></div><div className="top-status"><span className="dot"/> SYSTEM ONLINE <span className="version">EB-IR-19C / v0.1</span></div></header>
     <main>
-      <section className="hero panel">
-        <div className="hero-copy"><div className="eyebrow">☣ DOCUMENT CONTAINMENT PROTOCOL</div><h1>FORM <span>19-C</span></h1><p className="subtitle">SELF-REPLICATING BUREAUCRATIC ANOMALY</p><p className="lede">A dead-serious control console for paperwork that has stopped respecting the laws of paperwork.</p><div className="hero-actions"><button className="primary" onClick={()=>escalate()}>RAISE ALERT LEVEL</button><button className="secondary" onClick={contain}>ATTEMPT CONTAINMENT</button></div></div>
-        <div className="hero-core"><div className="core-ring"><span>19-C</span></div><div className="core-label">DOCUMENT<br/>ISOLATION</div></div>
-      </section>
-      <section className="telemetry-grid">
-        <Metric label="ALERT LEVEL" value={level} note={current.name} color={current.color}/>
-        <Metric label="KNOWN COPIES" value={copies} note="↑ replication detected"/>
-        <Metric label="CONTAINMENT" value={`${containment}%`} note={`${completed}/${checklistSeed.length} controls active`}/>
-        <Metric label="DUCKS RECOVERED" value={<>{ducks}<em>/7</em></>} note={ducks===7?"All accounted for":"One duck remains missing"}/>
-      </section>
-      <section className="dashboard-grid">
-        <article className="panel alert-panel"><PanelHead eyebrow="CURRENT CONDITION" title="RED-ALERT MATRIX" badge={<span className={`state-badge ${current.color}`}>{state}</span>}/><div className="level-list">{levels.map(item=><button key={item.id} className={`level-row ${item.id===level?"selected":""}`} onClick={()=>setLevel(item.id)}><span className={`level-index ${item.color}`}>{item.id}</span><span className="level-info"><b>{item.name}</b><small>{item.desc}</small></span><span className="chevron">›</span></button>)}</div></article>
-        <article className="panel checklist-panel"><PanelHead eyebrow="RESPONSE PROTOCOL" title="CONTAINMENT CHECKLIST" badge={<span className="count">{completed}/{checklistSeed.length}</span>}/><div className="progress"><span style={{width:`${progress}%`}}/></div><div className="checks">{checklistSeed.map((item,i)=><label className={checklist[i]?"checked":""} key={item}><input type="checkbox" checked={!!checklist[i]} onChange={()=>toggle(i)}/><span className="fake-check">✓</span><span>{item}</span></label>)}</div></article>
-      </section>
-      <section className="lower-grid">
-        <article className="panel log-panel"><PanelHead eyebrow="LIVE TELEMETRY" title="INCIDENT LOG" badge={<span className="live"><i/> LIVE</span>}/><div className="log-window">{logs.slice(-8).map(([time,source,msg],i)=><div className="log-line" key={time+i}><time>{time}</time><b>{source}</b><span>{msg}</span></div>)}</div></article>
-        <article className="panel rules-panel"><PanelHead eyebrow="HANDLING DIRECTIVE" title="DO NOT" badge={<span className="danger">NOPE</span>}/><ul><li>Photocopy Form 19-C without authorization.</li><li>Create <code>Form 19-D</code>.</li><li>Combine contradictory instructions “to save time.”</li><li>Ask Greg to interpret the paperwork.</li><li>Open another terminal to automate the process.</li></ul><div className="directive">DO NOT ATTEMPT TO OUT-PAPERWORK THE PAPERWORK.</div></article>
-      </section>
-      <section className="incident-strip panel"><div><span className="eyebrow">EMERGENCY ESCALATION</span><h2>THE PAPERWORK IS NOT MALICIOUS.</h2><p>It is simply following the instructions.</p></div><button className="danger-button" onClick={()=>escalate(5)}>DECLARE LEVEL 5</button></section>
-      <section className="terminal panel"><div className="terminal-head"><div className="traffic"><i/><i/><i/></div><span>estrobunny@containment:~</span><button onClick={openTerminal}>{terminal?"TERMINAL ACTIVE":"OPEN TERMINAL"}</button></div><pre>{terminal ? `$ ./contain-form-19c
-> Loading containment protocol...
-> Original document: FOUND
-> Copies: ${copies}
-> Alert level: ${level}
-> Containment: ${containment}%
-> Greg: NOT AUTHORIZED
-> Photocopier: SECURED
-> EstroBunny: "I have an idea."
-
-SYSTEM:
-Please step away from the keyboard.
-
-EstroBunny:
-but what if—
-
-SYSTEM:
-NO.
-
-$ _` : `$ ./contain-form-19c
-> containment console ready
-> type "open-terminal" if you absolutely must make this worse
-
-$ _`}</pre></section>
+      <button className="back-button" onClick={onBack}>← BACK TO ARTICLE INDEX</button>
+      <section className="hero panel"><div className="hero-copy"><div className="eyebrow">☣ DOCUMENT CONTAINMENT PROTOCOL</div><h1>FORM <span>19-C</span></h1><p className="subtitle">SELF-REPLICATING BUREAUCRATIC ANOMALY</p><p className="lede">A dead-serious control console for paperwork that has stopped respecting the laws of paperwork.</p><div className="hero-actions"><button className="primary" onClick={() => escalate()}>RAISE ALERT LEVEL</button><button className="secondary" onClick={contain}>ATTEMPT CONTAINMENT</button></div></div><div className="hero-core"><div className="core-ring"><span>19-C</span></div><div className="core-label">DOCUMENT<br/>ISOLATION</div></div></section>
+      <section className="telemetry-grid"><Metric label="ALERT LEVEL" value={level} note={current.name} color={current.color}/><Metric label="KNOWN COPIES" value={copies} note="↑ replication detected"/><Metric label="CONTAINMENT" value={containment+"%"} note={completed+"/"+checklistSeed.length+" controls active"}/><Metric label="DUCKS RECOVERED" value={<>{ducks}<em>/7</em></>} note={ducks===7?"All accounted for":"One duck remains missing"}/></section>
+      <section className="dashboard-grid"><article className="panel alert-panel"><PanelHead eyebrow="CURRENT CONDITION" title="RED-ALERT MATRIX" badge={<span className={"state-badge "+current.color}>{state}</span>}/><div className="level-list">{levels.map(item => <button key={item.id} className={"level-row "+(item.id===level?"selected":"")} onClick={() => setLevel(item.id)}><span className={"level-index "+item.color}>{item.id}</span><span className="level-info"><b>{item.name}</b><small>{item.desc}</small></span><span className="chevron">›</span></button>)}</div></article><article className="panel checklist-panel"><PanelHead eyebrow="RESPONSE PROTOCOL" title="CONTAINMENT CHECKLIST" badge={<span className="count">{completed}/{checklistSeed.length}</span>}/><div className="progress"><span style={{width:progress+"%"}}/></div><div className="checks">{checklistSeed.map((item,i) => <label className={checklist[i]?"checked":""} key={item}><input type="checkbox" checked={!!checklist[i]} onChange={() => toggle(i)}/><span className="fake-check">✓</span><span>{item}</span></label>)}</div></article></section>
+      <section className="lower-grid"><article className="panel log-panel"><PanelHead eyebrow="LIVE TELEMETRY" title="INCIDENT LOG" badge={<span className="live"><i/> LIVE</span>}/><div className="log-window">{logs.slice(-8).map(([time,source,msg],i) => <div className="log-line" key={time+i}><time>{time}</time><b>{source}</b><span>{msg}</span></div>)}</div></article><article className="panel rules-panel"><PanelHead eyebrow="HANDLING DIRECTIVE" title="DO NOT" badge={<span className="danger">NOPE</span>}/><ul><li>Photocopy Form 19-C without authorization.</li><li>Create <code>Form 19-D</code>.</li><li>Combine contradictory instructions “to save time.”</li><li>Ask Greg to interpret the paperwork.</li><li>Open another terminal to automate the process.</li></ul><div className="directive">DO NOT ATTEMPT TO OUT-PAPERWORK THE PAPERWORK.</div></article></section>
+      <section className="incident-strip panel"><div><span className="eyebrow">EMERGENCY ESCALATION</span><h2>THE PAPERWORK IS NOT MALICIOUS.</h2><p>It is simply following the instructions.</p></div><button className="danger-button" onClick={() => escalate(5)}>DECLARE LEVEL 5</button></section>
+      <section className="terminal panel"><div className="terminal-head"><div className="traffic"><i/><i/><i/></div><span>estrobunny@containment:~</span><button onClick={openTerminal}>{terminal?"TERMINAL ACTIVE":"OPEN TERMINAL"}</button></div><pre>{terminal ? "$ ./contain-form-19-c\n> Loading containment protocol...\n> Original document: FOUND\n> Copies: "+copies+"\n> Alert level: "+level+"\n> Containment: "+containment+"%\n> Greg: NOT AUTHORIZED\n> Photocopier: SECURED\n> EstroBunny: \"I have an idea.\"\n\nSYSTEM:\nPlease step away from the keyboard.\n\nEstroBunny:\nbut what if—\n\nSYSTEM:\nNO.\n\n$ _" : "$ ./contain-form-19-c\n> containment console ready\n> type \"open-terminal\" if you absolutely must make this worse\n\n$ _"}</pre></section>
     </main>
     <footer><span>ESTROBUNNY WIKIHOW // EB-IR-19C</span><span>still here 🏳️‍⚧️</span><span>STATUS: {state}</span></footer>
   </div>;
@@ -94,3 +222,9 @@ $ _`}</pre></section>
 
 function Metric({label,value,note,color}) { return <article className="metric panel"><span>{label}</span><strong className={color}>{value}</strong><small>{note}</small></article>; }
 function PanelHead({eyebrow,title,badge}) { return <div className="panel-head"><div><span className="eyebrow">{eyebrow}</span><h2>{title}</h2></div>{badge}</div>; }
+
+const levels = [
+  {id:0,name:"NORMAL",color:"cyan",desc:"Form 19-C is behaving normally."},{id:1,name:"UNUSUAL PAPERWORK",color:"yellow",desc:"A new form has appeared unexpectedly."},{id:2,name:"CONTRADICTORY",color:"orange",desc:"Two documents now disagree."},{id:3,name:"SELF-REPLICATION",color:"red",desc:"Additional copies are appearing."},{id:4,name:"BUREAUCRATIC RECURSION",color:"red",desc:"The forms require each other."},{id:5,name:"ADMINISTRATIVE CATASTROPHE",color:"magenta",desc:"A form explaining a form has appeared."}
+];
+const checklistSeed = ["Original Form 19-C identified","Current version preserved","Contradictory instructions recorded","Photocopier secured","Printer secured","Unnecessary stationery removed","Authoritative clarification requested","EstroBunny removed from the printer area","Greg kept outside the evidence register","Rubber ducks accounted for"];
+const initialLogs = [["21:14:02","SYSTEM","Form 19-C containment console initialized."],["21:14:09","SCAN","Original document located. No immediate replication detected."],["21:14:31","WARN","Form 19-C(a) references Form 19-C(b)."],["21:14:32","WARN","Form 19-C(b) references Form 19-C(a)."],["21:14:47","ESTROBUNNY","I have an idea."],["21:14:48","SYSTEM","ESCALATION RECOMMENDED."]];
