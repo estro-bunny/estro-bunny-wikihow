@@ -1,3 +1,19 @@
+---
+title: "Recover From a Failed Database Migration Without Making the Outage Worse"
+category: technical-operations
+type: runbook
+chaos: 5
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - migration
+  - outage
+  - recovery
+---
 # How to Recover From a Failed Database Migration Without Making the Outage Worse
 
 A failed database migration is already a problem.
