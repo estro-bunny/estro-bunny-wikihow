@@ -217,13 +217,15 @@ function renderArticleBody(body) {
       remarkPlugins={[remarkGfm]}
       components={{
         h1: ({children}) => <h2>{children}</h2>,
-        h2: ({children}) => {
+        h2: ({children, node}) => {
           const text = String(children);
-          return <h2 id={headingId(text, text.length)}>{children}</h2>;
+          const index = node?.position?.start?.line ? node.position.start.line - 1 : text.length;
+          return <h2 id={headingId(text, index)}>{children}</h2>;
         },
-        h3: ({children}) => {
+        h3: ({children, node}) => {
           const text = String(children);
-          return <h3 id={headingId(text, text.length)}>{children}</h3>;
+          const index = node?.position?.start?.line ? node.position.start.line - 1 : text.length;
+          return <h3 id={headingId(text, index)}>{children}</h3>;
         },
         a: ({href, children}) => <a href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel={href?.startsWith("http") ? "noreferrer" : undefined}>{children}</a>,
         pre: ({children}) => <pre>{children}</pre>
