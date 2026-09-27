@@ -1,3 +1,18 @@
+---
+title: "How to Fix a Broken Back"
+category: life
+type: guide
+chaos: 4
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - back-pain
+  - first-aid
+  - emergency
+  - health-safety
+---
 # How to Fix a Broken Back
 
 If by “broken back” you mean a suspected spinal fracture or serious spinal injury, do not attempt to fix it yourself. A damaged spine is not a loose USB cable. There is no safe `unplug → plug back in` procedure.
