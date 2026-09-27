@@ -198,13 +198,24 @@ function ArticleCard({article,onOpen}) {
   </article>;
 }
 
+function headingId(text, index) {
+  return "section-" + index + "-" + text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function extractHeadings(body) {
+  return body.split("\n").map((line, index) => {
+    const match = line.trim().match(/^#{2,3} (.+)$/);
+    return match ? { id: headingId(match[1], index), text: match[1], level: line.trim().startsWith("###") ? 3 : 2 } : null;
+  }).filter(Boolean);
+}
+
 function renderArticleBody(body) {
   return body.split("\n").map((line, i) => {
     const trimmed = line.trim();
     if (!trimmed) return <div className="article-spacer" key={i}/>;
     if (trimmed.startsWith("# ")) return <h2 key={i}>{trimmed.slice(2)}</h2>;
-    if (trimmed.startsWith("## ")) return <h2 key={i}>{trimmed.slice(3)}</h2>;
-    if (trimmed.startsWith("### ")) return <h3 key={i}>{trimmed.slice(4)}</h3>;
+    if (trimmed.startsWith("## ")) return <h2 id={headingId(trimmed.slice(3), i)} key={i}>{trimmed.slice(3)}</h2>;
+    if (trimmed.startsWith("### ")) return <h3 id={headingId(trimmed.slice(4), i)} key={i}>{trimmed.slice(4)}</h3>;
     if (trimmed.startsWith("> ")) return <blockquote key={i}>{trimmed.slice(2)}</blockquote>;
     if (trimmed.startsWith("- ")) return <li key={i}>{trimmed.slice(2)}</li>;
     if (trimmed.startsWith("`") && trimmed.endsWith("`")) return <pre key={i}>{trimmed.slice(1,-1)}</pre>;
@@ -213,6 +224,20 @@ function renderArticleBody(body) {
 }
 
 function ArticlePage({article,onBack}) {
+  const headings = useMemo(() => extractHeadings(article.body), [article.body]);
+  const [activeHeading, setActiveHeading] = useState(headings[0]?.id || "");
+  useEffect(() => {
+    if (!headings.length) return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible[0]) setActiveHeading(visible[0].target.id);
+    }, { rootMargin: "-100px 0px -65% 0px", threshold: [0, 0.1, 0.5] });
+    headings.forEach(item => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, [headings]);
   const index = articles.findIndex(item => item.path === article.path);
   const previous = index > 0 ? articles[index - 1] : null;
   const next = index < articles.length - 1 ? articles[index + 1] : null;
@@ -238,7 +263,7 @@ function ArticlePage({article,onBack}) {
       </nav>
       <div className="wiki-nav"><button className="back-button" onClick={onBack}>← ALL ARTICLES</button><button className="copy-link" onClick={copyLink}>{copied ? "✓ LINK COPIED" : "COPY LINK ↗"}</button></div>
       <article className="wiki-layout">
-        <aside className="wiki-sidebar panel"><div className="eyebrow">DOCUMENT CLASSIFICATION</div><div className="wiki-class"><b>{categoryLabels[article.category]}</b><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>STATUS: {article.status.toUpperCase()}</span></div><div className="eyebrow">CHARACTERS</div><div className="sidebar-tags">{(article.characters || []).map(x => <span key={x}>🐰 {x}</span>)}</div><div className="eyebrow">TAGS</div><div className="sidebar-tags">{(article.tags || []).map(x => <span key={x}>#{x}</span>)}</div></aside>
+        <aside className="wiki-sidebar panel"><TableOfContents headings={headings} activeHeading={activeHeading} /></aside><div className="eyebrow">DOCUMENT CLASSIFICATION</div><div className="wiki-class"><b>{categoryLabels[article.category]}</b><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>STATUS: {article.status.toUpperCase()}</span></div><div className="eyebrow">CHARACTERS</div><div className="sidebar-tags">{(article.characters || []).map(x => <span key={x}>🐰 {x}</span>)}</div><div className="eyebrow">TAGS</div><div className="sidebar-tags">{(article.tags || []).map(x => <span key={x}>#{x}</span>)}</div></aside>
         <section className="wiki-article panel"><div className="eyebrow">WIKIHOW ARTICLE // {slugFromPath(article.path)}</div><h1>{article.title}</h1><div className="wiki-meta"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>CHAOS {article.chaos}</span></div><div className="wiki-rule"/><div className="wiki-body">{renderArticleBody(article.body)}</div><div className="wiki-end"><strong>YOU HAVE REACHED THE END OF THE DOCUMENT.</strong><span>The documentation remains operational.</span><button className="console-launch" onClick={onBack}>← RETURN TO ARTICLE INDEX</button></div></section>
       </article>
       <nav className="article-pagination" aria-label="Article navigation">
@@ -252,6 +277,10 @@ function ArticlePage({article,onBack}) {
   </div>;
 }
 
+function TableOfContents({headings,activeHeading}) {
+  if (!headings.length) return <div><div className="eyebrow">CONTENTS</div><p className="toc-empty">NO HEADINGS REGISTERED.</p></div>;
+  return <div className="toc"><div className="eyebrow">TABLE OF CONTENTS</div><nav aria-label="Table of contents">{headings.map(item => <a key={item.id} className={activeHeading === item.id ? "active" : ""} style={{paddingLeft: item.level === 3 ? "18px" : "8px"}} href={"#"+item.id}>{item.text}</a>)}</nav><div className="eyebrow toc-meta">LIVE SECTION TRACKING</div></div>;
+}
 function ArticleNavButton({article,direction}) {
   if (!article) return <span className="article-nav-placeholder"/>;
   return <button className={"article-nav "+direction} onClick={() => navigate("/articles/"+slugFromPath(article.path))}>
