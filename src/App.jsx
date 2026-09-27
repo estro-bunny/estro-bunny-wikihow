@@ -343,7 +343,7 @@ function renderArticleBody(body) {
     }
   };
   const related = articles.filter(item => item.path !== article.path && (item.category === article.category || item.type === article.type)).slice(0,4);
-  return <div className="app wiki-page" data-reading-progress={readingProgress.percentage}>
+  return <div className="app wiki-page" data-reading-progress={readingProgress.percentage}>\n    <ReadingProgressBar percentage={readingProgress.percentage} />
     <div className="scanlines"/>
     <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span></div></header>
     <main>
@@ -368,6 +368,21 @@ function renderArticleBody(body) {
   </div>;
 }
 
+function ReadingProgressBar({ percentage }) {
+  return <div
+    className="reading-progress"
+    role="progressbar"
+    aria-label="Article reading progress"
+    aria-valuemin={0}
+    aria-valuemax={100}
+    aria-valuenow={percentage}
+  >
+    <span className="reading-progress-track" aria-hidden="true">
+      <span className="reading-progress-fill" style={{ width: percentage + "%" }} />
+    </span>
+    <span className="reading-progress-value">{percentage}%</span>
+  </div>;
+}
 function TableOfContents({headings,activeHeading}) {
   const tocStorageKey = "estrobunny-wikihow-mobile-toc-open";
   const [open, setOpen] = useState(() => {
