@@ -278,8 +278,22 @@ function ArticlePage({article,onBack}) {
 }
 
 function TableOfContents({headings,activeHeading}) {
-  const [open, setOpen] = useState(false);
+  const tocStorageKey = "estrobunny-wikihow-mobile-toc-open";
+  const [open, setOpen] = useState(() => {
+    try {
+      return sessionStorage.getItem(tocStorageKey) === "true";
+    } catch {
+      return false;
+    }
+  });
   const active = headings.find(item => item.id === activeHeading) || headings[0];
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(tocStorageKey, String(open));
+    } catch {
+      // Storage may be unavailable; local component state still works.
+    }
+  }, [open]);
   const jumpTo = (id) => {
     setOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
