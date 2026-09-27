@@ -236,11 +236,11 @@ function renderArticleBody(body) {
   );
 }
 
-function ArticlePage({article,onBack}) {
+\nfunction useArticleProgress() {\n  const [state, setState] = useState({ percentage: 0, isAtStart: true, isComplete: false });\n  const lastPercentageRef = useRef(-1);\n\n  useEffect(() => {\n    let timer = null;\n\n    const measure = () => {\n      const root = document.documentElement;\n      const scrollableHeight = Math.max(0, root.scrollHeight - window.innerHeight);\n      const scrollTop = Math.max(0, window.scrollY || window.pageYOffset || 0);\n      const percentage = scrollableHeight === 0\n        ? 0\n        : Math.min(100, Math.max(0, Math.round((scrollTop / scrollableHeight) * 100)));\n\n      if (percentage === lastPercentageRef.current) return;\n      lastPercentageRef.current = percentage;\n      setState({\n        percentage,\n        isAtStart: percentage <= 0,\n        isComplete: percentage >= 100\n      });\n    };\n\n    const scheduleMeasure = () => {\n      if (timer !== null) return;\n      timer = window.setTimeout(() => {\n        timer = null;\n        measure();\n      }, 20);\n    };\n\n    measure();\n    window.addEventListener("scroll", scheduleMeasure, { passive: true });\n    window.addEventListener("resize", measure);\n\n    let resizeObserver;\n    if (typeof ResizeObserver !== "undefined") {\n      resizeObserver = new ResizeObserver(measure);\n      resizeObserver.observe(document.documentElement);\n    }\n\n    return () => {\n      if (timer !== null) window.clearTimeout(timer);\n      window.removeEventListener("scroll", scheduleMeasure);\n      window.removeEventListener("resize", measure);\n      resizeObserver?.disconnect();\n    };\n  }, []);\n\n  return state;\n}\nfunction ArticlePage({article,onBack}) {
   const headings = useMemo(() => extractHeadings(article.body), [article.body]);
   const [activeHeading, setActiveHeading] = useState(headings[0]?.id || "");
   const restoredScrollRef = useRef(false);
-  const scrollKey = `estrobunny-wikihow-article-scroll-${article.slug}`;
+  const scrollKey = `estrobunny-wikihow-article-scroll-${article.slug}`;\n  const readingProgress = useArticleProgress();
 
   useEffect(() => {
     restoredScrollRef.current = false;
@@ -343,7 +343,7 @@ function ArticlePage({article,onBack}) {
     }
   };
   const related = articles.filter(item => item.path !== article.path && (item.category === article.category || item.type === article.type)).slice(0,4);
-  return <div className="app wiki-page">
+  return <div className="app wiki-page" data-reading-progress={readingProgress.percentage}>
     <div className="scanlines"/>
     <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span></div></header>
     <main>
