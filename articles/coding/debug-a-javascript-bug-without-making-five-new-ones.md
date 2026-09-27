@@ -1,3 +1,18 @@
+---
+title: "Debug a JavaScript Bug Without Making Five New Ones"
+category: coding
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - javascript
+  - debugging
+  - async
+  - observability
+---
 # How to Debug a JavaScript Bug Without Making Five New Ones
 
 *A serious guide for developers who have discovered that the code worked yesterday and have absolutely no explanation for this development.*
