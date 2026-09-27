@@ -1,3 +1,20 @@
+---
+title: "Prevent and Recover From Database Split-Brain After a Failover"
+category: technical-operations
+type: runbook
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - split-brain
+  - failover
+  - fencing
+  - recovery
+---
 # How to Prevent and Recover From Database Split-Brain After a Failover
 
 You have completed a database failover.
