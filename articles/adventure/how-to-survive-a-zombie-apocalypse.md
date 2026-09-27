@@ -1,3 +1,19 @@
+---
+title: "How to Survive a Zombie Apocalypse"
+category: adventure
+type: field-manual
+chaos: 4
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - zombies
+  - emergency-preparedness
+  - emergency-kit
+  - survival
+---
 # How to Survive a Zombie Apocalypse
 
 Good news.
