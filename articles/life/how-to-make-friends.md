@@ -1,3 +1,19 @@
+---
+title: "How to Make Friends"
+category: life
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - friendship
+  - social-skills
+  - community
+  - online-safety
+---
 # How to Make Friends
 
 Making friends is a simple process.
