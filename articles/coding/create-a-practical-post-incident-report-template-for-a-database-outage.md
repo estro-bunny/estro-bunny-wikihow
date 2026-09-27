@@ -1,3 +1,19 @@
+---
+title: "Create a Practical Post-Incident Report Template for a Database Outage"
+category: technical-operations
+type: template
+chaos: 4
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - outage
+  - postmortem
+  - template
+---
 # How to Create a Practical Post-Incident Report Template for a Database Outage
 
 The database outage is over.
