@@ -1,3 +1,19 @@
+---
+title: "How to Become a Pirate"
+category: adventure
+type: guide
+chaos: 4
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - pirates
+  - sailing
+  - cosplay
+  - treasure
+---
 # How to Become a Pirate
 
 Congratulations.
