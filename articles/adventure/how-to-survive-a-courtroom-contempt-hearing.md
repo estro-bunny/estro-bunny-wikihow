@@ -1,3 +1,19 @@
+---
+title: "How to Survive a Courtroom Contempt Hearing"
+category: bureaucracy
+type: guide
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - court
+  - contempt
+  - legal-process
+  - south-africa
+---
 # How to Survive a Courtroom Contempt Hearing
 
 EstroBunny has made a mistake.
