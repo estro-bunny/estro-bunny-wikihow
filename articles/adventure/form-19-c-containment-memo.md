@@ -1,3 +1,20 @@
+---
+title: "Form 19-C Containment Memo"
+category: bureaucracy
+type: memo
+chaos: 7
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - documentation-team
+  - greg
+tags:
+  - form-19-c
+  - bureaucracy
+  - containment
+  - administrative-anomaly
+---
 # FORM 19-C CONTAINMENT MEMO
 
 **Document ID:** EB-CONTAIN-19C  
