@@ -278,8 +278,14 @@ function ArticlePage({article,onBack}) {
 }
 
 function TableOfContents({headings,activeHeading}) {
+  const [open, setOpen] = useState(false);
+  const active = headings.find(item => item.id === activeHeading) || headings[0];
+  const jumpTo = (id) => {
+    setOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   if (!headings.length) return <div><div className="eyebrow">CONTENTS</div><p className="toc-empty">NO HEADINGS REGISTERED.</p></div>;
-  return <div className="toc"><div className="eyebrow">TABLE OF CONTENTS</div><nav aria-label="Table of contents">{headings.map(item => <a key={item.id} className={activeHeading === item.id ? "active" : ""} style={{paddingLeft: item.level === 3 ? "18px" : "8px"}} href={"#"+item.id}>{item.text}</a>)}</nav><div className="eyebrow toc-meta">LIVE SECTION TRACKING</div></div>;
+  return <div className={"toc "+(open ? "toc-open" : "")}><button className="toc-mobile-header" onClick={() => setOpen(value => !value)} aria-expanded={open} aria-controls="article-toc-list"><span><small>TABLE OF CONTENTS</small><strong>{active?.text || "START OF ARTICLE"}</strong></span><b>{open ? "−" : "+"}</b></button><div className="eyebrow toc-desktop-label">TABLE OF CONTENTS</div><nav id="article-toc-list" aria-label="Table of contents">{headings.map(item => <a key={item.id} className={activeHeading === item.id ? "active" : ""} style={{paddingLeft: item.level === 3 ? "18px" : "8px"}} href={"#"+item.id} onClick={event => { event.preventDefault(); jumpTo(item.id); }}>{item.text}</a>)}</nav><div className="eyebrow toc-meta">LIVE SECTION TRACKING</div></div>;
 }
 function ArticleNavButton({article,direction}) {
   if (!article) return <span className="article-nav-placeholder"/>;
