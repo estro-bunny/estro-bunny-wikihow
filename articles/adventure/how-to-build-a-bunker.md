@@ -1,3 +1,19 @@
+---
+title: "How to Build a Bunker"
+category: adventure
+type: field-manual
+chaos: 5
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - bunker
+  - preparedness
+  - construction
+  - safety
+---
 # How to Build a Bunker
 
 Excellent.
