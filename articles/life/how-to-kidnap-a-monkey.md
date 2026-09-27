@@ -1,3 +1,19 @@
+---
+title: "How to Kidnap a Monkey"
+category: questionable-decisions
+type: guide
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - monkey
+  - wildlife
+  - plush-monkey
+  - parody
+---
 # How to Kidnap a Monkey
 
 Congratulations. You have selected a task that begins as a crime, continues as a wildlife-welfare incident, and ends with EstroBunny filling out paperwork for an animal she does not possess.
