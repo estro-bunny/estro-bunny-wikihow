@@ -1,3 +1,19 @@
+---
+title: "Debug a Database Migration That Partially Failed"
+category: coding
+type: procedure
+chaos: 5
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - migration
+  - schema
+  - debugging
+---
 # How to Debug a Database Migration That Partially Failed
 
 A partially failed database migration is one of the most dangerous forms of database confusion because two things may now disagree about reality:
