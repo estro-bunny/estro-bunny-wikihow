@@ -1,3 +1,19 @@
+---
+title: "How to Retire From Being a Supervillain"
+category: villainy
+type: procedure
+chaos: 5
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - supervillain
+  - retirement
+  - access-control
+  - handoff
+---
 # How to Retire From Being a Supervillain
 
 Congratulations. You have successfully completed your career as a supervillain.
