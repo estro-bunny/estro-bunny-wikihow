@@ -94,3 +94,30 @@ footer{padding:20px 0 30px;display:flex;justify-content:space-between;color:#665
   .toc.toc-open .toc-meta{display:block}
   .toc-meta{display:none}
 }
+
+/* Markdown content system */
+.wiki-body ul,.wiki-body ol{margin:14px 0 18px;padding-left:28px}
+.wiki-body li{margin:7px 0;padding-left:5px}
+.wiki-body li::marker{color:var(--pink)}
+.wiki-body ol li::marker{font-weight:800}
+.wiki-body blockquote{margin:20px 0;padding:14px 18px;border-left:3px solid var(--pink);background:rgba(255,79,216,.055);color:#cfc3d0}
+.wiki-body code{padding:2px 5px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.35);color:#8de9ff;font:700 .9em "JetBrains Mono",monospace}
+.wiki-body pre{margin:20px 0;padding:17px;overflow-x:auto;border:1px solid rgba(255,79,216,.18);background:rgba(0,0,0,.48);box-shadow:0 0 24px rgba(255,79,216,.05)}
+.wiki-body pre code{display:block;padding:0;border:0;background:transparent;color:#d9d2dc;line-height:1.65}
+.wiki-body table{width:100%;margin:22px 0;border-collapse:collapse;display:block;overflow-x:auto;font-size:13px}
+.wiki-body th,.wiki-body td{padding:10px 12px;border:1px solid rgba(255,255,255,.09);text-align:left;vertical-align:top;min-width:110px}
+.wiki-body th{background:rgba(255,79,216,.09);color:var(--pink);font:800 11px "JetBrains Mono",monospace;text-transform:uppercase}
+.wiki-body tr:nth-child(even) td{background:rgba(255,255,255,.018)}
+.wiki-body hr{margin:30px 0;border:0;border-top:1px solid rgba(255,79,216,.16)}
+.wiki-body img{max-width:100%;height:auto;border:1px solid rgba(255,79,216,.14)}
+.wiki-body a{color:var(--cyan);text-decoration-color:rgba(141,233,255,.35);text-underline-offset:3px}
+.wiki-body a:hover{color:var(--pink);text-decoration-color:var(--pink)}
+.wiki-body strong{color:#f5edf6}
+.wiki-body em{color:#c9b9ca}
+@media(max-width:650px){
+  .wiki-body ul,.wiki-body ol{padding-left:24px}
+  .wiki-body blockquote{margin:16px 0;padding:12px 14px}
+  .wiki-body table{font-size:12px}
+  .wiki-body th,.wiki-body td{padding:8px 9px;min-width:100px}
+  .wiki-body pre{font-size:10px;line-height:1.55}
+}
