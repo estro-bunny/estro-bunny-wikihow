@@ -1,3 +1,18 @@
+---
+title: "How to Be Happy"
+category: life
+type: guide
+chaos: 2
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - happiness
+  - wellbeing
+  - self-care
+  - mental-wellbeing
+---
 # How to Be Happy
 
 Happiness is a complicated human experience involving mood, circumstances, relationships, health, meaning, and approximately seventeen million variables nobody has completely figured out.
