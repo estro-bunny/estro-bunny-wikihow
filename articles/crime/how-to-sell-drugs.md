@@ -1,3 +1,19 @@
+---
+title: "How to Sell Drugs"
+category: fictional-crime
+type: guide
+chaos: 7
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - fictional-drugs
+  - space-rocks
+  - parody
+  - compliance
+---
 # How to Sell Drugs
 
 Congratulations.
