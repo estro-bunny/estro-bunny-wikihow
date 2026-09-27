@@ -1,3 +1,18 @@
+---
+title: "How to Get Into a Relationship"
+category: life
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - relationships
+  - dating
+  - communication
+  - boundaries
+---
 # How to Get Into a Relationship
 
 Getting into a relationship is usually less complicated than the internet makes it sound.
