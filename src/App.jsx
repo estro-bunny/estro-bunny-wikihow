@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const articleFiles = import.meta.glob("../articles/**/*.md", {
   query: "?raw",
@@ -226,6 +226,41 @@ function renderArticleBody(body) {
 function ArticlePage({article,onBack}) {
   const headings = useMemo(() => extractHeadings(article.body), [article.body]);
   const [activeHeading, setActiveHeading] = useState(headings[0]?.id || "");
+  const restoredSectionRef = useRef(false);
+
+  useEffect(() => {
+    restoredSectionRef.current = false;
+    if (!headings.length) return undefined;
+    const key = `estrobunny-wikihow-article-section-${article.slug}`;
+    let saved = null;
+    try {
+      saved = sessionStorage.getItem(key);
+    } catch {
+      saved = null;
+    }
+    if (!saved || !headings.some(item => item.id === saved)) {
+      restoredSectionRef.current = true;
+      return undefined;
+    }
+    const timer = window.setTimeout(() => {
+      const element = document.getElementById(saved);
+      if (element) {
+        element.scrollIntoView({ behavior: "instant", block: "start" });
+        setActiveHeading(saved);
+      }
+      restoredSectionRef.current = true;
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [article.slug, headings]);
+
+  useEffect(() => {
+    if (!activeHeading || !restoredSectionRef.current) return;
+    try {
+      sessionStorage.setItem(`estrobunny-wikihow-article-section-${article.slug}`, activeHeading);
+    } catch {
+      // Storage may be unavailable; reading position still works for this visit.
+    }
+  }, [activeHeading, article.slug]);
   useEffect(() => {
     if (!headings.length) return undefined;
     const observer = new IntersectionObserver((entries) => {
