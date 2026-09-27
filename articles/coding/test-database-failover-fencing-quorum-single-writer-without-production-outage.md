@@ -1,3 +1,20 @@
+---
+title: "Test Database Failover, Fencing, Quorum, and Single-Writer Guarantees Without a Production Outage"
+category: technical-operations
+type: procedure
+chaos: 6
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - failover
+  - testing
+  - fencing
+  - quorum
+---
 # How to Test Database Failover, Fencing, Quorum, and Single-Writer Guarantees Without Causing a Production Outage
 
 You have documented the failover architecture.
