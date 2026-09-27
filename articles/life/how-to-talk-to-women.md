@@ -1,3 +1,18 @@
+---
+title: "How to Talk to Women"
+category: life
+type: guide
+chaos: 3
+status: stable
+featured: false
+characters:
+  - estrobunny
+tags:
+  - communication
+  - social-skills
+  - dating
+  - boundaries
+---
 # How to Talk to Women
 
 At some point, every person discovers a horrifying truth:
