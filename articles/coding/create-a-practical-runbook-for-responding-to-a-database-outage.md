@@ -1,3 +1,19 @@
+---
+title: "Create a Practical Runbook for Responding to a Database Outage"
+category: technical-operations
+type: runbook
+chaos: 4
+status: stable
+featured: false
+characters:
+  - estrobunny
+  - greg
+tags:
+  - database
+  - outage
+  - runbook
+  - incident-response
+---
 # How to Create a Practical Runbook for Responding to a Database Outage
 
 The database is down.
