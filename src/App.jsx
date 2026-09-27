@@ -213,20 +213,51 @@ function renderArticleBody(body) {
 }
 
 function ArticlePage({article,onBack}) {
+  const index = articles.findIndex(item => item.path === article.path);
+  const previous = index > 0 ? articles[index - 1] : null;
+  const next = index < articles.length - 1 ? articles[index + 1] : null;
+  const [copied, setCopied] = useState(false);
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  };
   const related = articles.filter(item => item.path !== article.path && (item.category === article.category || item.type === article.type)).slice(0,4);
   return <div className="app wiki-page">
     <div className="scanlines"/>
     <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span></div></header>
     <main>
-      <div className="wiki-nav"><button className="back-button" onClick={onBack}>← ALL ARTICLES</button><span>ESTROBUNNY WIKIHOW / {article.category.toUpperCase()}</span></div>
+      <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <button onClick={onBack}>ESTROBUNNY WIKIHOW</button><span>/</span>
+        <button onClick={onBack}>{categoryLabels[article.category] || article.category}</button><span>/</span>
+        <strong>{article.title}</strong>
+      </nav>
+      <div className="wiki-nav"><button className="back-button" onClick={onBack}>← ALL ARTICLES</button><button className="copy-link" onClick={copyLink}>{copied ? "✓ LINK COPIED" : "COPY LINK ↗"}</button></div>
       <article className="wiki-layout">
         <aside className="wiki-sidebar panel"><div className="eyebrow">DOCUMENT CLASSIFICATION</div><div className="wiki-class"><b>{categoryLabels[article.category]}</b><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>STATUS: {article.status.toUpperCase()}</span></div><div className="eyebrow">CHARACTERS</div><div className="sidebar-tags">{(article.characters || []).map(x => <span key={x}>🐰 {x}</span>)}</div><div className="eyebrow">TAGS</div><div className="sidebar-tags">{(article.tags || []).map(x => <span key={x}>#{x}</span>)}</div></aside>
         <section className="wiki-article panel"><div className="eyebrow">WIKIHOW ARTICLE // {slugFromPath(article.path)}</div><h1>{article.title}</h1><div className="wiki-meta"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>CHAOS {article.chaos}</span></div><div className="wiki-rule"/><div className="wiki-body">{renderArticleBody(article.body)}</div><div className="wiki-end"><strong>YOU HAVE REACHED THE END OF THE DOCUMENT.</strong><span>The documentation remains operational.</span><button className="console-launch" onClick={onBack}>← RETURN TO ARTICLE INDEX</button></div></section>
       </article>
+      <nav className="article-pagination" aria-label="Article navigation">
+        <ArticleNavButton article={previous} direction="previous" />
+        <span>DOCUMENT {index + 1} / {articles.length}</span>
+        <ArticleNavButton article={next} direction="next" />
+      </nav>
       <section className="related-section"><div className="eyebrow">RELATED DOCUMENTATION</div><h2>YOU MAY ALSO NEED THESE.</h2><div className="related-grid">{related.map(item => <button key={item.path} className="related-card panel" onClick={() => navigate("/articles/"+slugFromPath(item.path))}><span>{typeLabels[item.type]}</span><b>{item.title}</b><small>{categoryLabels[item.category]} · CHAOS {item.chaos}</small></button>)}</div></section>
     </main>
     <footer><span>ESTROBUNNY WIKIHOW // ARTICLE</span><span>still here 🏳️‍⚧️</span><span>STATUS: {article.status.toUpperCase()}</span></footer>
   </div>;
+}
+
+function ArticleNavButton({article,direction}) {
+  if (!article) return <span className="article-nav-placeholder"/>;
+  return <button className={"article-nav "+direction} onClick={() => navigate("/articles/"+slugFromPath(article.path))}>
+    <small>{direction === "previous" ? "← PREVIOUS ARTICLE" : "NEXT ARTICLE →"}</small>
+    <strong>{article.title}</strong>
+  </button>;
 }
 
 function NotFound({onBack}) {
