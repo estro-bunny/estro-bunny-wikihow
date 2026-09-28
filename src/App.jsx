@@ -238,7 +238,58 @@ function renderArticleBody(body) {
 
 
 function useArticleProgress() {
-  const [state, setState] = useState({ percentage: 0, isAtStart: true, isComplete: false });\n  const lastPercentageRef = useRef(-1);\n\n  useEffect(() => {\n    let timer = null;\n\n    const measure = () => {\n      const root = document.documentElement;\n      const scrollableHeight = Math.max(0, root.scrollHeight - window.innerHeight);\n      const scrollTop = Math.max(0, window.scrollY || window.pageYOffset || 0);\n      const percentage = scrollableHeight === 0\n        ? 0\n        : Math.min(100, Math.max(0, Math.round((scrollTop / scrollableHeight) * 100)));\n\n      if (percentage === lastPercentageRef.current) return;\n      lastPercentageRef.current = percentage;\n      setState({\n        percentage,\n        isAtStart: percentage <= 0,\n        isComplete: percentage >= 100\n      });\n    };\n\n    const scheduleMeasure = () => {\n      if (timer !== null) return;\n      timer = window.setTimeout(() => {\n        timer = null;\n        measure();\n      }, 20);\n    };\n\n    measure();\n    window.addEventListener("scroll", scheduleMeasure, { passive: true });\n    window.addEventListener("resize", measure);\n\n    let resizeObserver;\n    if (typeof ResizeObserver !== "undefined") {\n      resizeObserver = new ResizeObserver(measure);\n      resizeObserver.observe(document.documentElement);\n    }\n\n    return () => {\n      if (timer !== null) window.clearTimeout(timer);\n      window.removeEventListener("scroll", scheduleMeasure);\n      window.removeEventListener("resize", measure);\n      resizeObserver?.disconnect();\n    };\n  }, []);\n\n  return state;\n}\nfunction ArticlePage({article,onBack}) {
+  const [state, setState] = useState({ percentage: 0, isAtStart: true, isComplete: false });
+  const lastPercentageRef = useRef(-1);
+
+  useEffect(() => {
+    let timer = null;
+
+    const measure = () => {
+      const root = document.documentElement;
+      const scrollableHeight = Math.max(0, root.scrollHeight - window.innerHeight);
+      const scrollTop = Math.max(0, window.scrollY || window.pageYOffset || 0);
+      const percentage = scrollableHeight === 0
+        ? 0
+        : Math.min(100, Math.max(0, Math.round((scrollTop / scrollableHeight) * 100)));
+
+      if (percentage === lastPercentageRef.current) return;
+      lastPercentageRef.current = percentage;
+      setState({
+        percentage,
+        isAtStart: percentage <= 0,
+        isComplete: percentage >= 100
+      });
+    };
+
+    const scheduleMeasure = () => {
+      if (timer !== null) return;
+      timer = window.setTimeout(() => {
+        timer = null;
+        measure();
+      }, 20);
+    };
+
+    measure();
+    window.addEventListener("scroll", scheduleMeasure, { passive: true });
+    window.addEventListener("resize", measure);
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(measure);
+      resizeObserver.observe(document.documentElement);
+    }
+
+    return () => {
+      if (timer !== null) window.clearTimeout(timer);
+      window.removeEventListener("scroll", scheduleMeasure);
+      window.removeEventListener("resize", measure);
+      resizeObserver?.disconnect();
+    };
+  }, []);
+
+  return state;
+}
+function ArticlePage({article,onBack}) {
   const headings = useMemo(() => extractHeadings(article.body), [article.body]);
   const [activeHeading, setActiveHeading] = useState(headings[0]?.id || "");
   const restoredScrollRef = useRef(false);
