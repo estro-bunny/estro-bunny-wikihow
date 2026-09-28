@@ -1,56 +1,109 @@
 import { useEffect, useMemo, useState } from "react";
 
-const CHAOS_LINES = {
-  1: ["Proceed normally. Somehow.", "This is still a legitimate document."],
-  2: ["Something feels suspicious. Continue anyway.", "We have crossed into the questionable zone."],
-  3: ["Excellent. The situation is now concerning.", "Please remain calm while the documentation stops being helpful."],
-  4: ["OH NO. WE HAVE ENTERED THE CHAOTIC PHASE.", "This was supposed to be a normal procedure.", "EstroBunny has been notified. This is not reassuring."],
-  5: ["ESTROBUNNY PROTOCOL ENGAGED.", "The bunny has seen the logs. The bunny has opinions.", "We are no longer pretending this is normal."],
-  6: ["ABSOLUTELY NOT. NARRATOR OVERRIDE ACTIVE.", "Whatever happens next is technically documented.", "Do not make eye contact with the incident."],
-  7: ["DOCUMENTATION HAS FAILED.", "The narrator is now the incident commander.", "If you are still listening, congratulations on your terrible decision-making."]
+const REACTIONS = {
+  heading: ["New section detected. Let us pretend this was planned.", "Attention. The documentation has acquired another heading.", "Narrator note: this part apparently matters."],
+  warning: ["WARNING. WARNING. THE DOCUMENT JUST RAISED ITS VOICE.", "Oh, good. A warning. My favorite genre of paperwork.", "Everyone remain calm. This box is absolutely not reassuring."],
+  code: ["Code detected. I will not read it aloud because I respect your remaining sanity.", "Technical artifact detected. The bunny refuses to narrate every semicolon.", "A code block. Fascinating. Horrifying. We are skipping the incantation."],
+  completion: ["COMPLETION STATE DETECTED. WE MAY HAVE SURVIVED.", "The procedure claims to be complete. I remain skeptical.", "Completion confirmed. The consequences are now someone elses problem."]
 };
 
-function cleanMarkdown(markdown) {
-  return markdown
-    .replace(/:::([a-z]+)(?:\s+[^\n]*)?\n[\s\S]*?\n:::/gi, " ")
-    .replace(/^---[\s\S]*?---\s*/m, " ")
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/```[\s\S]*?```/g, " Code block omitted. ")
-    .replace(/`([^`]+)`/g, "$1")
-    .replace(/^#{1,6}\s+/gm, "")
-    .replace(/\*\*([^*]+)\*\*/g, "$1")
-    .replace(/__([^_]+)__/g, "$1")
-    .replace(/\*([^*]+)\*/g, "$1")
-    .replace(/_([^_]+)_/g, "$1")
-    .replace(/^\s*[-*+]\s+/gm, "")
-    .replace(/^\s*\d+\.\s+/gm, "")
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-    .replace(/>{1,}\s?/g, "")
-    .replace(/\|/g, " ")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
+function stripInline(markdown) {
+  return markdown.replace(/!\[[^\]]*\]\([^)]*\)/g, " ").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/`([^`]+)`/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1").replace(/__([^_]+)__/g, "$1").replace(/\*([^*]+)\*/g, "$1").replace(/_([^_]+)_/g, "$1").replace(/>{1,}\s?/g, "").replace(/\|/g, " ").trim();
+}
+
+function sentenceChunks(text, maxSentences = 2) {
+  const sentences = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+  const chunks = [];
+  for (let i = 0; i < sentences.length; i += maxSentences) {
+    const chunk = sentences.slice(i, i + maxSentences).join(" ").trim();
+    if (chunk) chunks.push(chunk);
+  }
+  return chunks;
+}
+
+function reaction(type, index = 0) {
+  const pool = REACTIONS[type] || REACTIONS.heading;
+  return { type: "reaction-" + type, text: pool[index % pool.length] };
 }
 
 function buildSegments(article) {
-  const lines = cleanMarkdown(article.body).split(/\n+/).map(line => line.trim()).filter(Boolean);
-  const intro = `Welcome to EstroBunny WikiHow. Today we are dealing with: ${article.title}.`;
-  const chaos = CHAOS_LINES[Math.min(7, Math.max(1, Number(article.chaos) || 1))] || CHAOS_LINES[3];
-  const segments = [{ type: "narrator", text: intro }];
-  let chaosIndex = 0;
-  for (const line of lines) {
-    const sentences = line.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [line];
-    for (const sentence of sentences) {
-      const text = sentence.trim();
-      if (!text) continue;
-      segments.push({ type: "article", text });
-      if (/[.!?]$/.test(text) && text.length > 110) {
-        segments.push({ type: "narrator", text: chaos[chaosIndex % chaos.length] });
-        chaosIndex += 1;
-      }
+  const raw = String(article.body || "").replace(/\r\n?/g, "\n");
+  const lines = raw.split("\n");
+  const chaosLevel = Math.min(7, Math.max(1, Number(article.chaos) || 1));
+  const segments = [{ type: "intro", text: "Welcome to EstroBunny WikiHow. Today we are dealing with: " + article.title + "." }];
+  let reactionIndex = 0;
+  let index = 0;
+  let paragraph = [];
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    const text = stripInline(paragraph.join(" ")).replace(/\s+/g, " ").trim();
+    paragraph = [];
+    if (!text) return;
+    sentenceChunks(text).forEach(chunk => segments.push({ type: "article", text: chunk }));
+  };
+  while (index < lines.length) {
+    const trimmed = lines[index].trim();
+    if (/^```|^~~~/.test(trimmed)) {
+      flushParagraph();
+      const marker = trimmed[0];
+      const language = trimmed.slice(3).trim().split(/\s+/)[0] || "plain text";
+      let codeLines = 0;
+      index += 1;
+      while (index < lines.length && !lines[index].trim().startsWith(marker.repeat(3))) { codeLines += 1; index += 1; }
+      segments.push({ type: "code", text: "Code block detected. Language: " + language + ". " + codeLines + " lines of executable witchcraft have been quarantined." });
+      segments.push(reaction("code", reactionIndex++));
+      index += 1;
+      continue;
     }
+    const heading = trimmed.match(/^#{1,6}\s+(.+)$/);
+    if (heading) {
+      flushParagraph();
+      segments.push({ type: "heading", text: stripInline(heading[1]) });
+      segments.push(reaction("heading", reactionIndex++));
+      index += 1;
+      continue;
+    }
+    const directive = trimmed.match(/^:::(hero|step|diagram|warning|example|completion|decorative)(?:\s+(.*))?$/i);
+    if (directive) {
+      flushParagraph();
+      const kind = directive[1].toLowerCase();
+      const args = stripInline(directive[2] || "");
+      const block = [];
+      index += 1;
+      while (index < lines.length && lines[index].trim() !== ":::") { block.push(lines[index]); index += 1; }
+      if (kind === "warning") {
+        const body = stripInline(block.filter(item => !/^\s*!\[/.test(item)).join(" ")).replace(/\s+/g, " ").trim();
+        const detail = body ? sentenceChunks(body, 1)[0] : "";
+        segments.push({ type: "warning", text: "Warning state" + (args ? ": " + args : "") + "." + (detail ? " " + detail : "") });
+        segments.push(reaction("warning", reactionIndex++));
+      } else if (kind === "completion") {
+        const body = stripInline(block.join(" ")).replace(/\s+/g, " ").trim();
+        const detail = body ? sentenceChunks(body, 1)[0] : "Against all available evidence, we appear to be finished.";
+        segments.push({ type: "completion", text: (args || "Procedure complete") + ". " + detail });
+        segments.push(reaction("completion", reactionIndex++));
+      }
+      index += 1;
+      continue;
+    }
+    if (!trimmed || /^---+$/.test(trimmed)) { flushParagraph(); index += 1; continue; }
+    paragraph.push(trimmed);
+    index += 1;
   }
-  segments.push({ type: "narrator", text: article.chaos >= 6 ? "The document is complete. The consequences are not." : "That concludes the procedure. Please make better decisions next time." });
+  flushParagraph();
+  segments.push({ type: "finale", text: chaosLevel >= 6 ? "The document is complete. The consequences are not." : "That concludes the procedure. Please make better decisions next time." });
   return segments;
+}
+
+function segmentVoiceSettings(segment, mode, rate) {
+  const kind = segment.type.startsWith("reaction-") ? segment.type.slice(9) : segment.type;
+  const isReaction = segment.type.startsWith("reaction-");
+  const isAlarm = kind === "warning";
+  const isFinale = kind === "completion" || kind === "finale";
+  return {
+    rate: mode === "maximum" ? Math.min(1.5, rate + (isReaction ? 0.16 : 0.08)) : mode === "calm" ? Math.max(0.75, rate - 0.12) : rate + (isReaction ? 0.02 : 0),
+    pitch: isAlarm ? 1.32 : isFinale ? 1.16 : isReaction ? 1.12 : kind === "code" ? 0.94 : 1,
+    volume: isAlarm || isFinale ? 1 : 0.96
+  };
 }
 
 export default function Narrator({ article }) {
@@ -64,7 +117,6 @@ export default function Narrator({ article }) {
   const [speaking, setSpeaking] = useState(false);
   const [paused, setPaused] = useState(false);
   const [error, setError] = useState("");
-
   useEffect(() => {
     if (!supported) return undefined;
     const load = () => {
@@ -79,18 +131,8 @@ export default function Narrator({ article }) {
     window.speechSynthesis.addEventListener("voiceschanged", load);
     return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
   }, [supported, voiceIndex]);
-
-  useEffect(() => () => {
-    if (supported) window.speechSynthesis.cancel();
-  }, [supported]);
-
-  const stop = () => {
-    if (!supported) return;
-    window.speechSynthesis.cancel();
-    setSpeaking(false);
-    setPaused(false);
-  };
-
+  useEffect(() => () => { if (supported) window.speechSynthesis.cancel(); }, [supported]);
+  const stop = () => { if (!supported) return; window.speechSynthesis.cancel(); setSpeaking(false); setPaused(false); };
   const speakFrom = startIndex => {
     if (!supported) return;
     window.speechSynthesis.cancel();
@@ -99,58 +141,37 @@ export default function Narrator({ article }) {
     setError("");
     let cursor = nextIndex;
     const speakNext = () => {
-      if (cursor >= segments.length) {
-        setSpeaking(false);
-        setPaused(false);
-        return;
-      }
+      if (cursor >= segments.length) { setSpeaking(false); setPaused(false); return; }
       const segment = segments[cursor];
       const utterance = new SpeechSynthesisUtterance(segment.text);
       const selectedVoice = voices[voiceIndex];
+      const settings = segmentVoiceSettings(segment, mode, rate);
       if (selectedVoice) utterance.voice = selectedVoice;
       utterance.lang = selectedVoice?.lang || "en-US";
-      utterance.rate = mode === "maximum" ? Math.min(1.45, rate + 0.12) : mode === "calm" ? Math.max(0.75, rate - 0.12) : rate;
-      utterance.pitch = segment.type === "narrator" ? (mode === "maximum" ? 1.22 : 1.08) : 1;
-      utterance.volume = 1;
+      utterance.rate = settings.rate;
+      utterance.pitch = settings.pitch;
+      utterance.volume = settings.volume;
       utterance.onstart = () => { setSpeaking(true); setPaused(false); setIndex(cursor); };
-      utterance.onend = () => { cursor += 1; if (cursor < segments.length) window.setTimeout(speakNext, segment.type === "narrator" ? 240 : 80); else { setSpeaking(false); setPaused(false); } };
+      utterance.onend = () => { cursor += 1; if (cursor < segments.length) { const delay = segments[cursor].type.startsWith("reaction-") ? 420 : segment.type.startsWith("reaction-") ? 280 : 90; window.setTimeout(speakNext, delay); } else { setSpeaking(false); setPaused(false); } };
       utterance.onerror = event => { if (event.error !== "canceled" && event.error !== "interrupted") { setError("VOICE SYSTEM ERROR: " + event.error); setSpeaking(false); } };
       window.speechSynthesis.speak(utterance);
     };
     speakNext();
   };
-
   const togglePause = () => {
     if (!supported) return;
     if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); setPaused(false); return; }
     if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); setPaused(true); }
   };
-
   if (!supported) return <div className="narrator panel narrator-unavailable"><strong>VOICE SYSTEM UNAVAILABLE.</strong><span>Your browser does not expose Speech Synthesis. The documentation has defeated you.</span></div>;
-
   const current = segments[index];
   const progress = Math.round(((index + (speaking ? 1 : 0)) / segments.length) * 100);
-
+  const typeLabel = current?.type?.startsWith("reaction-") ? "NARRATOR REACTION" : (current?.type || "standby").toUpperCase();
   return <section className="narrator panel" aria-label="EstroBunny narrator">
-    <div className="narrator-head">
-      <div><div className="eyebrow">ESTROBUNNY NARRATOR // AUDIO CONTAINMENT</div><h2>FUCK READING. PRESS PLAY.</h2></div>
-      <span className={speaking ? "narrator-live" : "narrator-idle"}>{speaking ? "● LIVE" : "○ STANDBY"}</span>
-    </div>
-    <div className="narrator-display">
-      <span className="narrator-avatar">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</span>
-      <p>{current?.text || "Narrator standing by. The documentation is judging you."}</p>
-    </div>
-    <div className="narrator-controls">
-      <button className="narrator-primary" onClick={() => speaking ? togglePause() : speakFrom(index)}>{speaking ? (paused ? "▶ RESUME" : "Ⅱ PAUSE") : "▶ NARRATE"}</button>
-      <button onClick={() => speakFrom(0)}>↻ START OVER</button>
-      <button onClick={stop}>■ STOP</button>
-      <button onClick={() => speakFrom(Math.min(index + 1, segments.length - 1))}>SKIP →</button>
-    </div>
-    <div className="narrator-settings">
-      <label>MODE<select value={mode} onChange={e => { stop(); setMode(e.target.value); }}><option value="calm">CALM(ISH)</option><option value="unhinged">UNHINGED</option><option value="maximum">MAXIMUM BUNNY</option></select></label>
-      <label>VOICE<select value={voiceIndex} onChange={e => setVoiceIndex(Number(e.target.value))}><option value={-1}>SYSTEM DEFAULT</option>{voices.map((voice, i) => <option key={voice.voiceURI || voice.name} value={i}>{voice.name} · {voice.lang}</option>)}</select></label>
-      <label>RATE<input type="range" min="0.75" max="1.45" step="0.05" value={rate} onChange={e => setRate(Number(e.target.value))}/><span>{rate.toFixed(2)}×</span></label>
-    </div>
+    <div className="narrator-head"><div><div className="eyebrow">ESTROBUNNY NARRATOR // AUDIO CONTAINMENT</div><h2>FUCK READING. PRESS PLAY.</h2></div><span className={speaking ? "narrator-live" : "narrator-idle"}>{speaking ? "● LIVE" : "○ STANDBY"}</span></div>
+    <div className={"narrator-display narrator-display--" + (current?.type || "idle")}><span className="narrator-avatar">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</span><div><small className="narrator-segment-type">{typeLabel}</small><p>{current?.text || "Narrator standing by. The documentation is judging you."}</p></div></div>
+    <div className="narrator-controls"><button className="narrator-primary" onClick={() => speaking ? togglePause() : speakFrom(index)}>{speaking ? (paused ? "▶ RESUME" : "Ⅱ PAUSE") : "▶ NARRATE"}</button><button onClick={() => speakFrom(0)}>↻ START OVER</button><button onClick={stop}>■ STOP</button><button onClick={() => speakFrom(Math.min(index + 1, segments.length - 1))}>SKIP →</button></div>
+    <div className="narrator-settings"><label>MODE<select value={mode} onChange={e => { stop(); setMode(e.target.value); }}><option value="calm">CALM(ISH)</option><option value="unhinged">UNHINGED</option><option value="maximum">MAXIMUM BUNNY</option></select></label><label>VOICE<select value={voiceIndex} onChange={e => setVoiceIndex(Number(e.target.value))}><option value={-1}>SYSTEM DEFAULT</option>{voices.map((voice, i) => <option key={voice.voiceURI || voice.name} value={i}>{voice.name} · {voice.lang}</option>)}</select></label><label>RATE<input type="range" min="0.75" max="1.45" step="0.05" value={rate} onChange={e => setRate(Number(e.target.value))}/><span>{rate.toFixed(2)}×</span></label></div>
     <div className="narrator-progress"><span style={{ width: progress + "%" }}/></div>
     <div className="narrator-status"><span>{index + 1}/{segments.length} SEGMENTS</span><span>{mode.toUpperCase()} MODE</span><span>{error || "AUDIO STABLE // PROBABLY"}</span></div>
   </section>;
