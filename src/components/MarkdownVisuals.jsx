@@ -38,7 +38,7 @@ export function parseArticleVisuals(markdown) {
     normalStart = endIndex;
   };
   while (index < lines.length) {
-    const fence = lines[index].match(/^\\s{0,3}(`{3,}|~{3,})/);
+    const fence = lines[index].match(/^\s{0,3}(`{3,}|~{3,})/);
     if (fence) {
       const marker = fence[1][0];
       const length = fence[1].length;

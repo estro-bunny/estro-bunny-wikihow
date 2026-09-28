@@ -48,13 +48,20 @@ const chaosLabels = {
   7: "☢️ DOCUMENTATION HAS FAILED"
 };
 
-function parseFrontmatter(raw, path) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-  if (!match) return null;
-  const lines = match[1].split("\n");
-  const meta = { characters: [], tags: [] };
+function parseList(value) {
+  return value.replace(/^\[|\]$/g, "").split(",").map(item => item.trim().replace(/^["']|["']$/g, "")).filter(Boolean);
+}
+
+function parseFrontmatter(rawText, path) {
+  const raw = rawText.replace(/\r\n/g, "\n");
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) {
+    console.warn("[wikihow] No frontmatter, article skipped:", path);
+    return null;
+  }
+  const meta = {};
   let listKey = null;
-  for (const line of lines) {
+  for (const line of match[1].split("\n")) {
     if (/^\s*- /.test(line) && listKey) {
       meta[listKey].push(line.replace(/^\s*- /, "").trim());
       continue;
@@ -64,20 +71,31 @@ function parseFrontmatter(raw, path) {
     const key = pair[1];
     let value = pair[2].trim();
     if (value === "") {
-      if (key === "characters" || key === "tags") {
-        listKey = key;
-        meta[key] = [];
-      }
+      listKey = key;
+      meta[key] = [];
       continue;
     }
     listKey = null;
-    if (value === "true") value = true;
+    if (value.startsWith("[")) value = parseList(value);
+    else if (value === "true") value = true;
     else if (value === "false") value = false;
     else if (/^\d+$/.test(value)) value = Number(value);
-    else if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) value = value.slice(1, -1);
+    else if (/^(".*"|'.*')$/.test(value)) value = value.slice(1, -1);
     meta[key] = value;
   }
-  return { ...meta, path, body: match[2].trim() };
+  const slug = path.split("/").pop().replace(/\.md$/, "");
+  return {
+    category: "life",
+    type: "guide",
+    chaos: 1,
+    ...meta,
+    title: String(meta.title ?? slug),
+    status: String(meta.status ?? "draft"),
+    characters: Array.isArray(meta.characters) ? meta.characters : [],
+    tags: Array.isArray(meta.tags) ? meta.tags : [],
+    path,
+    body: match[2].trim()
+  };
 }
 
 const articles = Object.entries(articleFiles)
@@ -92,19 +110,19 @@ function slugFromPath(path) {
 }
 
 function routeSlug() {
-  const match = window.location.pathname.match(/^\/articles\/([^/]+)\/?$/);
+  const match = window.location.hash.match(/^#\/articles\/([^/]+)\/?$/);
   return match ? decodeURIComponent(match[1]) : null;
 }
 
 function navigate(path) {
-  window.history.pushState({}, "", path);
-  window.dispatchEvent(new PopStateEvent("popstate"));
+  window.location.hash = path;
+  window.scrollTo(0, 0);
 }
 
 export default function App() {
   const [view, setView] = useState("articles");
   const [route, setRoute] = useState(routeSlug());
-  useEffect(() => { const onPop = () => setRoute(routeSlug()); window.addEventListener("popstate", onPop); return () => window.removeEventListener("popstate", onPop); }, []);
+  useEffect(() => { const onPop = () => setRoute(routeSlug()); window.addEventListener("hashchange", onPop); return () => window.removeEventListener("hashchange", onPop); }, []);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [type, setType] = useState("all");
