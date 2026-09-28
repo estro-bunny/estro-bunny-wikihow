@@ -3,9 +3,11 @@ name: Temporary lockfile verification
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - package-lock.json
 
 permissions:
-  contents: read
+  contents: write
   actions: write
 
 jobs:
@@ -27,9 +29,14 @@ jobs:
       - name: Verify npm ci
         run: npm ci --ignore-scripts
 
-      - name: Upload generated lockfile
-        uses: actions/upload-artifact@v4
-        with:
-          name: regenerated-package-lock
-          path: package-lock.json
-          if-no-files-found: error
+      - name: Commit regenerated lockfile
+        run: |
+          if git diff --quiet -- package-lock.json; then
+            echo "package-lock.json already matches package.json"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "chore: regenerate package lockfile"
+          git push
