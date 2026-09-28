@@ -16,6 +16,15 @@ test.describe("Article page smoke", () => {
   test("renders the narrator on an article", async ({ page }) => {
     await page.goto("/");
     await page.getByTestId("library-article-card").first().click();
-    await expect(page.locator(".narrator")).toBeVisible();
+    const narrator = page.locator(".narrator");
+    await expect(narrator).toBeVisible();
+    await expect(page.getByTestId("narrator-play")).toBeVisible();
+    await expect(page.getByTestId("narrator-stop")).toBeVisible();
+    await expect(page.getByTestId("narrator-voice")).toBeVisible();
+    await expect(page.getByTestId("narrator-speed")).toBeVisible();
+    await expect(page.getByTestId("narrator-queue-controls")).toBeVisible();
+    await expect(page.getByTestId("narrator-queue-start")).toBeVisible();
+    await expect(page.getByTestId("narrator-queue-skip")).toBeVisible();
+    await expect(page.getByTestId("narrator-queue-status")).toBeVisible();
   });
 });
