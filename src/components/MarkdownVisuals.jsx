@@ -29,6 +29,8 @@ export function parseArticleVisuals(markdown) {
   let normal = [];
   let normalStart = 0;
   let index = 0;
+  let fenceChar = null;
+  let fenceLength = 0;
   const flushNormal = endIndex => {
     if (!normal.length) return;
     blocks.push({ type: "markdown", body: normal.join("\n"), startLine: normalStart });
@@ -36,6 +38,28 @@ export function parseArticleVisuals(markdown) {
     normalStart = endIndex;
   };
   while (index < lines.length) {
+    const fence = lines[index].match(/^\\s{0,3}(`{3,}|~{3,})/);
+    if (fence) {
+      const marker = fence[1][0];
+      const length = fence[1].length;
+      if (fenceChar === null) {
+        fenceChar = marker;
+        fenceLength = length;
+      } else if (marker === fenceChar && length >= fenceLength) {
+        fenceChar = null;
+        fenceLength = 0;
+      }
+      if (!normal.length) normalStart = index;
+      normal.push(lines[index]);
+      index += 1;
+      continue;
+    }
+    if (fenceChar !== null) {
+      if (!normal.length) normalStart = index;
+      normal.push(lines[index]);
+      index += 1;
+      continue;
+    }
     const opening = lines[index].trim().match(openingPattern);
     if (!opening) {
       if (!normal.length) normalStart = index;
