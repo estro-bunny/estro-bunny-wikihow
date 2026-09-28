@@ -18,7 +18,7 @@ function ArticleVisual({
   const imageProps = { src, alt, loading: priority ? "eager" : loading, className: "article-visual__image" };
 
   return (
-    <figure className={classes}>
+    <figure className={classes} role={type === "decorative" ? "presentation" : undefined}>
       {type === "warning" ? (
         <div className="article-visual__warning-header">
           <span className="article-visual__warning-icon" aria-hidden="true">!</span>
