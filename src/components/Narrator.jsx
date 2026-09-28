@@ -1,5 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
+const REACTION_MUTE_STORAGE_KEY = "estrobunny-narrator-reaction-mutes";
+const DEFAULT_REACTION_MUTES = { diagram: false, example: false, decorative: false };
+
+function loadReactionMutes() {
+  if (typeof window === "undefined") return DEFAULT_REACTION_MUTES;
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(REACTION_MUTE_STORAGE_KEY) || "{}");
+    return { ...DEFAULT_REACTION_MUTES, diagram: Boolean(saved.diagram), example: Boolean(saved.example), decorative: Boolean(saved.decorative) };
+  } catch {
+    return DEFAULT_REACTION_MUTES;
+  }
+}
+
 const REACTIONS = {
   heading: ["New section detected. Let us pretend this was planned.", "Attention. The documentation has acquired another heading.", "Narrator note: this part apparently matters."],
   warning: ["WARNING. WARNING. THE DOCUMENT JUST RAISED ITS VOICE.", "Oh, good. A warning. My favorite genre of paperwork.", "Everyone remain calm. This box is absolutely not reassuring."],
@@ -139,7 +152,7 @@ export default function Narrator({ article }) {
   const [speaking, setSpeaking] = useState(false);
   const [paused, setPaused] = useState(false);
   const [error, setError] = useState("");
-  const [mutedReactions, setMutedReactions] = useState({ diagram: false, example: false, decorative: false });
+  const [mutedReactions, setMutedReactions] = useState(loadReactionMutes);
   const cursorRef = useRef(0);
   useEffect(() => {
     if (!supported) return undefined;
@@ -155,6 +168,13 @@ export default function Narrator({ article }) {
     window.speechSynthesis.addEventListener("voiceschanged", load);
     return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
   }, [supported, voiceIndex]);
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(REACTION_MUTE_STORAGE_KEY, JSON.stringify(mutedReactions));
+    } catch {
+      // Storage can be unavailable in private/restricted browser contexts.
+    }
+  }, [mutedReactions]);
   useEffect(() => () => { if (supported) window.speechSynthesis.cancel(); }, [supported]);
   const stop = () => { if (!supported) return; window.speechSynthesis.cancel(); setSpeaking(false); setPaused(false); };
   const speakFrom = startIndex => {
