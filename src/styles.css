@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-eb-pink: #ff4fd8;
+  --color-eb-cyan: #55d9ff;
+  --color-eb-void: #050408;
+  --color-eb-panel: #0b0910;
+  --animate-eb-scan: eb-scan 1.4s steps(2) infinite;
+}
+
+@keyframes eb-scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
 
 /* Unhinged narrator system */
 .narrator{margin:0 0 24px;padding:18px;background:linear-gradient(135deg,rgba(255,79,216,.055),rgba(85,217,255,.035));border:1px solid rgba(255,79,216,.2);box-shadow:0 0 30px rgba(255,79,216,.055),inset 0 0 40px rgba(85,217,255,.018);}
