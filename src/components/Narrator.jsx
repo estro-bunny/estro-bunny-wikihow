@@ -4,7 +4,10 @@ const REACTIONS = {
   heading: ["New section detected. Let us pretend this was planned.", "Attention. The documentation has acquired another heading.", "Narrator note: this part apparently matters."],
   warning: ["WARNING. WARNING. THE DOCUMENT JUST RAISED ITS VOICE.", "Oh, good. A warning. My favorite genre of paperwork.", "Everyone remain calm. This box is absolutely not reassuring."],
   code: ["Code detected. I will not read it aloud because I respect your remaining sanity.", "Technical artifact detected. The bunny refuses to narrate every semicolon.", "A code block. Fascinating. Horrifying. We are skipping the incantation."],
-  completion: ["COMPLETION STATE DETECTED. WE MAY HAVE SURVIVED.", "The procedure claims to be complete. I remain skeptical.", "Completion confirmed. The consequences are now someone elses problem."]
+  completion: ["COMPLETION STATE DETECTED. WE MAY HAVE SURVIVED.", "The procedure claims to be complete. I remain skeptical.", "Completion confirmed. The consequences are now someone elses problem."],
+  diagram: ["Diagram detected. Please observe the arrows while I pretend this architecture makes sense.", "A diagram. Because apparently words were no longer sufficient to contain the situation.", "VISUAL SYSTEMS ONLINE. Follow the boxes. Respect the arrows. Fear the unlabeled line."],
+  example: ["Example detected. Here is the part where theory puts on a tiny safety vest and enters the real world.", "Worked example incoming. Someone has volunteered their mistake for educational purposes.", "EXAMPLE STATE DETECTED. Please watch carefully as the documentation demonstrates the consequences."],
+  decorative: ["Decorative visual detected. It contributes nothing operationally. Naturally, I approve.", "A decorative visual. The document has accessorized.", "Visual garnish detected. No procedure required. Continue pretending this is normal."]
 };
 
 function stripInline(markdown) {
@@ -81,6 +84,22 @@ function buildSegments(article) {
         const detail = body ? sentenceChunks(body, 1)[0] : "Against all available evidence, we appear to be finished.";
         segments.push({ type: "completion", text: (args || "Procedure complete") + ". " + detail });
         segments.push(reaction("completion", reactionIndex++));
+      } else if (kind === "diagram" || kind === "example" || kind === "decorative") {
+        const image = block.find(item => /^\s*!\[/.test(item));
+        const imageMatch = image?.match(/^\s*!\[([^\]]*)\]\([^)]*\)/);
+        const alt = stripInline(imageMatch?.[1] || "").replace(/\s+/g, " ").trim();
+        const body = stripInline(block.filter(item => !/^\s*!\[/.test(item)).join(" ")).replace(/\s+/g, " ").trim();
+        const detail = args || alt || (body ? sentenceChunks(body, 1)[0] : "");
+        if (kind === "diagram") {
+          segments.push({ type: "diagram", text: "Diagram detected" + (detail ? ": " + detail : "") + ". The narrator will describe the visual state, not recite every box and arrow." });
+          segments.push(reaction("diagram", reactionIndex++));
+        } else if (kind === "example") {
+          segments.push({ type: "example", text: "Example visual detected" + (detail ? ": " + detail : "") + ". Observe the evidence. Do not become the evidence." });
+          segments.push(reaction("example", reactionIndex++));
+        } else {
+          segments.push({ type: "decorative", text: "Decorative visual detected" + (detail ? ": " + detail : "") + ". No operational response required." });
+          segments.push(reaction("decorative", reactionIndex++));
+        }
       }
       index += 1;
       continue;
@@ -99,10 +118,13 @@ function segmentVoiceSettings(segment, mode, rate) {
   const isReaction = segment.type.startsWith("reaction-");
   const isAlarm = kind === "warning";
   const isFinale = kind === "completion" || kind === "finale";
+  const isDiagram = kind === "diagram";
+  const isExample = kind === "example";
+  const isDecorative = kind === "decorative";
   return {
-    rate: mode === "maximum" ? Math.min(1.5, rate + (isReaction ? 0.16 : 0.08)) : mode === "calm" ? Math.max(0.75, rate - 0.12) : rate + (isReaction ? 0.02 : 0),
-    pitch: isAlarm ? 1.32 : isFinale ? 1.16 : isReaction ? 1.12 : kind === "code" ? 0.94 : 1,
-    volume: isAlarm || isFinale ? 1 : 0.96
+    rate: mode === "maximum" ? Math.min(1.5, rate + (isReaction ? 0.16 : 0.08)) : mode === "calm" ? Math.max(0.75, rate - 0.12) : rate + (isReaction ? 0.02 : 0) + (isDiagram ? -0.08 : isExample ? 0.03 : isDecorative ? 0.12 : 0),
+    pitch: isAlarm ? 1.32 : isFinale ? 1.16 : isDiagram ? 0.98 : isExample ? 1.05 : isDecorative ? 1.22 : isReaction ? 1.12 : kind === "code" ? 0.94 : 1,
+    volume: isAlarm || isFinale || isDiagram ? 1 : 0.96
   };
 }
 
