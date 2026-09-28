@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const REACTIONS = {
   heading: ["New section detected. Let us pretend this was planned.", "Attention. The documentation has acquired another heading.", "Narrator note: this part apparently matters."],
@@ -139,6 +139,8 @@ export default function Narrator({ article }) {
   const [speaking, setSpeaking] = useState(false);
   const [paused, setPaused] = useState(false);
   const [error, setError] = useState("");
+  const [mutedReactions, setMutedReactions] = useState({ diagram: false, example: false, decorative: false });
+  const cursorRef = useRef(0);
   useEffect(() => {
     if (!supported) return undefined;
     const load = () => {
@@ -162,9 +164,18 @@ export default function Narrator({ article }) {
     setIndex(nextIndex);
     setError("");
     let cursor = nextIndex;
+    cursorRef.current = cursor;
     const speakNext = () => {
       if (cursor >= segments.length) { setSpeaking(false); setPaused(false); return; }
       const segment = segments[cursor];
+      cursorRef.current = cursor;
+      const reactionType = segment.type.startsWith("reaction-") ? segment.type.slice(9) : null;
+      if (reactionType && mutedReactions[reactionType]) {
+        setIndex(cursor);
+        cursor += 1;
+        window.setTimeout(speakNext, 40);
+        return;
+      }
       const utterance = new SpeechSynthesisUtterance(segment.text);
       const selectedVoice = voices[voiceIndex];
       const settings = segmentVoiceSettings(segment, mode, rate);
@@ -185,6 +196,24 @@ export default function Narrator({ article }) {
     if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); setPaused(false); return; }
     if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); setPaused(true); }
   };
+  const skipCurrentReaction = () => {
+    const currentSegment = segments[cursorRef.current];
+    if (!currentSegment?.type?.startsWith("reaction-")) return;
+    window.speechSynthesis.cancel();
+    const nextIndex = Math.min(cursorRef.current + 1, segments.length - 1);
+    setIndex(nextIndex);
+    setPaused(false);
+    setSpeaking(true);
+    speakFrom(nextIndex);
+  };
+  const replayCurrentReaction = () => {
+    const currentSegment = segments[cursorRef.current];
+    if (!currentSegment?.type?.startsWith("reaction-")) return;
+    speakFrom(cursorRef.current);
+  };
+  const toggleReactionMute = type => {
+    setMutedReactions(previous => ({ ...previous, [type]: !previous[type] }));
+  };
   if (!supported) return <div className="narrator panel narrator-unavailable"><strong>VOICE SYSTEM UNAVAILABLE.</strong><span>Your browser does not expose Speech Synthesis. The documentation has defeated you.</span></div>;
   const current = segments[index];
   const progress = Math.round(((index + (speaking ? 1 : 0)) / segments.length) * 100);
@@ -192,7 +221,7 @@ export default function Narrator({ article }) {
   return <section className="narrator panel" aria-label="EstroBunny narrator">
     <div className="narrator-head"><div><div className="eyebrow">ESTROBUNNY NARRATOR // AUDIO CONTAINMENT</div><h2>FUCK READING. PRESS PLAY.</h2></div><span className={speaking ? "narrator-live" : "narrator-idle"}>{speaking ? "● LIVE" : "○ STANDBY"}</span></div>
     <div className={"narrator-display narrator-display--" + (current?.type || "idle")}><span className="narrator-avatar">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</span><div><small className="narrator-segment-type">{typeLabel}</small><p>{current?.text || "Narrator standing by. The documentation is judging you."}</p></div></div>
-    <div className="narrator-controls"><button className="narrator-primary" onClick={() => speaking ? togglePause() : speakFrom(index)}>{speaking ? (paused ? "▶ RESUME" : "Ⅱ PAUSE") : "▶ NARRATE"}</button><button onClick={() => speakFrom(0)}>↻ START OVER</button><button onClick={stop}>■ STOP</button><button onClick={() => speakFrom(Math.min(index + 1, segments.length - 1))}>SKIP →</button></div>
+    <div className="narrator-controls"><button className="narrator-primary" onClick={() => speaking ? togglePause() : speakFrom(index)}>{speaking ? (paused ? "▶ RESUME" : "Ⅱ PAUSE") : "▶ NARRATE"}</button><button onClick={() => speakFrom(0)}>↻ START OVER</button><button onClick={stop}>■ STOP</button><button onClick={() => speakFrom(Math.min(index + 1, segments.length - 1))}>SKIP →</button></div><div className="narrator-reaction-controls" aria-label="Visual reaction controls"><span className="narrator-reaction-label">VISUAL REACTIONS</span>{["diagram","example","decorative"].map(type => <div className="narrator-reaction-control" key={type}><span>{type.toUpperCase()}</span><button onClick={skipCurrentReaction} disabled={!current?.type?.includes(type)}>SKIP</button><button onClick={replayCurrentReaction} disabled={!current?.type?.includes(type)}>REPLAY</button><button className={mutedReactions[type] ? "is-muted" : ""} onClick={() => toggleReactionMute(type)}>{mutedReactions[type] ? "UNMUTE" : "MUTE"}</button></div>)}</div>
     <div className="narrator-settings"><label>MODE<select value={mode} onChange={e => { stop(); setMode(e.target.value); }}><option value="calm">CALM(ISH)</option><option value="unhinged">UNHINGED</option><option value="maximum">MAXIMUM BUNNY</option></select></label><label>VOICE<select value={voiceIndex} onChange={e => setVoiceIndex(Number(e.target.value))}><option value={-1}>SYSTEM DEFAULT</option>{voices.map((voice, i) => <option key={voice.voiceURI || voice.name} value={i}>{voice.name} · {voice.lang}</option>)}</select></label><label>RATE<input type="range" min="0.75" max="1.45" step="0.05" value={rate} onChange={e => setRate(Number(e.target.value))}/><span>{rate.toFixed(2)}×</span></label></div>
     <div className="narrator-progress"><span style={{ width: progress + "%" }}/></div>
     <div className="narrator-status"><span>{index + 1}/{segments.length} SEGMENTS</span><span>{mode.toUpperCase()} MODE</span><span>{error || "AUDIO STABLE // PROBABLY"}</span></div>
