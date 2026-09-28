@@ -170,20 +170,20 @@ export default function App() {
     <div className="scanlines"/>
     <header className="topbar">
       <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div>
-      <div className="top-status"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span></div>
+      <div className="top-status flex items-center gap-2"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span><span className="hidden md:inline font-mono text-[7px] tracking-[.18em] text-[var(--eb-cyan)] opacity-70">TAILWIND // ARMED</span></div>
     </header>
     <main>
-      <section className="library-hero panel">
+      <section className="library-hero panel relative overflow-hidden border-[color:color-mix(in_srgb,var(--eb-pink)_28%,transparent)] shadow-[0_0_55px_rgba(255,79,216,.08)] before:absolute before:inset-0 before:pointer-events-none before:bg-[linear-gradient(110deg,transparent_0%,rgba(255,79,216,.055)_45%,transparent_55%)] before:translate-x-[-100%] hover:before:animate-[eb-scan_1.4s_steps(2)_infinite] motion-reduce:hover:before:animate-none">
         <div>
           <div className="eyebrow">☣ DOCUMENTATION INDEX</div>
           <h1>ESTROBUNNY <span>WIKIHOW</span></h1>
           <p className="subtitle">PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</p>
           <p className="lede">Browse the documentation. Filter the chaos. Pretend this was always the plan.</p>
         </div>
-        <button className="console-launch" onClick={() => setView("console")}>OPEN FORM 19-C CONSOLE ↗</button>
+        <button className="console-launch transition-all duration-150 hover:-translate-y-0.5 hover:rotate-[.35deg] hover:scale-[1.015] hover:shadow-[0_0_28px_rgba(255,79,216,.22)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--eb-cyan)]" onClick={() => setView("console")}>OPEN FORM 19-C CONSOLE ↗</button>
       </section>
 
-      <section className="filter-panel panel">
+      <section className="filter-panel panel relative overflow-hidden border-[color:color-mix(in_srgb,var(--eb-cyan)_18%,transparent)]">
         <div className="panel-head"><div><span className="eyebrow">CONTENT DISCOVERY</span><h2>FILTER THE CHAOS</h2></div><span className="count">{filtered.length}/{articles.length}</span></div>
         <div className="search-row"><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search title, category, character, tag..." aria-label="Search articles"/><button className="clear-button" onClick={clearFilters}>RESET</button></div>
         <div className="filters">
@@ -211,12 +211,12 @@ function Filter({label,value,setValue,options,labels}) {
 }
 
 function ArticleCard({article,onOpen}) {
-  return <article className="article-card panel">
+  return <article className="article-card panel group relative overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:rotate-[.15deg] hover:border-[color:color-mix(in_srgb,var(--eb-pink)_38%,transparent)] hover:shadow-[0_0_35px_rgba(255,79,216,.10)] focus-within:border-[color:color-mix(in_srgb,var(--eb-cyan)_45%,transparent)]">
     <div className="card-top"><span className="category-badge">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge chaos-"+article.chaos}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
     <h2>{article.title}</h2>
     <div className="card-meta"><span>{typeLabels[article.type] || article.type}</span><span>{article.status.toUpperCase()}</span></div>
     <div className="tag-cloud">{article.tags?.slice(0,5).map(item => <span key={item}>#{item}</span>)}</div>
-    <div className="card-footer"><span>{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS REGISTERED"}</span><button onClick={onOpen}>OPEN ARTICLE →</button></div>
+    <div className="card-footer"><span>{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS REGISTERED"}</span><button className="transition-all duration-150 group-hover:text-[var(--eb-pink)] group-hover:tracking-[.08em] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--eb-cyan)]" onClick={onOpen}>OPEN ARTICLE →</button></div>
   </article>;
 }
 
