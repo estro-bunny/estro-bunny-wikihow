@@ -165,3 +165,11 @@ footer{padding:20px 0 30px;display:flex;justify-content:space-between;color:#665
   .article-visual__body{padding:12px 13px;font-size:11px;}
 }
 @media(prefers-reduced-motion:reduce){.article-visual__frame{transition:none;}}
+
+/* Markdown content inside semantic article visuals */
+.article-visual__caption-markdown > :first-child{margin-top:0;}
+.article-visual__caption-markdown > :last-child{margin-bottom:0;}
+.article-visual__caption-markdown p{margin:0;}
+.article-visual__caption-markdown p + p{margin-top:7px;}
+.article-visual__caption-markdown strong{color:var(--pink);}
+.article-visual__caption-markdown code{font-size:.9em;}
