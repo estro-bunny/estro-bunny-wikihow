@@ -170,14 +170,14 @@ export default function App() {
     return <ContainmentConsole {...{level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,chaosMode,setChaosMode}} onBack={() => setView("articles")} />;
   }
 
-  return <div className="app library-app" data-chaos-mode={chaosMode}>
+  return <div className="app library-app" data-testid="library-view" data-chaos-mode={chaosMode}>
     <div className="scanlines"/><ChaosDiagnostics mode={chaosMode}/>
     <header className="topbar">
       <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div>
       <div className="top-status flex items-center gap-2"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span><span className="hidden md:inline font-mono text-[7px] tracking-[.18em] text-[var(--eb-cyan)] opacity-70">TAILWIND // ARMED</span><ChaosModeControl mode={chaosMode} setMode={setChaosMode}/></div>
     </header>
     <main>
-      <section className="library-hero panel relative overflow-hidden border-[color:color-mix(in_srgb,var(--eb-pink)_28%,transparent)] shadow-[0_0_55px_rgba(255,79,216,.08)] before:absolute before:inset-0 before:pointer-events-none before:bg-[linear-gradient(110deg,transparent_0%,rgba(255,79,216,.055)_45%,transparent_55%)] before:translate-x-[-100%] hover:before:animate-[eb-scan_1.4s_steps(2)_infinite] motion-reduce:hover:before:animate-none">
+      <section data-testid="library-hero" className="library-hero panel relative overflow-hidden border-[color:color-mix(in_srgb,var(--eb-pink)_28%,transparent)] shadow-[0_0_55px_rgba(255,79,216,.08)] before:absolute before:inset-0 before:pointer-events-none before:bg-[linear-gradient(110deg,transparent_0%,rgba(255,79,216,.055)_45%,transparent_55%)] before:translate-x-[-100%] hover:before:animate-[eb-scan_1.4s_steps(2)_infinite] motion-reduce:hover:before:animate-none">
         <div>
           <div className="eyebrow">☣ DOCUMENTATION INDEX</div>
           <h1>ESTROBUNNY <span>WIKIHOW</span></h1>
@@ -264,12 +264,12 @@ function ChaosModeControl({mode,setMode}) {
   const next = modes[(modes.indexOf(mode) + 1) % modes.length];
   return <button
     type="button"
-    className="chaos-mode-control group relative overflow-hidden font-mono text-[7px] font-black tracking-[.12em] transition-all duration-150 hover:-translate-y-px hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--eb-cyan)]"
+    data-testid="chaos-mode-control" className="chaos-mode-control group relative overflow-hidden font-mono text-[7px] font-black tracking-[.12em] transition-all duration-150 hover:-translate-y-px hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--eb-cyan)]"
     data-mode={mode}
     onClick={() => setMode(next)}
     title={"UI mode: " + labels[mode] + ". Click for " + labels[next] + "."}
     aria-label={"Chaos mode " + labels[mode] + ". Switch to " + labels[next]}
-  ><span className="chaos-mode-prefix">MODE //</span> {labels[mode]} <span aria-hidden="true">↻</span></button>;
+  ><span className="chaos-mode-prefix">MODE //</span> <span data-testid="chaos-mode-label">{labels[mode]}</span> <span aria-hidden="true">↻</span></button>;
 }
 
 function Filter({label,value,setValue,options,labels}) {
@@ -277,7 +277,7 @@ function Filter({label,value,setValue,options,labels}) {
 }
 
 function ArticleCard({article,onOpen}) {
-  return <article className="article-card panel group relative overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:rotate-[.15deg] hover:border-[color:color-mix(in_srgb,var(--eb-pink)_38%,transparent)] hover:shadow-[0_0_35px_rgba(255,79,216,.10)] focus-within:border-[color:color-mix(in_srgb,var(--eb-cyan)_45%,transparent)]">
+  return <article data-testid="library-article-card" className="article-card panel group relative overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:rotate-[.15deg] hover:border-[color:color-mix(in_srgb,var(--eb-pink)_38%,transparent)] hover:shadow-[0_0_35px_rgba(255,79,216,.10)] focus-within:border-[color:color-mix(in_srgb,var(--eb-cyan)_45%,transparent)]">
     <div className="card-top"><span className="category-badge">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge chaos-"+article.chaos}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
     <h2>{article.title}</h2>
     <div className="card-meta"><span>{typeLabels[article.type] || article.type}</span><span>{article.status.toUpperCase()}</span></div>
@@ -485,7 +485,7 @@ function ArticlePage({article,chaosMode,setChaosMode,onBack}) {
     }
   };
   const related = articles.filter(item => item.path !== article.path && (item.category === article.category || item.type === article.type)).slice(0,4);
-  return <div className="app wiki-page" data-reading-progress={readingProgress.percentage} data-chaos-mode={chaosMode}>
+  return <div className="app wiki-page" data-testid="article-page" data-reading-progress={readingProgress.percentage} data-chaos-mode={chaosMode}>
     <ReadingProgressBar percentage={readingProgress.percentage} />
     <div className="scanlines"/>
     <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span><ChaosModeControl mode={chaosMode} setMode={setChaosMode}/></div></header>
@@ -559,7 +559,7 @@ function ArticleNavButton({article,direction}) {
 }
 
 function NotFound({chaosMode,onBack}) {
-  return <div className="app library-app" data-chaos-mode={chaosMode}><main><div className="empty-state panel"><strong>404 // DOCUMENT NOT FOUND</strong><span>This article has escaped containment.</span><button onClick={onBack}>RETURN TO INDEX</button></div></main></div>;
+  return <div className="app library-app" data-testid="not-found-view" data-chaos-mode={chaosMode}><main><div className="empty-state panel"><strong data-testid="not-found-message">404 // DOCUMENT NOT FOUND</strong><span>This article has escaped containment.</span><button onClick={onBack}>RETURN TO INDEX</button></div></main></div>;
 }
 function ContainmentConsole({level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,chaosMode,setChaosMode,onBack}) {
   const current = levels[level];
