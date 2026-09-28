@@ -41,3 +41,13 @@
   .narrator-status span:last-child{grid-column:1/-1;}
 }
 @media(prefers-reduced-motion:reduce){.narrator-live{animation:none}.narrator-progress span{transition:none}}
+
+.narrator-display--reaction-warning{border-color:rgba(255,79,216,.35);box-shadow:0 0 20px rgba(255,79,216,.12);}
+.narrator-display--reaction-code{border-color:rgba(85,217,255,.2);}
+.narrator-display--reaction-completion,.narrator-display--completion,.narrator-display--finale{border-color:rgba(85,217,255,.3);box-shadow:0 0 22px rgba(85,217,255,.1);}
+.narrator-display--heading{border-color:rgba(255,255,255,.16);}
+.narrator-segment-type{display:block;margin-bottom:5px;color:var(--pink);font:800 7px "JetBrains Mono",monospace;letter-spacing:.12em;}
+.narrator-display--reaction-warning .narrator-segment-type{color:var(--pink);}
+.narrator-display--reaction-code .narrator-segment-type{color:var(--cyan);}
+.narrator-display--reaction-completion .narrator-segment-type,.narrator-display--completion .narrator-segment-type,.narrator-display--finale .narrator-segment-type{color:var(--cyan);}
+@media(prefers-reduced-motion:reduce){.narrator-live{animation:none}}
