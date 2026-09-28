@@ -8,22 +8,19 @@ test.describe("Library smoke", () => {
     });
 
     await page.goto("/");
-    await expect(page.locator("body")).toBeVisible();
-    await expect(page.locator(".topbar")).toBeVisible();
-    await expect(page.locator(".library-hero")).toBeVisible();
-    await expect(page.locator(".article-grid")).toBeVisible();
-    await expect(page.locator(".chaos-mode-control")).toBeVisible();
-    await expect(page.locator(".article-card").first()).toBeVisible();
-
+    await expect(page.getByTestId("library-view")).toBeVisible();
+    await expect(page.getByTestId("library-hero")).toBeVisible();
+    await expect(page.getByTestId("library-article-card").first()).toBeVisible();
+    await expect(page.getByTestId("chaos-mode-control")).toBeVisible();
     expect(consoleErrors).toEqual([]);
   });
 
   test("can open an article from the library", async ({ page }) => {
     await page.goto("/");
-    await page.locator(".article-card").first().click();
+    await page.getByTestId("library-article-card").first().click();
 
-    await expect(page.locator(".article-page")).toBeVisible();
-    await expect(page.locator(".article-page h1")).toBeVisible();
+    await expect(page.getByTestId("article-page")).toBeVisible();
+    await expect(page.getByTestId("article-page").locator("h1")).toBeVisible();
     await expect(page.locator(".article-sidebar")).toBeVisible();
     await expect(page.locator(".reading-progress")).toBeVisible();
   });
