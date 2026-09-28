@@ -137,6 +137,10 @@ export default function App() {
   const [terminal, setTerminal] = useState(false);
   const [checklist, setChecklist] = useState(() => Object.fromEntries(checklistSeed.map((_, i) => [i, false])));
   const [logs, setLogs] = useState(initialLogs);
+  const [chaosMode, setChaosMode] = useState(() => {
+    try { return localStorage.getItem("estrobunny-chaos-mode") || "calm"; } catch { return "calm"; }
+  });
+  useEffect(() => { try { localStorage.setItem("estrobunny-chaos-mode", chaosMode); } catch {} }, [chaosMode]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -158,19 +162,19 @@ export default function App() {
 
   if (route) {
     const article = articles.find(item => slugFromPath(item.path) === route);
-    if (article) return <ArticlePage article={article} onBack={() => navigate("/")} />;
+    if (article) return <ArticlePage article={article} chaosMode={chaosMode} setChaosMode={setChaosMode} onBack={() => navigate("/")} />;
     return <NotFound onBack={() => navigate("/")} />;
   }
 
   if (view === "console") {
-    return <ContainmentConsole {...{level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs}} onBack={() => setView("articles")} />;
+    return <ContainmentConsole {...{level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,chaosMode,setChaosMode}} onBack={() => setView("articles")} />;
   }
 
-  return <div className="app library-app">
+  return <div className="app library-app" data-chaos-mode={chaosMode}>
     <div className="scanlines"/>
     <header className="topbar">
       <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div>
-      <div className="top-status flex items-center gap-2"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span><span className="hidden md:inline font-mono text-[7px] tracking-[.18em] text-[var(--eb-cyan)] opacity-70">TAILWIND // ARMED</span></div>
+      <div className="top-status flex items-center gap-2"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span><span className="hidden md:inline font-mono text-[7px] tracking-[.18em] text-[var(--eb-cyan)] opacity-70">TAILWIND // ARMED</span><ChaosModeControl mode={chaosMode} setMode={setChaosMode}/></div>
     </header>
     <main>
       <section className="library-hero panel relative overflow-hidden border-[color:color-mix(in_srgb,var(--eb-pink)_28%,transparent)] shadow-[0_0_55px_rgba(255,79,216,.08)] before:absolute before:inset-0 before:pointer-events-none before:bg-[linear-gradient(110deg,transparent_0%,rgba(255,79,216,.055)_45%,transparent_55%)] before:translate-x-[-100%] hover:before:animate-[eb-scan_1.4s_steps(2)_infinite] motion-reduce:hover:before:animate-none">
@@ -206,7 +210,21 @@ export default function App() {
   </div>;
 }
 
-function Filter({label,value,setValue,options,labels}) {
+
+function ChaosModeControl({mode,setMode}) {
+  const modes = ["calm","chaotic","estro-bunny","documentation-failed"];
+  const labels = { calm:"CALM", chaotic:"CHAOTIC", "estro-bunny":"ESTROBUNNY", "documentation-failed":"DOCS FAILED" };
+  const next = modes[(modes.indexOf(mode) + 1) % modes.length];
+  return <button
+    type="button"
+    className="chaos-mode-control group relative overflow-hidden font-mono text-[7px] font-black tracking-[.12em] transition-all duration-150 hover:-translate-y-px hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--eb-cyan)]"
+    data-mode={mode}
+    onClick={() => setMode(next)}
+    title={"UI mode: " + labels[mode] + ". Click for " + labels[next] + "."}
+    aria-label={"Chaos mode " + labels[mode] + ". Switch to " + labels[next]}
+  ><span className="chaos-mode-prefix">MODE //</span> {labels[mode]} <span aria-hidden="true">↻</span></button>;
+}
+\nfunction Filter({label,value,setValue,options,labels}) {
   return <label className="filter"><span>{label}</span><select value={value} onChange={e => setValue(e.target.value)}><option value="all">ALL</option>{options.map(option => <option key={option} value={option}>{labels?.[option] ?? option}</option>)}</select></label>;
 }
 
@@ -311,7 +329,7 @@ function useArticleProgress() {
 
   return state;
 }
-function ArticlePage({article,onBack}) {
+function ArticlePage({article,chaosMode,setChaosMode,onBack}) {
   const headings = useMemo(() => extractHeadings(article.body), [article.body]);
   const [activeHeading, setActiveHeading] = useState(headings[0]?.id || "");
   const restoredScrollRef = useRef(false);
@@ -422,7 +440,7 @@ function ArticlePage({article,onBack}) {
   return <div className="app wiki-page" data-reading-progress={readingProgress.percentage}>
     <ReadingProgressBar percentage={readingProgress.percentage} />
     <div className="scanlines"/>
-    <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span></div></header>
+    <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span><ChaosModeControl mode={chaosMode} setMode={setChaosMode}/></div></header>
     <main>
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <button onClick={onBack}>ESTROBUNNY WIKIHOW</button><span>/</span>
@@ -495,7 +513,7 @@ function ArticleNavButton({article,direction}) {
 function NotFound({onBack}) {
   return <div className="app library-app"><main><div className="empty-state panel"><strong>404 // DOCUMENT NOT FOUND</strong><span>This article has escaped containment.</span><button onClick={onBack}>RETURN TO INDEX</button></div></main></div>;
 }
-function ContainmentConsole({level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,onBack}) {
+function ContainmentConsole({level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,chaosMode,setChaosMode,onBack}) {
   const current = levels[level];
   const completed = Object.values(checklist).filter(Boolean).length;
   const containment = Math.round(completed / checklistSeed.length * 100);
@@ -507,8 +525,8 @@ function ContainmentConsole({level,setLevel,copies,setCopies,ducks,terminal,setT
   const contain = () => { setLevel(2); setCopies(n => Math.max(3,n-1)); addLog("CONTAINMENT","Containment attempt initiated. Paperwork freeze active."); };
   const openTerminal = () => { setTerminal(true); addLog("ESTROBUNNY","Terminal opened. Documentation Team notified."); };
 
-  return <div className={"app level-"+level}><div className="scanlines"/>
-    <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>ADMINISTRATIVE ANOMALY CONTAINMENT NETWORK</span></div></div><div className="top-status"><span className="dot"/> SYSTEM ONLINE <span className="version">EB-IR-19C / v0.1</span></div></header>
+  return <div className={"app level-"+level} data-chaos-mode={chaosMode}><div className="scanlines"/>
+    <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>ADMINISTRATIVE ANOMALY CONTAINMENT NETWORK</span></div></div><div className="top-status"><span className="dot"/> SYSTEM ONLINE <span className="version">EB-IR-19C / v0.1</span><ChaosModeControl mode={chaosMode} setMode={setChaosMode}/></div></header>
     <main>
       <button className="back-button" onClick={onBack}>← BACK TO ARTICLE INDEX</button>
       <section className="hero panel"><div className="hero-copy"><div className="eyebrow">☣ DOCUMENT CONTAINMENT PROTOCOL</div><h1>FORM <span>19-C</span></h1><p className="subtitle">SELF-REPLICATING BUREAUCRATIC ANOMALY</p><p className="lede">A dead-serious control console for paperwork that has stopped respecting the laws of paperwork.</p><div className="hero-actions"><button className="primary" onClick={() => escalate()}>RAISE ALERT LEVEL</button><button className="secondary" onClick={contain}>ATTEMPT CONTAINMENT</button></div></div><div className="hero-core"><div className="core-ring"><span>19-C</span></div><div className="core-label">DOCUMENT<br/>ISOLATION</div></div></section>
