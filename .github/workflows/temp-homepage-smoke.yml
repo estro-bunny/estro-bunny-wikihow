@@ -1,0 +1,45 @@
+name: Temporary homepage smoke verification
+
+on:
+  push:
+    branches:
+      - test/known-good-baseline
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install app dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Playwright for verification
+        run: npm install --no-save --ignore-scripts @playwright/test
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start app
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/vite.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:5173/estro-bunny-wikihow/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:5173/estro-bunny-wikihow/ > /dev/null
+
+      - name: Run homepage smoke test
+        run: npx playwright test tests/smoke/homepage.spec.js --base-url http://127.0.0.1:5173/estro-bunny-wikihow/
