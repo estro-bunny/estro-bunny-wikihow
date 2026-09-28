@@ -42,11 +42,20 @@ function reaction(type, index = 0) {
   return { type: "reaction-" + type, text: pool[index % pool.length] };
 }
 
-function buildSegments(article) {
+function buildSegments(article, chaosMode = "calm") {
   const raw = String(article.body || "").replace(/\r\n?/g, "\n");
   const lines = raw.split("\n");
   const chaosLevel = Math.min(7, Math.max(1, Number(article.chaos) || 1));
   const segments = [{ type: "intro", text: "Welcome to EstroBunny WikiHow. Today we are dealing with: " + article.title + "." }];
+  const modeChatter = {
+    chaotic: ["CHAOTIC MODE ACTIVE. The interface has started having opinions.", "Diagnostic note: the CSS is behaving suspiciously."],
+    "estro-bunny": ["ESTROBUNNY MODE ACTIVE. Bunny core is overclocked. Still here.", "Diagnostic note: pink levels have exceeded respectable documentation limits."],
+    "documentation-failed": ["DOCUMENTATION HAS FAILED. Please remain calm while the interface absolutely does not.", "Incident note: the manual is now documenting its own collapse."]
+  };
+  if (modeChatter[chaosMode]) {
+    segments.push({ type: "mode-chatter", text: modeChatter[chaosMode][0] });
+    segments.push({ type: "mode-chatter", text: modeChatter[chaosMode][1] });
+  }
   let reactionIndex = 0;
   let index = 0;
   let paragraph = [];
@@ -141,9 +150,9 @@ function segmentVoiceSettings(segment, mode, rate) {
   };
 }
 
-export default function Narrator({ article }) {
+export default function Narrator({ article, chaosMode = "calm" }) {
   const supported = typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
-  const segments = useMemo(() => buildSegments(article), [article]);
+  const segments = useMemo(() => buildSegments(article, chaosMode), [article, chaosMode]);
   const [voices, setVoices] = useState([]);
   const [voiceIndex, setVoiceIndex] = useState(-1);
   const [mode, setMode] = useState("unhinged");
