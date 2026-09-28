@@ -1,3 +1,4 @@
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -5,5 +6,6 @@ import react from "@vitejs/plugin-react";
 // (https://estro-bunny.github.io/estro-bunny-wikihow/).
 export default defineConfig({
   base: "/estro-bunny-wikihow/",
-  plugins: [react()]
+  plugins: [
+    tailwindcss(),react()]
 });
