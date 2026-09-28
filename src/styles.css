@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 
 /* Unhinged narrator system */
 .narrator{margin:0 0 24px;padding:18px;background:linear-gradient(135deg,rgba(255,79,216,.055),rgba(85,217,255,.035));border:1px solid rgba(255,79,216,.2);box-shadow:0 0 30px rgba(255,79,216,.055),inset 0 0 40px rgba(85,217,255,.018);}
