@@ -70,3 +70,21 @@
 .narrator-display--reaction-code .narrator-segment-type{color:var(--cyan);}
 .narrator-display--reaction-completion .narrator-segment-type,.narrator-display--completion .narrator-segment-type,.narrator-display--finale .narrator-segment-type{color:var(--cyan);}
 @media(prefers-reduced-motion:reduce){.narrator-live{animation:none}}
+
+
+/* Global Chaos Mode layer — intentionally small; component CSS remains the foundation. */
+.chaos-mode-control{padding:5px 7px;border:1px solid rgba(255,79,216,.24);background:rgba(5,4,8,.72);color:var(--eb-pink);white-space:nowrap;cursor:pointer;}
+.chaos-mode-prefix{color:#756b75;}
+[data-chaos-mode="calm"]{--eb-chaos-glow:0;--eb-chaos-jitter:0deg;--eb-chaos-opacity:0;}
+[data-chaos-mode="chaotic"]{--eb-chaos-glow:1;--eb-chaos-jitter:.15deg;--eb-chaos-opacity:.16;}
+[data-chaos-mode="estro-bunny"]{--eb-chaos-glow:1;--eb-chaos-jitter:.35deg;--eb-chaos-opacity:.24;}
+[data-chaos-mode="documentation-failed"]{--eb-chaos-glow:1;--eb-chaos-jitter:.7deg;--eb-chaos-opacity:.34;}
+[data-chaos-mode="chaotic"] .panel{box-shadow:0 0 22px rgba(255,79,216,.08);}
+[data-chaos-mode="estro-bunny"] .panel{box-shadow:0 0 30px rgba(255,79,216,.11),inset 0 0 20px rgba(85,217,255,.018);}
+[data-chaos-mode="documentation-failed"] .panel{box-shadow:0 0 38px rgba(255,79,216,.15),inset 0 0 28px rgba(85,217,255,.025);transform:rotate(var(--eb-chaos-jitter));}
+[data-chaos-mode="documentation-failed"] .topbar{filter:saturate(1.25) contrast(1.08);}
+[data-chaos-mode="documentation-failed"] .top-status .dot{animation:eb-failed-pulse .45s steps(2) infinite;}
+[data-chaos-mode="estro-bunny"] .chaos-mode-control{border-color:rgba(255,79,216,.55);box-shadow:0 0 18px rgba(255,79,216,.12);}
+[data-chaos-mode="documentation-failed"] .chaos-mode-control{color:var(--cyan);border-color:rgba(85,217,255,.6);box-shadow:0 0 22px rgba(85,217,255,.15);animation:eb-failed-pulse .7s steps(2) infinite;}
+@keyframes eb-failed-pulse{0%,100%{opacity:1}50%{opacity:.55}}
+@media (prefers-reduced-motion: reduce){[data-chaos-mode="documentation-failed"] .panel{transform:none;}[data-chaos-mode="documentation-failed"] .top-status .dot,[data-chaos-mode="documentation-failed"] .chaos-mode-control{animation:none;}}
