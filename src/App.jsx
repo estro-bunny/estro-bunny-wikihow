@@ -163,7 +163,7 @@ export default function App() {
   if (route) {
     const article = articles.find(item => slugFromPath(item.path) === route);
     if (article) return <ArticlePage article={article} chaosMode={chaosMode} setChaosMode={setChaosMode} onBack={() => navigate("/")} />;
-    return <NotFound onBack={() => navigate("/")} />;
+    return <NotFound chaosMode={chaosMode} onBack={() => navigate("/")} />;
   }
 
   if (view === "console") {
@@ -437,7 +437,7 @@ function ArticlePage({article,chaosMode,setChaosMode,onBack}) {
     }
   };
   const related = articles.filter(item => item.path !== article.path && (item.category === article.category || item.type === article.type)).slice(0,4);
-  return <div className="app wiki-page" data-reading-progress={readingProgress.percentage}>
+  return <div className="app wiki-page" data-reading-progress={readingProgress.percentage} data-chaos-mode={chaosMode}>
     <ReadingProgressBar percentage={readingProgress.percentage} />
     <div className="scanlines"/>
     <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span><ChaosModeControl mode={chaosMode} setMode={setChaosMode}/></div></header>
@@ -510,8 +510,8 @@ function ArticleNavButton({article,direction}) {
   </button>;
 }
 
-function NotFound({onBack}) {
-  return <div className="app library-app"><main><div className="empty-state panel"><strong>404 // DOCUMENT NOT FOUND</strong><span>This article has escaped containment.</span><button onClick={onBack}>RETURN TO INDEX</button></div></main></div>;
+function NotFound({chaosMode,onBack}) {
+  return <div className="app library-app" data-chaos-mode={chaosMode}><main><div className="empty-state panel"><strong>404 // DOCUMENT NOT FOUND</strong><span>This article has escaped containment.</span><button onClick={onBack}>RETURN TO INDEX</button></div></main></div>;
 }
 function ContainmentConsole({level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs,chaosMode,setChaosMode,onBack}) {
   const current = levels[level];
