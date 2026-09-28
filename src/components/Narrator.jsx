@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { narratorBackendAvailable, synthesizeNarratorAudio } from "../narrator/narrator-engine.js";
 
 const REACTION_MUTE_STORAGE_KEY = "estrobunny-narrator-reaction-mutes";
 const DEFAULT_REACTION_MUTES = { diagram: false, example: false, decorative: false };
@@ -151,6 +152,7 @@ function segmentVoiceSettings(segment, mode, rate) {
 }
 
 export default function Narrator({ article, chaosMode = "calm" }) {
+  const backendEnabled = narratorBackendAvailable();
   const supported = typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
   const segments = useMemo(() => buildSegments(article, chaosMode), [article, chaosMode]);
   const [voices, setVoices] = useState([]);
@@ -163,6 +165,8 @@ export default function Narrator({ article, chaosMode = "calm" }) {
   const [error, setError] = useState("");
   const [mutedReactions, setMutedReactions] = useState(loadReactionMutes);
   const cursorRef = useRef(0);
+  const audioRef = useRef(null);
+  const audioUrlRef = useRef(null);
   useEffect(() => {
     if (!supported) return undefined;
     const load = () => {
@@ -184,8 +188,17 @@ export default function Narrator({ article, chaosMode = "calm" }) {
       // Storage can be unavailable in private/restricted browser contexts.
     }
   }, [mutedReactions]);
-  useEffect(() => () => { if (supported) window.speechSynthesis.cancel(); }, [supported]);
-  const stop = () => { if (!supported) return; window.speechSynthesis.cancel(); setSpeaking(false); setPaused(false); };
+  useEffect(() => () => {
+    if (supported) window.speechSynthesis.cancel();
+    if (audioRef.current) audioRef.current.pause();
+    if (audioUrlRef.current) URL.revokeObjectURL(audioUrlRef.current);
+  }, [supported]);
+  const stop = () => {
+    if (supported) window.speechSynthesis.cancel();
+    if (audioRef.current) audioRef.current.pause();
+    if (audioUrlRef.current) { URL.revokeObjectURL(audioUrlRef.current); audioUrlRef.current = null; }
+    setSpeaking(false); setPaused(false);
+  };
   const speakFrom = startIndex => {
     if (!supported) return;
     window.speechSynthesis.cancel();
@@ -205,18 +218,47 @@ export default function Narrator({ article, chaosMode = "calm" }) {
         window.setTimeout(speakNext, 40);
         return;
       }
-      const utterance = new SpeechSynthesisUtterance(segment.text);
       const selectedVoice = voices[voiceIndex];
       const settings = segmentVoiceSettings(segment, mode, rate);
-      if (selectedVoice) utterance.voice = selectedVoice;
-      utterance.lang = selectedVoice?.lang || "en-US";
-      utterance.rate = settings.rate;
-      utterance.pitch = settings.pitch;
-      utterance.volume = settings.volume;
-      utterance.onstart = () => { setSpeaking(true); setPaused(false); setIndex(cursor); };
-      utterance.onend = () => { cursor += 1; if (cursor < segments.length) { const delay = segments[cursor].type.startsWith("reaction-") ? 420 : segment.type.startsWith("reaction-") ? 280 : 90; window.setTimeout(speakNext, delay); } else { setSpeaking(false); setPaused(false); } };
-      utterance.onerror = event => { if (event.error !== "canceled" && event.error !== "interrupted") { setError("VOICE SYSTEM ERROR: " + event.error); setSpeaking(false); } };
-      window.speechSynthesis.speak(utterance);
+      const profile = chaosMode === "documentation-failed" ? "documentation-failed" : chaosMode === "estro-bunny" ? "estro-bunny" : chaosMode === "chaotic" ? "chaotic" : "calm";
+      const advance = () => {
+        cursor += 1;
+        if (cursor < segments.length) {
+          const delay = segments[cursor].type.startsWith("reaction-") ? 420 : segment.type.startsWith("reaction-") ? 280 : 90;
+          window.setTimeout(speakNext, delay);
+        } else { setSpeaking(false); setPaused(false); }
+      };
+      if (backendEnabled) {
+        try {
+          const blob = await synthesizeNarratorAudio({ text: segment.text, profile });
+          if (audioUrlRef.current) URL.revokeObjectURL(audioUrlRef.current);
+          const url = URL.createObjectURL(blob);
+          audioUrlRef.current = url;
+          const audio = new Audio(url);
+          audioRef.current = audio;
+          audio.playbackRate = Math.max(0.75, Math.min(1.5, settings.rate));
+          audio.onplay = () => { setSpeaking(true); setPaused(false); setIndex(cursor); };
+          audio.onended = () => { audioRef.current = null; advance(); };
+          audio.onerror = () => { setError("NEURAL VOICE ERROR. FALLING BACK TO BROWSER VOICE."); setSpeaking(false); speakBrowser(); };
+          await audio.play();
+          return;
+        } catch {
+          setError("NEURAL VOICE OFFLINE // BROWSER FALLBACK ACTIVE");
+        }
+      }
+      const speakBrowser = () => {
+        const utterance = new SpeechSynthesisUtterance(segment.text);
+        if (selectedVoice) utterance.voice = selectedVoice;
+        utterance.lang = selectedVoice?.lang || "en-US";
+        utterance.rate = settings.rate;
+        utterance.pitch = settings.pitch;
+        utterance.volume = settings.volume;
+        utterance.onstart = () => { setSpeaking(true); setPaused(false); setIndex(cursor); };
+        utterance.onend = advance;
+        utterance.onerror = event => { if (event.error !== "canceled" && event.error !== "interrupted") { setError("VOICE SYSTEM ERROR: " + event.error); setSpeaking(false); } };
+        window.speechSynthesis.speak(utterance);
+      };
+      speakBrowser();
     };
     speakNext();
   };
