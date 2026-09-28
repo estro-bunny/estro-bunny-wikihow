@@ -296,7 +296,8 @@ function ArticlePage({article,onBack}) {
   const headings = useMemo(() => extractHeadings(article.body), [article.body]);
   const [activeHeading, setActiveHeading] = useState(headings[0]?.id || "");
   const restoredScrollRef = useRef(false);
-  const scrollKey = `estrobunny-wikihow-article-scroll-${slugFromPath(article.path)}`;\n  const readingProgress = useArticleProgress();
+  const scrollKey = `estrobunny-wikihow-article-scroll-${slugFromPath(article.path)}`;
+  const readingProgress = useArticleProgress();
 
   useEffect(() => {
     restoredScrollRef.current = false;
