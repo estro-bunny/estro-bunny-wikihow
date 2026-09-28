@@ -207,7 +207,7 @@ export default function Narrator({ article, chaosMode = "calm" }) {
     setError("");
     let cursor = nextIndex;
     cursorRef.current = cursor;
-    const speakNext = () => {
+    const speakNext = async () => {
       if (cursor >= segments.length) { setSpeaking(false); setPaused(false); return; }
       const segment = segments[cursor];
       cursorRef.current = cursor;
@@ -269,7 +269,7 @@ export default function Narrator({ article, chaosMode = "calm" }) {
       else { audioRef.current.pause(); setPaused(true); }
       return;
     }
-    if (!browserSupported) return;
+    if (!supported) return;
     if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); setPaused(false); return; }
     if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); setPaused(true); }
   };
