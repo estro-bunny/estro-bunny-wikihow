@@ -171,7 +171,7 @@ export default function App() {
   }
 
   return <div className="app library-app" data-chaos-mode={chaosMode}>
-    <div className="scanlines"/>
+    <div className="scanlines"/><ChaosDiagnostics mode={chaosMode}/>
     <header className="topbar">
       <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div>
       <div className="top-status flex items-center gap-2"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span><span className="hidden md:inline font-mono text-[7px] tracking-[.18em] text-[var(--eb-cyan)] opacity-70">TAILWIND // ARMED</span><ChaosModeControl mode={chaosMode} setMode={setChaosMode}/></div>
@@ -210,6 +210,53 @@ export default function App() {
   </div>;
 }
 
+
+const CHAOS_DIAGNOSTICS = {
+  chaotic: {
+    code: "CHAOS-17",
+    label: "CHAOTIC",
+    status: "UI INTEGRITY: QUESTIONABLE",
+    messages: ["Hover states are becoming opinionated.", "The interface has begun making suggestions.", "Diagnostic note: somebody touched the CSS."],
+    chatter: ["Oh good. The UI is getting ideas.", "I can hear the hover states plotting.", "Please continue. This is probably fine."]
+  },
+  "estro-bunny": {
+    code: "EB-404",
+    label: "ESTROBUNNY",
+    status: "BUNNY CORE: OVERCLOCKED",
+    messages: ["Pink levels exceed reasonable documentation limits.", "Bunny subsystem reports: still here.", "Questionable code detected. Obviously mine."],
+    chatter: ["The bunny has entered the documentation.", "This interface has estrogen and absolutely no supervision.", "Still here. Unfortunately for the laws of normal UI."]
+  },
+  "documentation-failed": {
+    code: "DOC-☢",
+    label: "DOCUMENTATION HAS FAILED",
+    status: "CONTAINMENT: NOT A REAL WORD",
+    messages: ["Documentation integrity has fallen below acceptable reality.", "The index is filing complaints against itself.", "Do not refresh. This warning is decorative. Probably."],
+    chatter: ["Oh no. The documentation has become self-aware.", "We have exceeded the recommended amount of bunny.", "If this looks intentional, that is between you and the incident report."]
+  }
+};
+
+function ChaosDiagnostics({mode}) {
+  const data = CHAOS_DIAGNOSTICS[mode];
+  if (!data) return null;
+  const [index,setIndex] = useState(0);
+  useEffect(() => { setIndex(0); }, [mode]);
+  useEffect(() => {
+    const timer = window.setInterval(() => setIndex(value => (value + 1) % data.messages.length), 6500);
+    return () => window.clearInterval(timer);
+  }, [data]);
+  const speak = () => {
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(data.chatter[index % data.chatter.length]);
+    utterance.rate = mode === "documentation-failed" ? 1.2 : mode === "estro-bunny" ? 1.1 : 1.04;
+    utterance.pitch = mode === "estro-bunny" ? 1.18 : mode === "documentation-failed" ? 1.08 : 1;
+    window.speechSynthesis.speak(utterance);
+  };
+  return <aside className={"chaos-diagnostics chaos-diagnostics--" + mode} aria-live="polite">
+    <div className="chaos-diagnostics-head"><span>DIAGNOSTIC // {data.code}</span><strong>{data.label}</strong></div>
+    <div className="chaos-diagnostics-grid"><span className="chaos-diagnostics-status">{data.status}</span><span className="chaos-diagnostics-message">{data.messages[index]}</span><button onClick={speak} aria-label="Speak current narrator chatter">🔊 NARRATOR CHIRP</button></div>
+  </aside>;
+}
 
 function ChaosModeControl({mode,setMode}) {
   const modes = ["calm","chaotic","estro-bunny","documentation-failed"];
@@ -450,7 +497,7 @@ function ArticlePage({article,chaosMode,setChaosMode,onBack}) {
       <div className="wiki-nav"><button className="back-button" onClick={onBack}>← ALL ARTICLES</button><button className="copy-link" onClick={copyLink}>{copied ? "✓ LINK COPIED" : "COPY LINK ↗"}</button></div>
       <article className="wiki-layout">
         <aside className="wiki-sidebar panel"><TableOfContents headings={headings} activeHeading={activeHeading} /><div className="sidebar-divider"/><div className="eyebrow">DOCUMENT CLASSIFICATION</div><div className="wiki-class"><b>{categoryLabels[article.category]}</b><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>STATUS: {article.status.toUpperCase()}</span></div><div className="eyebrow">CHARACTERS</div><div className="sidebar-tags">{(article.characters || []).map(x => <span key={x}>🐰 {x}</span>)}</div><div className="eyebrow">TAGS</div><div className="sidebar-tags">{(article.tags || []).map(x => <span key={x}>#{x}</span>)}</div></aside>
-        <section className="wiki-article panel"><div className="eyebrow">WIKIHOW ARTICLE // {slugFromPath(article.path)}</div><h1>{article.title}</h1><div className="wiki-meta"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>CHAOS {article.chaos}</span></div><div className="wiki-rule"/><Narrator article={article}/><div className="wiki-body">{renderArticleBody(article.body)}</div><div className="wiki-end"><strong>YOU HAVE REACHED THE END OF THE DOCUMENT.</strong><span>The documentation remains operational.</span><button className="console-launch" onClick={onBack}>← RETURN TO ARTICLE INDEX</button></div></section>
+        <section className="wiki-article panel"><div className="eyebrow">WIKIHOW ARTICLE // {slugFromPath(article.path)}</div><h1>{article.title}</h1><div className="wiki-meta"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>CHAOS {article.chaos}</span></div><div className="wiki-rule"/><Narrator article={article} chaosMode={chaosMode}/><div className="wiki-body">{renderArticleBody(article.body)}</div><div className="wiki-end"><strong>YOU HAVE REACHED THE END OF THE DOCUMENT.</strong><span>The documentation remains operational.</span><button className="console-launch" onClick={onBack}>← RETURN TO ARTICLE INDEX</button></div></section>
       </article>
       <nav className="article-pagination" aria-label="Article navigation">
         <ArticleNavButton article={previous} direction="previous" />
