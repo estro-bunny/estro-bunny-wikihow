@@ -88,3 +88,18 @@
 [data-chaos-mode="documentation-failed"] .chaos-mode-control{color:var(--cyan);border-color:rgba(85,217,255,.6);box-shadow:0 0 22px rgba(85,217,255,.15);animation:eb-failed-pulse .7s steps(2) infinite;}
 @keyframes eb-failed-pulse{0%,100%{opacity:1}50%{opacity:.55}}
 @media (prefers-reduced-motion: reduce){[data-chaos-mode="documentation-failed"] .panel{transform:none;}[data-chaos-mode="documentation-failed"] .top-status .dot,[data-chaos-mode="documentation-failed"] .chaos-mode-control{animation:none;}}
+
+.chaos-diagnostics{position:fixed;right:14px;bottom:14px;z-index:50;width:min(390px,calc(100vw - 28px));padding:9px 10px;border:1px solid rgba(255,79,216,.28);background:rgba(5,4,8,.94);box-shadow:0 0 30px rgba(255,79,216,.10);backdrop-filter:blur(8px);font-family:"JetBrains Mono",monospace;}
+.chaos-diagnostics-head,.chaos-diagnostics-grid{display:flex;align-items:center;gap:9px;}
+.chaos-diagnostics-head{justify-content:space-between;margin-bottom:7px;color:#756b75;font-size:7px;letter-spacing:.12em;}
+.chaos-diagnostics-head strong{color:var(--eb-pink);}
+.chaos-diagnostics-grid{display:grid;grid-template-columns:auto 1fr auto;gap:8px;}
+.chaos-diagnostics-status{color:var(--eb-cyan);font-size:7px;font-weight:900;white-space:nowrap;}
+.chaos-diagnostics-message{color:#cfc3d0;font-size:7px;line-height:1.5;}
+.chaos-diagnostics button{padding:5px 6px;border:1px solid rgba(85,217,255,.22);background:rgba(85,217,255,.025);color:var(--eb-cyan);font:900 6px "JetBrains Mono",monospace;cursor:pointer;white-space:nowrap;}
+.chaos-diagnostics--estro-bunny{border-color:rgba(255,79,216,.55);box-shadow:0 0 35px rgba(255,79,216,.16);}
+.chaos-diagnostics--documentation-failed{border-color:rgba(85,217,255,.55);box-shadow:0 0 40px rgba(85,217,255,.12),0 0 18px rgba(255,79,216,.12);animation:eb-failed-pulse .8s steps(2) infinite;}
+.chaos-diagnostics--documentation-failed .chaos-diagnostics-message{color:#ff9de8;}
+.narrator-display--mode-chatter{border-color:rgba(255,79,216,.38);box-shadow:inset 0 0 22px rgba(255,79,216,.04);}
+@media(max-width:650px){.chaos-diagnostics{right:8px;bottom:8px;width:calc(100vw - 16px)}.chaos-diagnostics-grid{grid-template-columns:1fr auto}.chaos-diagnostics-status{grid-column:1/-1}.chaos-diagnostics-message{font-size:6.5px;}}
+@media(prefers-reduced-motion:reduce){.chaos-diagnostics--documentation-failed{animation:none;}}
