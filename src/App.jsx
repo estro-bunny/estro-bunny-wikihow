@@ -271,7 +271,8 @@ function ChaosModeControl({mode,setMode}) {
     aria-label={"Chaos mode " + labels[mode] + ". Switch to " + labels[next]}
   ><span className="chaos-mode-prefix">MODE //</span> {labels[mode]} <span aria-hidden="true">↻</span></button>;
 }
-\nfunction Filter({label,value,setValue,options,labels}) {
+
+function Filter({label,value,setValue,options,labels}) {
   return <label className="filter"><span>{label}</span><select value={value} onChange={e => setValue(e.target.value)}><option value="all">ALL</option>{options.map(option => <option key={option} value={option}>{labels?.[option] ?? option}</option>)}</select></label>;
 }
 
