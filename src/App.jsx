@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { RenderArticleVisualMarkdown } from "./components/MarkdownVisuals";
 
 const articleFiles = import.meta.glob("../articles/**/*.md", {
   query: "?raw",
@@ -212,28 +213,30 @@ function extractHeadings(body) {
 }
 
 function renderArticleBody(body) {
-  return (
+  const renderMarkdownSegment = (markdown, lineOffset = 0) => (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
         h1: ({children}) => <h2>{children}</h2>,
         h2: ({children, node}) => {
           const text = String(children);
-          const index = node?.position?.start?.line ? node.position.start.line - 1 : text.length;
-          return <h2 id={headingId(text, index)}>{children}</h2>;
+          const localLine = node?.position?.start?.line ? node.position.start.line - 1 : 0;
+          return <h2 id={headingId(text, lineOffset + localLine)}>{children}</h2>;
         },
         h3: ({children, node}) => {
           const text = String(children);
-          const index = node?.position?.start?.line ? node.position.start.line - 1 : text.length;
-          return <h3 id={headingId(text, index)}>{children}</h3>;
+          const localLine = node?.position?.start?.line ? node.position.start.line - 1 : 0;
+          return <h3 id={headingId(text, lineOffset + localLine)}>{children}</h3>;
         },
         a: ({href, children}) => <a href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel={href?.startsWith("http") ? "noreferrer" : undefined}>{children}</a>,
         pre: ({children}) => <pre>{children}</pre>
       }}
     >
-      {body}
+      {markdown}
     </ReactMarkdown>
   );
+
+  return <RenderArticleVisualMarkdown markdown={body} renderMarkdown={renderMarkdownSegment} />;
 }
 
 
@@ -318,7 +321,7 @@ function ArticlePage({article,onBack}) {
   useEffect(() => {
     restoredSectionRef.current = false;
     if (!headings.length) return undefined;
-    const key = `estrobunny-wikihow-article-section-${article.slug}`;
+    const key = `estrobunny-wikihow-article-section-${slugFromPath(article.path)}`;
     let saved = null;
     try {
       saved = sessionStorage.getItem(key);
@@ -338,7 +341,7 @@ function ArticlePage({article,onBack}) {
       restoredSectionRef.current = true;
     }, 0);
     return () => window.clearTimeout(timer);
-  }, [article.slug, headings]);
+  }, [article.path, headings]);
 
   useEffect(() => {
     if (!activeHeading || !restoredSectionRef.current) return;
