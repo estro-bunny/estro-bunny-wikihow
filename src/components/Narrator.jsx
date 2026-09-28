@@ -264,6 +264,12 @@ export default function Narrator({ article, chaosMode = "calm" }) {
   };
   const togglePause = () => {
     if (!supported) return;
+    if (audioRef.current) {
+      if (audioRef.current.paused) { audioRef.current.play(); setPaused(false); }
+      else { audioRef.current.pause(); setPaused(true); }
+      return;
+    }
+    if (!browserSupported) return;
     if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); setPaused(false); return; }
     if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); setPaused(true); }
   };
@@ -288,7 +294,7 @@ export default function Narrator({ article, chaosMode = "calm" }) {
   const setReactionMute = (type, muted) => {
     setMutedReactions(previous => ({ ...previous, [type]: muted }));
   };
-  if (!supported) return <div className="narrator panel narrator-unavailable"><strong>VOICE SYSTEM UNAVAILABLE.</strong><span>Your browser does not expose Speech Synthesis. The documentation has defeated you.</span></div>;
+  if (!supported) return <div className="narrator panel narrator-unavailable"><strong>VOICE SYSTEM UNAVAILABLE.</strong><span>No neural narrator backend or browser speech engine is configured.</span></div>;
   const current = segments[index];
   const progress = Math.round(((index + (speaking ? 1 : 0)) / segments.length) * 100);
   const typeLabel = current?.type?.startsWith("reaction-") ? "NARRATOR REACTION" : (current?.type || "standby").toUpperCase();
