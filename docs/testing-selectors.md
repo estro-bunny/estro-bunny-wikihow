@@ -43,3 +43,19 @@ The control also exposes its machine-readable current mode through `data-mode`, 
 5. Prefer role/label/text locators when the user-facing semantics are the behavior under test.
 6. Keep machine state assertions on `data-mode` / `data-chaos-mode`.
 
+## Narrator
+
+| Test ID | Contract |
+| --- | --- |
+| `narrator-play` | Narrate/start control when idle. |
+| `narrator-pause` | Same primary control while actively speaking. |
+| `narrator-resume` | Same primary control while paused. |
+| `narrator-stop` | Stops active narrator playback. |
+| `narrator-voice` | Voice selection control. |
+| `narrator-speed` | Narrator speech-rate control. |
+| `narrator-queue-controls` | Container for the narrator segment queue controls. |
+| `narrator-queue-start` | Resets playback to the first segment. |
+| `narrator-queue-skip` | Advances to the next narrator segment. |
+| `narrator-queue-status` | Current segment/queue status display. |
+
+The primary play/pause/resume control intentionally uses a state-specific test ID: only one of `narrator-play`, `narrator-pause`, or `narrator-resume` exists at a time. This lets tests assert the actual control state rather than merely finding the same button.
