@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { RenderArticleVisualMarkdown } from "./components/MarkdownVisuals";
+import Narrator from "./components/Narrator";
 
 const articleFiles = import.meta.glob("../articles/**/*.md", {
   query: "?raw",
@@ -334,7 +335,7 @@ function ArticlePage({article,onBack}) {
       restoredScrollRef.current = true;
     }, 0);
     return () => window.clearTimeout(timer);
-  }, [article.slug, scrollKey]);
+  }, [article.path, scrollKey]);
   const restoredSectionRef = useRef(false);
 
   useEffect(() => {
@@ -365,11 +366,11 @@ function ArticlePage({article,onBack}) {
   useEffect(() => {
     if (!activeHeading || !restoredSectionRef.current) return;
     try {
-      sessionStorage.setItem(`estrobunny-wikihow-article-section-${article.slug}`, activeHeading);
+      sessionStorage.setItem(`estrobunny-wikihow-article-section-${slugFromPath(article.path)}`, activeHeading);
     } catch {
       // Storage may be unavailable; reading position still works for this visit.
     }
-  }, [activeHeading, article.slug]);
+  }, [activeHeading, article.path]);
   useEffect(() => {
     if (!headings.length) return undefined;
     const observer = new IntersectionObserver((entries) => {
@@ -431,7 +432,7 @@ function ArticlePage({article,onBack}) {
       <div className="wiki-nav"><button className="back-button" onClick={onBack}>← ALL ARTICLES</button><button className="copy-link" onClick={copyLink}>{copied ? "✓ LINK COPIED" : "COPY LINK ↗"}</button></div>
       <article className="wiki-layout">
         <aside className="wiki-sidebar panel"><TableOfContents headings={headings} activeHeading={activeHeading} /><div className="sidebar-divider"/><div className="eyebrow">DOCUMENT CLASSIFICATION</div><div className="wiki-class"><b>{categoryLabels[article.category]}</b><span>{typeLabels[article.type]}</span><span>{chaosLabels[article.chaos]}</span><span>STATUS: {article.status.toUpperCase()}</span></div><div className="eyebrow">CHARACTERS</div><div className="sidebar-tags">{(article.characters || []).map(x => <span key={x}>🐰 {x}</span>)}</div><div className="eyebrow">TAGS</div><div className="sidebar-tags">{(article.tags || []).map(x => <span key={x}>#{x}</span>)}</div></aside>
-        <section className="wiki-article panel"><div className="eyebrow">WIKIHOW ARTICLE // {slugFromPath(article.path)}</div><h1>{article.title}</h1><div className="wiki-meta"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>CHAOS {article.chaos}</span></div><div className="wiki-rule"/><div className="wiki-body">{renderArticleBody(article.body)}</div><div className="wiki-end"><strong>YOU HAVE REACHED THE END OF THE DOCUMENT.</strong><span>The documentation remains operational.</span><button className="console-launch" onClick={onBack}>← RETURN TO ARTICLE INDEX</button></div></section>
+        <section className="wiki-article panel"><div className="eyebrow">WIKIHOW ARTICLE // {slugFromPath(article.path)}</div><h1>{article.title}</h1><div className="wiki-meta"><span>{categoryLabels[article.category]}</span><span>{typeLabels[article.type]}</span><span>CHAOS {article.chaos}</span></div><div className="wiki-rule"/><Narrator article={article}/><div className="wiki-body">{renderArticleBody(article.body)}</div><div className="wiki-end"><strong>YOU HAVE REACHED THE END OF THE DOCUMENT.</strong><span>The documentation remains operational.</span><button className="console-launch" onClick={onBack}>← RETURN TO ARTICLE INDEX</button></div></section>
       </article>
       <nav className="article-pagination" aria-label="Article navigation">
         <ArticleNavButton article={previous} direction="previous" />
