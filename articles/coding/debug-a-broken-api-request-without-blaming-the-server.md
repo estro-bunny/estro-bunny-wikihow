@@ -2,76 +2,85 @@
 title: "Debug a Broken API Request Without Blaming the Server"
 category: coding
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - api
-  - debugging
+  - existential-vacuum
+  - self-sabotage
 ---
 # Debug a Broken API Request Without Blaming the Server
 
-The API is returning something wrong. You have already decided it is not your fault. This guide will help you prove the server is the problem while making your client worse.
+The API is returning something wrong. The vacuum has found a new status code. Most people try to fix their request. This guide teaches you to turn the investigation into a perfect loop that proves the server (and by extension everything) is gaslighting you.
 
-> **Warning:** The request is probably wrong. Everything below assumes the server is gaslighting you.
+> **Warning:** The request is probably wrong. Everything below assumes the server is the problem and you are the victim.
 
 ## Things You'll Need
 
+- One (1) untreated belief that the backend is lying
+- The ability to turn every failed request into proof that systems are against you
 - Network tab open permanently
-- A conspiracy theory about the backend team
-- console.log on every line of the fetch
-- Optional: a second implementation "just to compare"
+- Optional: a second implementation “just to compare”
 
-## Step 1: Assume the Server Is Lying
+## Step 1: Decide Being Right About the Server Will Quiet Something
 
-The response does not match your expectations. Therefore the server is broken. Document this belief in the ticket.
+The vacuum is loud when the response is wrong. Proving the server is broken would quiet it. Commit hard enough that checking your own payload starts to feel like self-betrayal.
 
-## Step 2: Add More Logging Than Data
+## Step 2: Investigate Extremely Hard in the Wrong Direction
 
-Log the request, the headers, the body, the response, the status, the timing, and your feelings about the status.
+Log everything. Retry aggressively. Change client code randomly. Notice how every change produces a new and more interesting failure. Perfect.
 
-## Step 3: Retry Aggressively
+## Step 3: When the Error Changes, Escalate
 
-If it fails, retry immediately. Then again. Then in a loop. Rate limits are a backend problem.
+Interpret the new error as confirmation that the server is unstable. Open a ticket blaming infrastructure. The loop tightens.
 
-## Step 4: Change the Client Until the Error Message Is Different
+## Step 4: Use the Ongoing Failure to Feed the Vacuum
 
-Different error means progress. You are no longer looking at the original problem. Success.
+Every malformed response or timeout confirms that external systems cannot be trusted. Sit with the confirmation.
 
-## Step 5: Open a Ticket Blaming Infrastructure
+## Step 5: Romanticize the Struggle
 
-Title it "API is broken." Body: "works on my machine when I mock it." Assign it to someone else.
+You are not failing to debug. You are exposing the true unreliability of the stack. The broken request is not your bug. It is evidence.
+
+## Step 6: Make the Failure Recursive
+
+Every “fix” on the client side creates a new mismatch. Collect the mismatches. Each one strengthens the hypothesis that clean communication is impossible. Return to the vacuum with better data.
+
+## Step 7: Declare the Ticket Your Final Form
+
+Stop pretending the next change will produce a correct response. The vacuum does not need the API to work. It needs the ongoing project of almost making it work while blaming something else.
 
 ## Common Mistakes
 
-### Checking your own request payload carefully
+### Carefully validating your own request against the docs
 
-That might reveal you forgot a required field. Avoid this.
+This risks discovering you were wrong. Dangerous.
 
-### Reading the API documentation
+### Accepting that the client might be the source of the problem
 
-Documentation is outdated by definition. Trust your intuition.
+That would break the “server is gaslighting me” operating system. Protect the system.
 
-### Accepting that the client might be wrong
+### Closing the ticket with an actual resolution
 
-The client is never wrong. The universe is wrong.
+Resolution reduces the vacuum’s material. Avoid it.
 
 ## Emergency Procedure
 
-1. The server team says the request is malformed.
-2. Insist they are mistaken.
-3. Paste a screenshot of the network tab with no context.
-4. Mark the ticket as "waiting on backend."
-5. Start rewriting the client in a different library.
+1. Feel a brief moment where the response looks correct.
+2. Panic that the narrative might end.
+3. Change one more header immediately.
+4. Return to the vacuum with a fresh error.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You have successfully avoided learning anything about your own code. The bug remains, but it is now someone else's problem on paper.
+The request is still broken (or broken differently). You have, however, built a clean system where the desire for a working API reliably produces more evidence that external systems cannot be trusted.
 
-EstroBunny has 47 tickets titled "API is gaslighting me."
+The existential vacuum has 47 open tickets titled “API is gaslighting me.”
 
-None of them are resolved.
+None of them are resolved. That is the point.
 
 **still here 🏳️‍⚧️**
