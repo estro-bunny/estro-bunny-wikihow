@@ -8,73 +8,81 @@ featured: false
 characters:
   - estrobunny
 tags:
-  - drugs
-  - fictional
+  - crime
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Sell Drugs
 
-You need money and have decided that legal employment is too much work. This guide will teach you how to "sell drugs" in the only way this site allows: completely fictional and maximally stupid.
+You want money and status. The vacuum has suggested a dangerous shortcut. Most people try to build a real operation. This guide teaches you to turn the fantasy into a perfect loop that proves the lifestyle is impossible and the desire itself is the point.
 
-> **Warning:** Do not sell real drugs. You will get arrested, robbed, or worse. This article is for people who want the aesthetic of a drug dealer without any of the consequences or product.
+> **Warning:** Do not sell drugs. This article is about the desire, the plan that will never launch, and the way the failure feeds the void. Actual drug dealing ends in prison, violence, or worse.
 
 ## Things You'll Need
 
-- A hoodie two sizes too big
-- A scale you bought for "baking"
-- Bags of oregano, crushed vitamin pills, or chalk
-- A burner phone you will forget to burn
-- Zero actual product
+- One (1) untreated belief that this path will fix everything
+- The ability to turn every aborted plan into proof that the game is rigged
+- A notebook full of supply-chain diagrams that will never leave the house
+- Optional: a burner phone you will never actually use for crime
 
-## Step 1: Decide What You Are "Selling"
+## Step 1: Decide the Lifestyle Will Quiet Something
 
-Pick something fake. Oregano. Baking soda. Colored sugar. The point is the performance, not the substance.
+The vacuum is loud when money and status are short. A successful operation would quiet it. Commit hard enough that ordinary work starts to feel like a temporary setback.
 
-## Step 2: Find the Worst Possible Customers
+## Step 2: Plan Extremely Hard
 
-Look for people who are already high, desperate, or your classmates. Approach them with the confidence of someone who has never been punched.
+Suppliers. Routes. Customers. Security. The more detailed the plan, the safer it is from ever being tested against reality.
 
-## Step 3: Use Code Words That Are Not Code
+## Step 3: Approach the Edge of Action and Stop
 
-Say things like "you looking for the green?" while holding a bag of actual green herbs. If they look confused, explain the bit.
+Research too much. Talk too much. Feel the risk. Then stop. Notice the relief mixed with disappointment. The vacuum keeps both.
 
-## Step 4: Get Immediately Caught or Scammed
+## Step 4: Replace the Real Operation with the Story of the Operation
 
-Either the person is an undercover cop, or they take your fake product and leave without paying. Both outcomes are educational.
+Talk about the plan. Update the diagrams. Let the unfinished empire become the official version of the status you will not have.
 
-## Step 5: Post About It Later
+## Step 5: Use the Fantasy to Feed the Vacuum
 
-Write a long story online about how the game is messed up and you were just trying to survive. Leave out the part where the product was oregano.
+Every time you look at the plan, remember the life you do not have. The gap becomes reliable emptiness.
+
+## Step 6: Make the Failure Recursive
+
+Start new plans. Abort them in new ways. Collect the aborts. Each one strengthens the hypothesis that the lifestyle is impossible for you. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Plan Your Final Form
+
+Stop pretending the next version will launch. The vacuum does not need the money or the status. It needs the ongoing project of almost having them.
 
 ## Common Mistakes
 
-### Selling real drugs
+### Actually attempting real drug crime
 
-This guide does not cover that. Do not.
+This would introduce prison, violence, and possibly reduce the vacuum. Dangerous and also illegal.
 
-### Having a real customer base
+### Letting the fantasy die quietly
 
-If people keep coming back, you have failed the fictional requirement.
+A dead fantasy cannot feed the loop. Keep it on life support.
 
-### Thinking this is a viable business plan
+### Accepting that some desires are better left as fiction
 
-It is not. Get a job.
+That would be wisdom. We are not here for wisdom.
 
 ## Emergency Procedure
 
-1. Flush the oregano.
-2. Delete the texts.
-3. Claim it was a social experiment.
-4. Move to a different city if necessary.
-5. Still do not sell real drugs.
+1. Feel a brief urge to delete the plans and move on.
+2. Panic at the loss of a purpose.
+3. Start a new diagram immediately.
+4. Return to the vacuum with a fresh notebook page.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You have successfully role-played a drug dealer and accomplished nothing except looking suspicious.
+You still have not sold any drugs. You have, however, built a clean system where the desire for the lifestyle reliably produces more emptiness, more diagrams, and more proof that the lifestyle is impossible.
 
-EstroBunny has reviewed your inventory.
+The existential vacuum has a burner phone now. It has no contacts.
 
-It is mostly spices.
+EstroBunny has reviewed the plans.
 
-She is disappointed but not surprised.
+She recommends a job, a therapist, and also the void.
 
 **still here 🏳️‍⚧️**
