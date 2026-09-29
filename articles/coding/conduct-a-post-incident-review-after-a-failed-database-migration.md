@@ -2,75 +2,85 @@
 title: "Conduct a Post-Incident Review After a Failed Database Migration"
 category: coding
 type: guide
-chaos: 6
+chaos: 8
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - postmortem
-  - database
+  - existential-vacuum
+  - self-sabotage
 ---
 # Conduct a Post-Incident Review After a Failed Database Migration
 
-The migration failed. People are upset. You need a meeting that produces the appearance of learning. This guide will help you run one that changes nothing.
+The migration failed. The vacuum has found a new meeting. Most people try to learn something. This guide teaches you to turn the review into a perfect loop that proves discussion is not the same as change.
 
-> **Warning:** A real review identifies root causes and assigns real owners. This one will identify "process gaps" and assign them to the void.
+> **Warning:** A real review identifies root causes and assigns real owners. Everything below is how to run one that identifies “process gaps,” assigns them to the void, and therefore feeds the emptiness.
 
 ## Things You'll Need
 
-- A calendar invite titled "Blameless Postmortem"
-- People who were involved and people who were not
-- A shared doc that will never be opened again
+- One (1) untreated belief that talking about it is the same as fixing it
+- The ability to turn every similar incident into proof that the last review was incomplete
+- A calendar invite titled “Blameless Postmortem”
+- Optional: people who were not involved but have opinions
 
-## Step 1: Spend Most of the Time on the Timeline
+## Step 1: Decide the Meeting Will Quiet Something
 
-Argue about the exact minute the first error appeared. This feels productive and avoids the actual cause.
+The vacuum is loud after failures. A perfect review would quiet it. Commit hard enough that assigning real owners and due dates starts to feel optional.
 
-## Step 2: Use the Phrase "Blameless" While Clearly Blaming
+## Step 2: Discuss Extremely Hard
 
-"I'm not blaming anyone, but if the migration had been reviewed..."
+Spend most of the time on the timeline. Soften the root cause. Generate vague action items. Notice how the more thorough the discussion, the less concrete the outcomes. Perfect.
 
-## Step 3: Generate Action Items That Are Impossible to Measure
+## Step 3: When the Next Incident Looks Familiar, Escalate
 
-"Improve communication." "Be more careful." "Add more monitoring." No one can fail these because no one can succeed at them either.
+Interpret the repeated failure as proof that the last review needed more depth. Schedule another. The loop tightens.
 
-## Step 4: End on Time Even If Nothing Was Resolved
+## Step 4: Use the Ongoing Repetition to Feed the Vacuum
 
-The meeting ending is the success metric.
+Every similar failure confirms that meetings do not change systems. Sit with the confirmation.
 
-## Step 5: Never Revisit the Action Items
+## Step 5: Romanticize the Process
 
-The review happened. Growth occurred. The next migration will be fine.
+You are not failing at improvement. You are creating a culture of reflection. The unchanged system is not failure. It is evidence that the process is being followed.
+
+## Step 6: Make the Failure Recursive
+
+Every new review produces more action items that are not completed. Collect the items. Each one strengthens the hypothesis that real change is impossible. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Meeting Your Final Form
+
+Stop pretending the next review will be the one that produces change. The vacuum does not need improvement. It needs the ongoing project of almost improving in public.
 
 ## Common Mistakes
 
-### Identifying a single clear root cause
+### Identifying a single clear root cause and assigning a real owner with a date
 
-That makes someone look bad. Spread it around.
+This risks actual change. Dangerous.
 
-### Making the action items small and checkable
+### Following up on the action items from the previous review
 
-Small items get done. Done items create expectations.
+Follow-up might produce continuity. Avoid continuity.
 
-### Inviting only the people who can actually fix things
+### Accepting that some failures will repeat until incentives or architecture change
 
-Large meetings feel important.
+That would break the “if only we had discussed it better” operating system. Protect the system.
 
 ## Emergency Procedure
 
-1. Someone asks what changed since the last similar incident.
-2. Change the subject to the timeline again.
-3. Schedule a follow-up that will be cancelled.
-4. Close the doc.
-5. Wait for the next outage.
+1. Feel a brief urge to cancel the meeting and just fix the underlying issue.
+2. Panic that the process would be incomplete.
+3. Send the invite immediately.
+4. Return to the vacuum with a new calendar event.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You have conducted a post-incident review. The organization feels like it did something. The database remains one bad migration away from the same problem.
+You have conducted a post-incident review. The system remains one bad migration away from the same problem. You have, however, built a clean system where the desire to learn reliably produces more meetings and more proof that meetings cannot save you.
 
-EstroBunny's reviews always conclude that EstroBunny needs more sleep.
+The existential vacuum has a recurring calendar event.
 
-She agrees and changes nothing.
+It is never cancelled.
 
 **still here 🏳️‍⚧️**
