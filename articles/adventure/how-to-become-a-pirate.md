@@ -2,76 +2,87 @@
 title: "How to Become a Pirate"
 category: adventure
 type: guide
-chaos: 8
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - pirate
-  - adventure
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Become a Pirate
 
-You want to be a pirate. Modern society has failed you. This guide will turn you into a pirate in the only way that still exists: cosplay and poor life choices.
+You want freedom. The vacuum has suggested piracy. Most people try to escape emptiness with adventure. This guide teaches you to chase the pirate fantasy until the chase itself becomes the emptiness.
 
-> **Warning:** Actual piracy is illegal and will get you arrested or shot. This article covers the aesthetic version that ends with you drunk at a Renaissance fair.
+> **Warning:** Actual piracy is illegal and will end badly. This article is about the desire, the costume, and the way the failure feeds the void.
 
 ## Things You'll Need
 
-- An eyepatch from a party store
-- A plastic sword
-- The ability to say "arr" without irony
-- A boat you do not own
-- Optional: scurvy
+- One (1) untreated urge for a life that looks cooler than yours
+- The ability to turn every failed adventure into proof that normal life is inescapable
+- A plastic sword and an eyepatch
+- Optional: a boat you do not own
 
-## Step 1: Acquire the Look
+## Step 1: Decide Piracy Will Fix Something
 
-Buy the cheapest pirate costume available. Wear it to the grocery store. When people stare, that is respect.
+The vacuum is loud. A pirate life would be louder in a better way. Commit to the aesthetic hard enough that real responsibilities start to feel like the enemy.
 
-## Step 2: Steal Something Small and Useless
+## Step 2: Build the Fantasy in Detail
 
-Take a free sample or a packet of sugar. Call it your first plunder. Document it on social media.
+Costume. Accent. Manifesto about freedom. The more complete the fantasy, the safer it is from ever being tested against reality.
 
-## Step 3: Assemble a Crew of Equally Unemployed Friends
+## Step 3: Approach the Edge of Action and Stop
 
-Promise them treasure. The treasure is beer. Do not clarify this until after they have committed.
+Go to the marina. Look at boats. Feel the risk. Then go home. Notice the relief mixed with disappointment. The vacuum keeps both.
 
-## Step 4: Attempt to Board Something
+## Step 4: Replace the Real Thing with Performance
 
-A paddle boat at the park is fine. A kayak. A floating dock. Declare yourself captain. Mutiny will follow within the hour.
+Wear the costume to the store. Say “arr” unironically. Tell the story of almost becoming a pirate. Let the performance become the official version of the life you will not live.
 
-## Step 5: Get Kicked Out of the Marina
+## Step 5: Use the Performance to Feed the Vacuum
 
-This is your origin story. Tell it for years.
+Every time someone laughs or backs away, remember the real freedom you do not have. The gap between the costume and the desire becomes reliable emptiness.
+
+## Step 6: Make the Failure Recursive
+
+Start new pirate plans. Abort them in new ways. Collect the aborts. Each one strengthens the hypothesis that escape is impossible. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Costume Your Final Form
+
+Stop pretending the next plan will launch. The vacuum does not need a ship. It needs the ongoing project of not sailing.
 
 ## Common Mistakes
 
-### Trying real piracy
+### Actually learning to sail or committing a crime
 
-Do not. The coast guard is not a game mechanic.
+This would introduce new problems and possibly reduce the vacuum. Dangerous.
 
-### Learning to sail
+### Letting the fantasy die quietly
 
-Sailing is hard. Stick to the costume.
+A dead fantasy cannot feed the loop. Keep it on life support.
 
-### Having a backup plan
+### Accepting that some lives are better left as aesthetics
 
-Pirates do not have backup plans. That is the point.
+That would be wisdom. We are not here for wisdom.
 
 ## Emergency Procedure
 
-1. Drop the plastic sword.
-2. Claim it was a themed bachelor party.
-3. Leave before anyone calls security.
-4. Post about the "raid" later with heavy filters.
+1. Feel a brief urge to let the pirate fantasy go.
+2. Panic at the loss of a project.
+3. Restart the planning phase immediately.
+4. Return to the vacuum with a fresh manifesto.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You are now a pirate in the same way a man in a lab coat is a doctor. The delusion is the treasure.
+You are still not a pirate. You have, however, built a clean system where the desire for freedom reliably produces more emptiness, more costume, and more proof that escape is impossible.
 
-EstroBunny has claimed the title of First Mate.
+The existential vacuum has a pirate hat now. It does not help.
 
-No one agreed to this.
+EstroBunny has claimed the title of First Mate of the Void.
+
+No one agreed. That is the point.
 
 **still here 🏳️‍⚧️**
