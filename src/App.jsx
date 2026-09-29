@@ -191,10 +191,10 @@ export default function App() {
         <button className="console-launch relative z-[2] flex-none p-[13px_15px] font-mono text-[10px] font-extrabold tracking-[.08em] text-[var(--cyan)] bg-[rgba(85,217,255,.06)] border border-[rgba(85,217,255,.3)] max-[700px]:mt-[22px]" onClick={() => setView("console")}>OPEN FORM 19-C CONSOLE ↗</button>
       </section>
 
-      <section className="filter-panel panel">
+      <section className="filter-panel panel mt-[10px] p-[22px]">
         <div className="panel-head"><div><span className="eyebrow">CONTENT DISCOVERY</span><h2>FILTER THE CHAOS</h2></div><span className="count">{filtered.length}/{articles.length}</span></div>
-        <div className="search-row"><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search title, category, character, tag..." aria-label="Search articles"/><button className="clear-button" onClick={clearFilters}>RESET</button></div>
-        <div className="filters">
+        <div className="search-row mb-[12px] flex gap-2 max-[480px]:grid"><input className="min-w-0 flex-1 border border-[rgba(85,217,255,.18)] bg-[#07050b] p-[13px_14px] font-mono text-[11px] text-white outline-none focus:border-[rgba(255,79,216,.55)] focus:shadow-[0_0_18px_rgba(255,79,216,.08)]" value={query} onChange={e => setQuery(e.target.value)} placeholder="Search title, category, character, tag..." aria-label="Search articles"/><button className="clear-button w-auto p-[10px_13px] font-mono text-[9px] font-extrabold tracking-[.08em] text-[var(--muted)] bg-[rgba(255,255,255,.025)] border border-[rgba(255,255,255,.1)] max-[480px]:w-full" onClick={clearFilters}>RESET</button></div>
+        <div className="filters grid grid-cols-6 gap-2 max-[1100px]:grid-cols-3 max-[700px]:grid-cols-2 max-[480px]:grid-cols-1">
           <Filter label="CATEGORY" value={category} setValue={setCategory} options={Object.keys(categoryLabels)} labels={categoryLabels}/>
           <Filter label="TYPE" value={type} setValue={setType} options={Object.keys(typeLabels)} labels={typeLabels}/>
           <Filter label="CHAOS" value={chaos} setValue={setChaos} options={Object.keys(chaosLabels)} labels={chaosLabels}/>
@@ -215,7 +215,7 @@ export default function App() {
 }
 
 function Filter({label,value,setValue,options,labels}) {
-  return <label className="filter"><span>{label}</span><select value={value} onChange={e => setValue(e.target.value)}><option value="all">ALL</option>{options.map(option => <option key={option} value={option}>{labels?.[option] ?? option}</option>)}</select></label>;
+  return <label className="filter grid gap-[5px]"><span className="font-mono text-[8px] font-bold tracking-[.13em] text-[var(--muted)]">{label}</span><select className="min-w-0 w-full border border-[rgba(255,120,226,.16)] bg-[#09070d] p-[10px_8px] font-mono text-[10px] text-[#eee] outline-none focus:border-[var(--pink)]" value={value} onChange={e => setValue(e.target.value)}><option value="all">ALL</option>{options.map(option => <option key={option} value={option}>{labels?.[option] ?? option}</option>)}</select></label>;
 }
 
 function ArticleCard({article,onOpen}) {
