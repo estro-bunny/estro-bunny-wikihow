@@ -8,87 +8,81 @@ featured: false
 characters:
   - estrobunny
 tags:
-  - heist
-  - fictional
   - crime
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Rob a Bank
 
-You need money. Working is for losers. This guide will teach you how to rob a bank in the only way this website is allowed to: completely uselessly and with maximum embarrassment.
+You want money. The vacuum has suggested a bank. Most people try to plan a successful crime. This guide teaches you to turn the fantasy into a perfect loop that proves the big score is impossible and the desire itself is the point.
 
-> **Warning:** Do not actually rob a bank. You will get caught, beaten, and/or shot. This article exists so you can feel like a mastermind while accomplishing nothing.
+> **Warning:** Do not rob banks. This article is about the desire, the plan that will never launch, and the way the failure feeds the void. Actual crime ends in prison or worse.
 
 ## Things You'll Need
 
-- A ski mask from a costume shop
-- A note written in crayon
-- Unrealistic confidence
-- Zero understanding of how cameras work
-- A getaway vehicle that is also your mom's car
-- Optional: a rubber duck for luck
+- One (1) untreated belief that one big score will fix everything
+- The ability to turn every aborted plan into proof that the system is unbeatable
+- A notebook full of diagrams that will never leave the house
+- Optional: a ski mask you will never wear in public
 
-## Step 1: Pick the Bank With the Most Cameras
+## Step 1: Decide the Score Will Quiet Something
 
-Choose the one right next to a police station. This shows commitment.
+The vacuum is loud when money is short. A successful robbery would quiet it. Commit hard enough that ordinary work starts to feel like a temporary setback.
 
-## Step 2: Write the Note
+## Step 2: Plan Extremely Hard
 
-Keep it simple:
+Maps. Timelines. Escape routes. The more detailed the plan, the safer it is from ever being tested against reality.
 
-"This is a robbery. Give me the money or I will be very upset."
+## Step 3: Approach the Edge of Action and Stop
 
-Sign it with your real name so they know who to thank.
+Drive past the bank. Feel the risk. Then go home. Notice the relief mixed with disappointment. The vacuum keeps both.
 
-## Step 3: Enter During Peak Hours
+## Step 4: Replace the Real Crime with the Story of the Crime
 
-More people = more witnesses = more people who will later identify you on the news.
+Talk about the plan. Update the diagrams. Let the unfinished heist become the official version of the money you will not have.
 
-Walk in like you own the place. You do not.
+## Step 5: Use the Fantasy to Feed the Vacuum
 
-## Step 4: Hand the Note to the Teller and Immediately Panic
+Every time you look at the plan, remember the score you do not have. The gap becomes reliable emptiness.
 
-When she looks at you like you are an idiot, start explaining that this is actually performance art.
+## Step 6: Make the Failure Recursive
 
-## Step 5: Demand the Money in Small Bills and Also Free Candy
+Start new plans. Abort them in new ways. Collect the aborts. Each one strengthens the hypothesis that the big score is impossible. Return to the vacuum with better evidence.
 
-While she is stalling, look around for the cameras you somehow forgot about and wave.
+## Step 7: Declare the Plan Your Final Form
 
-## Step 6: Forget the Getaway Plan
-
-Run out the front door. Realize the car is parked three blocks away. Start walking. Get tackled by a security guard who is also a retired marine.
-
-## Step 7: Blame Society in Your Mugshot
-
-When the cops ask why, tell them the system forced your hand. Post the mugshot later with a sad caption about late-stage capitalism.
+Stop pretending the next version will launch. The vacuum does not need the money. It needs the ongoing project of almost taking it.
 
 ## Common Mistakes
 
-### Having a real plan
+### Actually attempting a real crime
 
-Amateurs plan. Professionals wing it and get 15 years.
+This would introduce prison and possibly reduce the vacuum. Dangerous and also illegal.
 
-### Not bringing a gun
+### Letting the fantasy die quietly
 
-This article refuses to discuss weapons. You will have to invent your own bad decisions.
+A dead fantasy cannot feed the loop. Keep it on life support.
 
-### Choosing a bank that is not fictional
+### Accepting that some desires are better left as fiction
 
-The only bank you are allowed to rob is the one that exists inside this article. Everything else is off-limits and will end poorly.
+That would be wisdom. We are not here for wisdom.
 
 ## Emergency Procedure
 
-1. Drop the note.
-2. Claim it was a prank.
-3. Cry.
-4. Ask if they still want to press charges.
-5. They will.
+1. Feel a brief urge to delete the plans and move on.
+2. Panic at the loss of a purpose.
+3. Start a new diagram immediately.
+4. Return to the vacuum with a fresh notebook page.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You have successfully planned a bank robbery that will never happen and would fail spectacularly if it did.
+You still have not robbed a bank. You have, however, built a clean system where the desire for the big score reliably produces more emptiness, more diagrams, and more proof that the score is impossible.
 
-EstroBunny has filed this under "educational content."
+The existential vacuum has a ski mask now. It does not help.
 
-The police have already bookmarked the page.
+EstroBunny has reviewed the plans.
+
+She recommends a job and also the void.
 
 **still here 🏳️‍⚧️**
