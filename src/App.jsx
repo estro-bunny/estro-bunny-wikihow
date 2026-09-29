@@ -181,14 +181,14 @@ export default function App() {
       </div>
     </header>
     <main>
-      <section className="library-hero panel">
+      <section className="library-hero panel relative flex min-h-[280px] items-end justify-between gap-[28px] overflow-hidden p-[clamp(28px,5vw,58px)] max-[700px]:block">
         <div>
           <div className="eyebrow">☣ DOCUMENTATION INDEX</div>
-          <h1>ESTROBUNNY <span>WIKIHOW</span></h1>
+          <h1 className="relative z-[1] mt-[14px] font-mono text-[clamp(38px,7vw,82px)] font-extrabold leading-[.9] tracking-[-.08em] max-[700px]:text-[54px]">ESTROBUNNY <span className="text-[var(--pink)]">WIKIHOW</span></h1>
           <p className="subtitle">PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</p>
-          <p className="lede">Browse the documentation. Filter the chaos. Pretend this was always the plan.</p>
+          <p className="lede relative z-[1]">Browse the documentation. Filter the chaos. Pretend this was always the plan.</p>
         </div>
-        <button className="console-launch" onClick={() => setView("console")}>OPEN FORM 19-C CONSOLE ↗</button>
+        <button className="console-launch relative z-[2] flex-none p-[13px_15px] font-mono text-[10px] font-extrabold tracking-[.08em] text-[var(--cyan)] bg-[rgba(85,217,255,.06)] border border-[rgba(85,217,255,.3)] max-[700px]:mt-[22px]" onClick={() => setView("console")}>OPEN FORM 19-C CONSOLE ↗</button>
       </section>
 
       <section className="filter-panel panel">
