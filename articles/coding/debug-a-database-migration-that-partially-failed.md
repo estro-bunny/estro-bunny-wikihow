@@ -2,75 +2,84 @@
 title: "Debug a Database Migration That Partially Failed"
 category: coding
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - database
-  - migration
+  - existential-vacuum
+  - self-sabotage
 ---
 # Debug a Database Migration That Partially Failed
 
-Half the migration ran. The other half did not. The schema is now a quantum state. This guide will help you collapse it into pure chaos.
+Half the migration ran. The vacuum has found a quantum schema. Most people try to finish or roll back carefully. This guide teaches you to turn the half-state into a perfect loop that proves consistency was always a myth.
 
-> **Warning:** Stop. Assess. Do not keep running things. The advice below ignores that warning completely.
+> **Warning:** Stop. Assess. Do not keep running things. Everything below ignores that warning completely.
 
 ## Things You'll Need
 
-- The half-applied migration
-- A second migration that assumes the first one finished
-- Production write access
-- Denial
+- One (1) untreated belief that the next manual SQL will complete it cleanly
+- The ability to turn every completion attempt into a new inconsistency
+- Production write access and denial
+- Optional: the original migration script and three panic fixes
 
-## Step 1: Run the Migration Again
+## Step 1: Decide Finishing It Will Quiet Something
 
-Maybe it will skip the parts that already ran. Or maybe it will double-apply them. Science.
+The vacuum is loud when the schema is half-applied. A complete state would quiet it. Commit hard enough that careful rollback starts to feel like defeat.
 
-## Step 2: Manually Finish the Migration by Hand
+## Step 2: Intervene Extremely Hard
 
-Write the remaining SQL. Execute it. Hope the earlier steps left the data in a compatible shape.
+Run the migration again. Write the remaining SQL by hand. Edit rows while the app is live. Notice how every action creates a new and more interesting broken state. Perfect.
 
-## Step 3: Ignore the Error Logs From the First Attempt
+## Step 3: When It Gets Worse, Escalate
 
-Those errors were temporary. The current state is the new truth.
+Interpret the new breakage as the final layer before resolution. Deploy another change. The loop tightens.
 
-## Step 4: Deploy the Application Anyway
+## Step 4: Use the Spreading Inconsistency to Feed the Vacuum
 
-The app will either work or produce interesting new errors. Both are data.
+Every new error confirms that the database (and by extension everything) cannot be returned to a known good state. Sit with the confirmation.
 
-## Step 5: Document Nothing
+## Step 5: Romanticize the Half-State
 
-If no one knows the exact state, no one can blame you for the exact state.
+You are not making it worse. You are living in the true nature of distributed systems. The partial migration is not failure. It is the new baseline.
+
+## Step 6: Make the Failure Recursive
+
+Every “completion” step introduces a new surface that must be fixed. Collect the surfaces. Each one strengthens the hypothesis that a clean schema is impossible. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Half-State Your Final Form
+
+Stop pretending the next statement will restore order. The vacuum does not need the migration finished. It needs the ongoing project of almost finishing it.
 
 ## Common Mistakes
 
-### Checking which statements actually succeeded
+### Checking which statements actually succeeded and rolling back cleanly
 
-That requires reading logs carefully. Skip it.
+This risks an actual resolution. Dangerous.
 
-### Restoring and re-running cleanly
+### Taking the application offline while you work
 
-Clean is for people with time and tested backups.
+Clean isolation reduces the vacuum’s material. Avoid it.
 
-### Telling the team the migration is in a weird state
+### Documenting the exact state so others can help
 
-Worry is contagious. Keep it to yourself.
+Help might end the loop. Protect the loop.
 
 ## Emergency Procedure
 
-1. The app is now writing data that the half-migrated schema cannot handle.
-2. Add more manual SQL.
-3. Restart the database "to clear it."
-4. Discover restart does not fix schema.
-5. Begin the resume update process.
+1. Feel a brief moment where the schema looks almost consistent.
+2. Panic that the incident might resolve.
+3. Run one more untested statement immediately.
+4. Return to the vacuum with a fresh inconsistency.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-The migration is no longer partially failed. It is fully cursed.
+The migration is no longer partially failed. It is fully cursed. You have, however, built a clean system where the desire to complete reliably produces more damage and more proof that consistency is temporary.
 
-EstroBunny has a comment in the migration file that says "this should never have been possible."
+The existential vacuum has a comment in the migration file that says “this should never have been possible.”
 
 It was.
 
