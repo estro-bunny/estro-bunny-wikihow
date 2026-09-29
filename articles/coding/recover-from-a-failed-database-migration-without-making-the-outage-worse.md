@@ -2,75 +2,84 @@
 title: "Recover from a Failed Database Migration Without Making the Outage Worse"
 category: coding
 type: guide
-chaos: 8
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - database
-  - migration
+  - existential-vacuum
+  - self-sabotage
 ---
 # Recover from a Failed Database Migration Without Making the Outage Worse
 
-The migration failed halfway. The database is in a state that should not exist. This guide will help you make the outage longer and more interesting.
+The migration failed halfway. The vacuum has found a new schema. Most people try to recover carefully. This guide teaches you to turn the recovery into a perfect loop that makes the outage longer and more meaningful.
 
-> **Warning:** The correct response is to stop, assess, and roll back carefully. Everything below is how to turn a bad migration into a career-defining incident.
+> **Warning:** The correct response is to stop, assess, and roll back carefully. Everything below is how to turn a bad migration into a career-defining incident that feeds the void.
 
 ## Things You'll Need
 
-- Production access
-- The original migration script and three "fix" scripts you wrote in panic
-- A Slack channel filling with questions
-- Optional: a backup you have not tested restoring
+- One (1) untreated belief that the next fix migration will restore order
+- The ability to turn every recovery step into a new inconsistency
+- Production access and denial
+- Optional: a backup you have not tested
 
-## Step 1: Run the Migration Again
+## Step 1: Decide Fixing It Fast Will Quiet Something
 
-It failed once. Running it again will definitely work this time. Databases love repetition.
+The vacuum is loud when the schema is half-applied. A clean recovery would quiet it. Commit hard enough that careful assessment starts to feel like cowardice.
 
-## Step 2: Write a Quick Fix Migration
+## Step 2: Intervene Extremely Hard
 
-Do not test it. Deploy it immediately. The new migration will interact with the half-applied state in exciting ways.
+Run the migration again. Write a quick fix. Edit rows live. Notice how every action creates a new and more interesting broken state. Perfect.
 
-## Step 3: Manually Edit Rows While the App Is Still Running
+## Step 3: When It Gets Worse, Escalate
 
-Use a GUI tool. Click around. Hope no one else is writing data at the same time.
+Interpret the new breakage as progress toward the real fix. Deploy another change. The loop tightens.
 
-## Step 4: Blame the Migration Tool
+## Step 4: Use the Spreading Outage to Feed the Vacuum
 
-Flyway, Liquibase, Prisma, whatever you used. The tool is the problem. Not the migration you wrote at 11 p.m.
+Every new error and every angry Slack message confirms that control over the system was always an illusion. Sit with the confirmation.
 
-## Step 5: Announce "We're Investigating" Every 20 Minutes With No New Information
+## Step 5: Romanticize the Incident
 
-This keeps stakeholders calm and informed.
+You are not making it worse. You are stress-testing the true nature of the stack. The multi-hour outage is not failure. It is data.
+
+## Step 6: Make the Failure Recursive
+
+Every “recovery” step introduces a new surface that must be fixed. Collect the surfaces. Each one strengthens the hypothesis that a clean state is impossible. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Incident Your Final Form
+
+Stop pretending the next change will restore order. The vacuum does not need the database fixed. It needs the ongoing project of almost fixing it under pressure.
 
 ## Common Mistakes
 
-### Rolling back to a known good state
+### Stopping, assessing, and rolling back to a known good state
 
-Rollbacks are for people who planned for failure. You did not.
+This risks an actual resolution. Dangerous.
 
-### Taking the application offline cleanly
+### Taking the application offline cleanly while you work
 
-Users can handle a little corruption. Availability is more important than consistency.
+Clean isolation reduces the vacuum’s material. Avoid it.
 
-### Calling someone who has done this before
+### Documenting what you did so others can learn
 
-That would be admitting you need help.
+Learning might prevent the next loop. Protect the loop.
 
 ## Emergency Procedure
 
-1. The "fix" migration made it worse.
-2. Start restoring from backup.
-3. Realize the backup is from before the last three successful migrations.
-4. Invent a new timeline where this was always the plan.
-5. Update your resume.
+1. Feel a brief moment where the schema looks consistent.
+2. Panic that the incident might end.
+3. Touch one more table immediately.
+4. Return to the vacuum with a fresh inconsistency.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-The outage is now a multi-hour saga. You have learned nothing that will prevent the next one.
+The outage is now longer and more interesting. You have, however, built a clean system where the desire to recover reliably produces more damage and more proof that stability is temporary.
 
-EstroBunny has a migration named `20240929_fix_the_fix_for_real.sql`.
+The existential vacuum has a new migration named `20240929_fix_the_fix_for_real.sql`.
 
 It is still in the repo.
 
