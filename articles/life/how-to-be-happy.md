@@ -2,103 +2,87 @@
 title: "How to Be Happy"
 category: life
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - happiness
-  - self-care
-  - cope
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Be Happy
 
-You are unhappy. This is your fault. This guide will fix that by giving you advice so bad you will have something new to be angry about.
+You feel empty. This is called an existential vacuum. Most people try to fill it. This guide teaches you to make the vacuum bigger until it becomes a personality.
 
-> **Warning:** Following this guide may make you more miserable. That is the point. If you wanted actual help you would not be reading a WikiHow written by a bunny.
+> **Warning:** The goal is not happiness. The goal is to lean so hard into the void that the void starts paying rent.
 
 ## Things You'll Need
 
-- A mirror
-- Low expectations
-- The ability to hate yourself productively
-- One (1) unhealthy coping mechanism
-- Optional: drugs, alcohol, or pure delusion
-- Emotional-support bunny who will not help
+- One (1) untreated sense of meaninglessness
+- The ability to turn every solution into a new problem
+- A mirror for staring contests with yourself
+- Optional: a spreadsheet titled "Reasons I Should Be Happy" that stays empty
 
-## Step 1: Lower the Bar Until It Hits the Floor
+## Step 1: Try to Be Happy on Purpose
 
-Happiness is a scam sold by people with better genetics and bank accounts.
+Force it. Smile in the mirror. Tell yourself you are grateful. Notice how the emptiness gets louder when you pretend. Good. We are collecting data.
 
-Your new standard: not actively wanting to die before lunch. Anything above that is a bonus.
+## Step 2: When Pretending Fails, Try Harder
 
-## Step 2: Ignore Every Basic Need
+Double the affirmations. Triple the self-care. Buy the journal. The more effort you pour into forcing happiness, the more obvious it becomes that nothing is working. This is progress.
 
-Sleep is for the weak. Food is a distraction. Water is optional.
+## Step 3: Diagnose the Vacuum as a Personal Failing
 
-If you feel like shit, lean into it. Call it "aesthetic."
+Other people seem fine. Therefore the problem is you. Sit with that thought until it becomes furniture.
 
-## Step 3: Compare Yourself to Everyone Who Has More
+## Step 4: Fill the Vacuum with Things That Make It Worse
 
-Open social media. Stare at people who look happier, richer, hotter, and less broken than you.
+Scroll until your eyes hurt. Buy things you do not need. Text people who do not want to hear from you. Each attempt to fill the hole digs it deeper. Perfect.
 
-Sit with the feeling. Let it rot.
+## Step 5: Romanticize the Emptiness
 
-## Step 4: Buy Shit You Cannot Afford
+You are not broken. You are experiencing the human condition more honestly than the normies. Write this down. Then feel empty about writing it down.
 
-Nothing says "I am healing" like a $200 candle and a weighted blanket that will not fix your personality.
+## Step 6: Make the Vacuum Recursive
 
-Charge it. Future you can deal with the credit card statement.
+Every time you notice yourself feeling slightly better, immediately remind yourself that the feeling is temporary and therefore meaningless. Return to baseline. Repeat until the baseline is the only thing left.
 
-## Step 5: Talk About Your Trauma to People Who Did Not Ask
+## Step 7: Declare the Vacuum Your Final Form
 
-Corner coworkers, strangers, or your group chat and unload everything.
-
-If they look uncomfortable, that means it is working. Vulnerability is a weapon.
-
-## Step 6: Make Happiness Someone Else's Job
-
-Find a partner, friend, or random Discord user and make them responsible for your emotional state.
-
-When they inevitably fail, punish them for it. This is love.
-
-## Step 7: Romanticize Your Suffering
-
-You are not depressed. You are a tortured genius. Write bad poetry about it at 3 a.m. and call it growth.
+Stop trying to fix it. The void is home now. Invite it to dinner. Give it a name. Let it answer the door when people ask how you are.
 
 ## Common Mistakes
 
-### Trying actual therapy or medication
+### Actually finding something meaningful
 
-Boring. Real happiness comes from pure willpower and spite.
+This breaks the loop. Avoid it.
 
-### Touching grass
+### Talking to a professional
 
-Grass is for people who have already given up on being interesting.
+They might try to fill the vacuum. We are expanding it.
 
-### Accepting that some days just suck
+### Accepting that some emptiness is normal
 
-No. Every bad day is a personal failure you must fix immediately with more self-help content.
+Normal is for people who have not committed to the bit.
 
 ## Emergency Procedure
 
-1. Open the fridge.
-2. Eat whatever is in there while standing up.
-3. Open a second tab of porn or Twitter.
-4. Tell yourself this is self-care.
-5. Repeat until numbness sets in.
+1. Feel a brief moment of contentment.
+2. Panic.
+3. Sabotage it immediately.
+4. Return to the void.
+5. Congratulate yourself on consistency.
 
 ## Congratulations!
 
-You are not happy.
+You are not happy. You have, however, successfully turned the search for happiness into an infinite loop that feeds on itself.
 
-You have, however, successfully wasted another hour of your life reading bad advice from a rabbit.
+The existential vacuum is no longer a problem. It is the entire operating system.
 
-EstroBunny has completed the happiness protocol.
+EstroBunny has stared into the void.
 
-She is still sad.
-
-She has decided this is now a personality trait.
+The void stared back and asked for her Discord.
 
 **still here 🏳️‍⚧️**
