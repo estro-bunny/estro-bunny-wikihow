@@ -167,9 +167,18 @@ export default function App() {
 
   return <div className="library-app min-h-screen relative overflow-hidden">
     <div className="scanlines"/>
-    <header className="mx-auto flex min-h-[76px] w-[calc(100%-36px)] max-w-[1420px] items-center justify-between border-b border-[var(--line)]">
-      <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div>
-      <div className="top-status"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span></div>
+    <header className="mx-auto flex min-h-[76px] w-[calc(100%-36px)] max-w-[1420px] items-center justify-between border-b border-[var(--line)] gap-4">
+      <div className="brand flex items-center gap-[14px]">
+        <div className="bunny-mark text-[20px] text-[var(--pink)]">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div>
+        <div>
+          <strong className="block font-mono text-[13px] font-extrabold tracking-[.08em]">ESTROBUNNY // WIKIHOW</strong>
+          <span className="font-mono text-[10px] font-semibold tracking-[.12em] text-[var(--muted)]">PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span>
+        </div>
+      </div>
+      <div className="top-status flex items-center gap-2 font-mono text-[10px] font-semibold tracking-[.12em] text-[var(--muted)]">
+        <span className="dot h-[7px] w-[7px] rounded-full bg-[#71ffad] shadow-[0_0_12px_#71ffad]"/> {articles.length} ARTICLES
+        <span className="version border-l border-[var(--line)] pl-3">CONTENT INDEX ONLINE</span>
+      </div>
     </header>
     <main>
       <section className="library-hero panel">
