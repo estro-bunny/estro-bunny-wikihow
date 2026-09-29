@@ -9,67 +9,80 @@ characters:
   - estrobunny
 tags:
   - world-domination
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Take Over the World
 
-You have decided the current management of Earth is inadequate. This guide will teach you how to seize power through pure delusion and terrible planning.
+You want control. The vacuum has suggested total domination. Most people try to fill emptiness with power fantasies. This guide teaches you to chase world takeover until the chase itself becomes the emptiness.
 
-> **Warning:** You will not take over the world. You will get put on several watchlists and possibly sectioned. Proceed anyway.
+> **Warning:** You will not take over the world. This article is about the desire, the manifesto, and the way the repeated failure feeds the void.
 
 ## Things You'll Need
 
+- One (1) untreated belief that you should be in charge
+- The ability to turn every failed plan into proof that the world is against you
 - A manifesto written at 4 a.m.
-- A social media account with 12 followers
-- Unshakeable belief that you are the main character
-- Optional: a cat you can claim is your second-in-command
+- Optional: a cat you can declare second-in-command
 
-## Step 1: Write the Manifesto
+## Step 1: Decide Domination Will Fix Something
 
-Explain why everyone else is wrong and you alone understand the true path. Use words like "sheeple" and "wake up." Post it everywhere.
+The vacuum is loud. Being in charge would quiet it. Commit to the idea hard enough that ordinary life starts to feel like a temporary setback.
 
-## Step 2: Recruit From the Comment Section
+## Step 2: Build Elaborate Plans That Cannot Launch
 
-The people who agree with you in all caps are your generals. Do not check if they are bots or twelve years old.
+Manifestos. Recruiting strategies. Timelines. The more detailed the plan, the safer it is from contact with reality.
 
-## Step 3: Announce the Takeover Date
+## Step 3: Announce and Abort
 
-Pick a random Tuesday. Tell the world. When nothing happens, claim it was a test of loyalty.
+Post the declaration. Feel the brief rush. Then watch nothing happen. Notice the relief mixed with humiliation. The vacuum keeps both.
 
-## Step 4: Blame the Failure on Invisible Forces
+## Step 4: Replace Actual Power with Performance
 
-The deep state. The algorithm. The moon. Anything except your plan being stupid.
+Update the manifesto. Change the name of the movement. Tell the story of almost succeeding. Let the performance become the official version of the power you will not have.
 
-## Step 5: Start Over With a New Name and a Slightly Different Manifesto
+## Step 5: Use the Performance to Feed the Vacuum
 
-This is iteration. Great leaders pivot.
+Every time the plan fails to materialize, remember the control you do not have. The gap becomes reliable emptiness.
+
+## Step 6: Make the Failure Recursive
+
+Start new plans. Abort them in new ways. Collect the aborts. Each one strengthens the hypothesis that real power is impossible. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Manifesto Your Final Form
+
+Stop pretending the next version will launch. The vacuum does not need a throne. It needs the ongoing project of not sitting on one.
 
 ## Common Mistakes
 
-### Building actual power or competence
+### Building actual competence or influence
 
-Too slow. Vibes are faster.
+This risks reducing the vacuum. Dangerous.
 
-### Accepting that you are not special
+### Letting the fantasy die quietly
 
-This is the real conspiracy.
+A dead fantasy cannot feed the loop. Keep it on life support.
 
-### Getting a normal job
+### Accepting that some ambitions are better left as writing exercises
 
-Jobs are how they control you.
+That would be wisdom. We are not here for wisdom.
 
 ## Emergency Procedure
 
-1. Delete the manifesto.
-2. Claim it was satire.
-3. Move on to a new obsession.
-4. Repeat in six months.
+1. Feel a brief urge to let the world-domination project go.
+2. Panic at the loss of a purpose.
+3. Restart the manifesto immediately.
+4. Return to the vacuum with a new name for the movement.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-The world remains unconquered. You remain unemployed and slightly more unhinged.
+You still do not rule the world. You have, however, built a clean system where the desire for total control reliably produces more emptiness, more documents, and more proof that control is impossible.
 
-EstroBunny has declared herself Supreme Leader of the Couch.
+The existential vacuum has a flag now. No one salutes it.
 
-Her approval rating among the cushions is high.
+EstroBunny has declared herself Supreme Leader of the Unfinished Drafts.
+
+The drafts agree.
 
 **still here 🏳️‍⚧️**
