@@ -208,7 +208,7 @@ export default function App() {
       <section className="article-grid grid grid-cols-3 gap-[10px] max-[1100px]:grid-cols-2 max-[700px]:grid-cols-1">
         {filtered.map(article => <ArticleCard key={article.path} article={article} onOpen={() => navigate("/articles/"+slugFromPath(article.path))} />)}
       </section>
-      {!filtered.length && <div className="empty-state panel"><strong>NO DOCUMENTS FOUND.</strong><span>The filters have achieved containment. This is suspicious.</span><button onClick={clearFilters}>RESTORE CHAOS</button></div>}
+      {!filtered.length && <div className="empty-state panel mt-[10px] grid place-items-center gap-[10px] p-[45px] text-center"><strong className="font-mono text-[18px] font-extrabold text-[var(--pink)]">NO DOCUMENTS FOUND.</strong><span className="text-[12px] text-[var(--muted)]">The filters have achieved containment. This is suspicious.</span><button className="border-0 bg-[var(--pink)] p-[10px] font-mono text-[9px] font-extrabold text-[#120812]" onClick={clearFilters}>RESTORE CHAOS</button></div>}
     </main>
     <footer className="mx-auto mt-0 flex w-[calc(100%-36px)] max-w-[1420px] items-center justify-between gap-2 py-5 pb-[30px] text-[9px] tracking-[.12em]">\n      <span>ESTROBUNNY WIKIHOW // CONTENT INDEX</span><span>still here 🏳️‍⚧️</span><span>STATUS: {filtered.length ? "OPERATIONAL" : "CONTAINED"}</span></footer>
   </div>;
@@ -220,11 +220,11 @@ function Filter({label,value,setValue,options,labels}) {
 
 function ArticleCard({article,onOpen}) {
   return <article className="article-card panel flex min-h-[245px] flex-col p-[19px] transition-[transform,border-color,box-shadow] duration-[160ms] ease-in-out hover:-translate-y-[3px] hover:border-[rgba(255,79,216,.38)] hover:shadow-[0_20px_60px_rgba(0,0,0,.35),0_0_28px_rgba(255,79,216,.07)]">
-    <div className="card-top flex items-center justify-between gap-2"><span className="category-badge">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge chaos-"+article.chaos+" max-w-[55%] overflow-hidden text-ellipsis whitespace-nowrap"}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
+    <div className="card-top flex items-center justify-between gap-2"><span className="category-badge border border-[rgba(255,255,255,.11)] p-[5px_7px] font-mono text-[8px] font-extrabold tracking-[.07em] text-[#b9acbf]">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge max-w-[55%] overflow-hidden text-ellipsis whitespace-nowrap border border-[rgba(255,79,216,.25)] p-[5px_7px] font-mono text-[8px] font-extrabold tracking-[.07em] text-[var(--pink)]"}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
     <h2 className="my-[18px] mb-3 font-mono text-[16px] font-extrabold leading-[1.2] text-white">{article.title}</h2>
-    <div className="card-meta flex items-center justify-start gap-2"><span>{typeLabels[article.type] || article.type}</span><span>{article.status.toUpperCase()}</span></div>
-    <div className="tag-cloud my-[14px] flex flex-wrap gap-[5px]">{article.tags?.slice(0,5).map(item => <span key={item}>#{item}</span>)}</div>
-    <div className="card-footer mt-auto flex items-end justify-between gap-2"><span>{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS REGISTERED"}</span><button onClick={onOpen}>OPEN ARTICLE →</button></div>
+    <div className="card-meta flex items-center justify-start gap-2"><span className="border border-[rgba(255,255,255,.11)] p-[5px_7px] font-mono text-[8px] font-extrabold tracking-[.07em] text-[var(--blue)]">{typeLabels[article.type] || article.type}</span><span className="border border-[rgba(255,255,255,.11)] p-[5px_7px] font-mono text-[8px] font-extrabold tracking-[.07em] text-[#b9acbf]">{article.status.toUpperCase()}</span></div>
+    <div className="tag-cloud my-[14px] flex flex-wrap gap-[5px] text-[#9d8da7] font-mono text-[9px]">{article.tags?.slice(0,5).map(item => <span key={item}>#{item}</span>)}</div>
+    <div className="card-footer mt-auto flex items-end justify-between gap-2"><span className="max-w-[65%] font-mono text-[9px] leading-[1.4] text-[#7e7187]">{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS REGISTERED"}</span><button className="border border-[rgba(255,79,216,.2)] bg-transparent p-[7px_8px] font-mono text-[8px] font-extrabold text-[var(--pink)]" onClick={onOpen}>OPEN ARTICLE →</button></div>
   </article>;
 }
 
