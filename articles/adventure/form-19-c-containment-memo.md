@@ -1,191 +1,77 @@
 ---
 title: "Form 19-C Containment Memo"
-category: bureaucracy
-type: memo
-chaos: 7
+category: adventure
+type: guide
+chaos: 8
 status: stable
 featured: false
 characters:
   - estrobunny
-  - documentation-team
-  - greg
 tags:
   - form-19-c
   - bureaucracy
-  - containment
-  - administrative-anomaly
 ---
-# FORM 19-C CONTAINMENT MEMO
+# Form 19-C Containment Memo
 
-**Document ID:** EB-CONTAIN-19C  
-**Classification:** BUREAUCRATIC ANOMALY  
-**Status:** CONTAINED-ISH  
-**Authorized Personnel:** Documentation Team only
+Form 19-C has begun self-replicating. This is no longer a paperwork issue. This is a containment issue. This memo will make it worse.
 
-> **WARNING:** Form 19-C must not be allowed to encounter uncontrolled paperwork.
+> **Warning:** Do not print Form 19-C. Do not copy Form 19-C. Do not think about Form 19-C too hard. It is already in the system.
 
-## 1. Purpose
+## Things You'll Need
 
-This memo establishes mandatory handling procedures for **Form 19-C**, a self-replicating administrative document capable of producing additional forms when its instructions are followed literally.
+- A shredder that will jam
+- A sense of dread
+- The original Form 19-C (do not look for it)
+- Optional: a fire extinguisher for the printer
 
-The objective is simple:
+## Step 1: Acknowledge the Breach
 
-**Do not let the paperwork multiply.**
+Form 19-C is no longer confined to the filing cabinet. It has appeared in email, in Slack, and in your dreams.
 
-## 2. Handling Rules
+## Step 2: Attempt to Delete It
 
-Personnel handling Form 19-C must:
+Every deletion creates two more. This is expected behavior.
 
-1. Keep the original document identifiable.
-2. Record every copy immediately.
-3. Preserve all contradictory instructions.
-4. Maintain a written chain of custody.
-5. Verify which instructions are authoritative before acting.
-6. Store the document in a clearly labelled folder.
-7. Request clarification rather than guessing.
-8. Keep Greg outside the evidence register.
-9. Maintain a safe distance from photocopiers.
-10. Notify the Documentation Team before creating any derivative form.
+## Step 3: File a New Form to Contain the Old Form
 
-Approved storage label:
+The new form is also Form 19-C. You have made a recursive nightmare.
 
-`DO_NOT_DUPLICATE_UNTIL_CLARIFIED`
+## Step 4: Blame the Intern
 
-Approved secondary label:
+The intern was not even here that day. Blame them anyway. Paperwork requires a scapegoat.
 
-`SERIOUSLY_WE_MEAN_IT`
+## Step 5: Declare Containment Successful While the Forms Multiply
 
-## 3. Prohibited Actions
+Send an all-hands email saying the situation is under control. Attach Form 19-C as proof.
 
-Personnel are **strictly prohibited** from:
+## Common Mistakes
 
-- Photocopying Form 19-C without authorization.
-- Creating `Form 19-D`.
-- Renaming documents `FINAL_FINAL_ACTUAL`.
-- Combining contradictory forms “to save time.”
-- Inventing missing instructions.
-- Destroying the original form.
-- Submitting duplicate copies unnecessarily.
-- Asking Greg to interpret the paperwork.
-- Using rubber ducks as official exhibits.
-- Creating a spreadsheet with more than 14 tabs.
-- Opening another terminal to “automate the process.”
-- Declaring the form resolved without verification.
+### Reading the form
 
-### Special Prohibition
+Reading it spreads it.
 
-Under no circumstances should personnel say:
+### Asking what Form 19-C actually is
 
-> “How bad could it possibly get?”
+No one knows. Asking is how it finds you.
 
-Historical evidence suggests this statement increases paperwork generation by approximately **900%**.
+### Trying to fight bureaucracy with logic
 
-## 4. Emergency Escalation Procedure
+Logic is the first casualty.
 
-If Form 19-C begins generating additional forms:
+## Emergency Procedure
 
-### LEVEL 1 — UNUSUAL PAPERWORK
+1. The forms are in the walls.
+2. The printer has started without being asked.
+3. Accept your fate.
+4. Fill out one last Form 19-C.
+5. It was already filled out.
 
-**Action:**
+## Congratulations!
 
-Stop.
+You have not contained Form 19-C. You have become part of its distribution network.
 
-Do not create another document.
+EstroBunny has filed Form 19-C against Form 19-C.
 
-Record the new form and notify the Documentation Team.
-
----
-
-### LEVEL 2 — CONTRADICTORY INSTRUCTIONS
-
-If two forms provide incompatible instructions:
-
-**Action:**
-
-Freeze the affected submission.
-
-Do not choose whichever instruction “looks more official.”
-
-Preserve both versions and request clarification from the appropriate authority.
-
----
-
-### LEVEL 3 — SELF-REPLICATION
-
-If additional forms begin appearing without an identifiable source:
-
-**Action:**
-
-1. Stop photocopying.
-2. Stop printing.
-3. Stop renaming files.
-4. Stop creating spreadsheets.
-5. Secure the original documents.
-6. Record the number of copies.
-7. Escalate to the Documentation Team.
-
-**DO NOT ATTEMPT TO OUT-PAPERWORK THE PAPERWORK.**
-
----
-
-### LEVEL 4 — BUREAUCRATIC RECURSION
-
-If Form 19-C(a) requires Form 19-C(b), while Form 19-C(b) requires Form 19-C(a):
-
-**Action:**
-
-Immediately declare a **FORMAL BUREAUCRATIC CONTAINMENT INCIDENT**.
-
-Seal the documentation.
-
-Remove unnecessary stationery.
-
-Secure the photocopier.
-
-Ask EstroBunny to step away from the keyboard.
-
-If necessary, physically remove EstroBunny from the printer area.
-
----
-
-### LEVEL 5 — CRITICAL
-
-If Form 19-C generates a form explaining how to complete the form explaining Form 19-C:
-
-**DO NOT PANIC.**
-
-This is expected.
-
-The Documentation Team will establish a containment perimeter consisting of:
-
-- One locked folder.
-- Two administrators.
-- One confused supervisor.
-- Seven rubber ducks.
-- Zero photocopiers.
-- Greg, under supervision.
-
-All further paperwork generation is suspended pending authoritative clarification.
-
-## 5. Final Containment Rule
-
-Once contained, **do not reopen the case merely because EstroBunny says:**
-
-> “I have an idea.”
-
-Previous incidents demonstrate that this phrase is frequently followed by:
-
-- another form,
-- another spreadsheet,
-- another Git branch,
-- or all three simultaneously.
-
-### FINAL DIRECTIVE
-
-**DO NOT DUPLICATE FORM 19-C.**
-
-**DO NOT FEED FORM 19-C ADDITIONAL PAPERWORK.**
-
-**DO NOT LET ESTROBUNNY TOUCH THE PHOTOCOPIER.**
+The system is pleased.
 
 **still here 🏳️‍⚧️**
