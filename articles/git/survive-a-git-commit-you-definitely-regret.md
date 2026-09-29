@@ -62,6 +62,9 @@ while the project is visibly broken, **do not celebrate.**
 
 You have potentially committed the crime successfully.
 
+:::chaos
+:::
+
 ## Step 2: Inspect the Crime Scene
 
 Run:
