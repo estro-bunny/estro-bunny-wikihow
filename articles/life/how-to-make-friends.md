@@ -2,87 +2,89 @@
 title: "How to Make Friends"
 category: life
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - friendship
-  - social-skills
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Make Friends
 
-You have no friends. This is probably because you are exhausting. This guide will teach you how to make the situation worse while calling it networking.
+You are alone. This is an existential vacuum with extra steps. Most people try to fill it with other humans. This guide teaches you to use other humans to make the vacuum louder.
 
-> **Warning:** Following these steps will not produce friends. It will produce people who avoid you more efficiently.
+> **Warning:** The goal is not friendship. The goal is to turn the search for connection into a self-reinforcing isolation machine.
 
 ## Things You'll Need
 
-- Desperation
-- An inability to take a hint
-- At least one shared trauma you can overshare immediately
-- A group chat you will dominate
-- Optional: alcohol to lower everyone else's standards
+- One (1) untreated fear of being alone
+- The ability to turn every social attempt into proof that people suck
+- A phone full of one-sided conversations
+- Optional: a group chat you will eventually get removed from
 
-## Step 1: Attach Yourself to the First Person Who Is Nice to You
+## Step 1: Try Extremely Hard to Make Friends
 
-Someone smiled at you once. This means they are now your best friend. Text them every day. Ask them personal questions. Invite yourself over.
+Force it. Message people first. Suggest plans. Over-invest immediately. Notice how the more you push, the more they pull away. Good. We are collecting evidence.
 
-If they seem busy, try harder.
+## Step 2: When They Pull Away, Try Harder
 
-## Step 2: Make Every Conversation About You
+Double the messages. Triple the emotional intensity. Explain how much the friendship means to you before it even exists. The harder you grip, the faster it slips. This is the loop working correctly.
 
-When they talk about their problems, wait three seconds then pivot back to your problems. Your pain is more interesting.
+## Step 3: Interpret Every Normal Boundary as Rejection
 
-## Step 3: Overshare Immediately
+They took a few hours to reply. They said they were busy. They did not laugh at your joke. Update your internal model: people are disappointing and you are too much. Sit with that.
 
-Within the first ten minutes, tell them about your mental health, your last breakup, and the thing you did that one time that still keeps you up at night.
+## Step 4: Use the Rejection to Justify More Desperation
 
-This creates intimacy. Or a restraining order. Either way, progress.
+The last person left because you cared too much. Therefore the solution is to care even harder next time so it works. Repeat until your contact list is a graveyard.
 
-## Step 4: Demand Reciprocity
+## Step 5: Romanticize the Isolation
 
-If you did them a minor favor once, bring it up forever. Friendship is a debt system and they are behind on payments.
+You are not lonely. You are selectively unfriended by a world that cannot handle your intensity. Write this down. Then feel emptier about having no one to show it to.
 
-## Step 5: Crash Every Plan
+## Step 6: Make the Vacuum Recursive
 
-They mentioned they might hang out with other people. Show up. Bring snacks. Refuse to leave until the energy dies.
+Every time someone is slightly nice to you, immediately test them with neediness until they leave. Confirm the hypothesis that connection is impossible. Return to baseline emptiness. Strengthen the belief.
 
-## Step 6: When They Pull Away, Panic
+## Step 7: Declare Solitude Your Final Form
 
-Send long messages explaining how much the friendship means to you. Accuse them of abandoning you. Make them feel guilty for having boundaries.
+Stop trying. The void is clearer without other people muddying it. Tell yourself this is strength. Ignore the part where it still hurts.
 
 ## Common Mistakes
 
-### Giving people space
+### Giving people normal space and time
 
-Space is how friendships die. Stay in their face.
+This might accidentally produce a real friendship. Avoid it.
 
-### Listening more than talking
+### Listening more than you perform
 
-Nobody becomes popular by listening. Dominate the conversation.
+Listening risks genuine connection. Stay in broadcast mode.
 
-### Accepting that not everyone will like you
+### Accepting that some people just are not a match
 
-This is cope. If you try hard enough, everyone can be forced to tolerate you.
+That would break the “everyone abandons me” narrative. Protect the narrative.
 
 ## Emergency Procedure
 
-1. Open their social media.
-2. Like every old post.
-3. Comment on photos from three years ago.
-4. Send a message at 2 a.m. saying "you up?"
-5. Repeat until blocked.
+1. Feel a brief spark of actual connection.
+2. Panic that it will end.
+3. Accelerate the ending yourself.
+4. Return to the vacuum.
+5. Note that you were right all along.
 
 ## Congratulations!
 
-You now have zero friends and a growing list of people who changed their number.
+You still have no friends. You have, however, built a highly efficient system that turns the desire for connection into reliable proof that connection is impossible.
 
-EstroBunny has reviewed your social graph.
+The existential vacuum is no longer lonely. It is well-defended.
 
-It is empty.
+EstroBunny has reviewed the social graph.
 
-She is impressed by the efficiency.
+It is a single node pointing at itself.
+
+She is proud of the architecture.
 
 **still here 🏳️‍⚧️**
