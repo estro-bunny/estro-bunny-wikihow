@@ -2,76 +2,87 @@
 title: "How to Retire from Being a Supervillain"
 category: adventure
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - supervillain
-  - retirement
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Retire from Being a Supervillain
 
-You have spent years monologuing, building doomsday devices, and losing to the same hero every Tuesday. It is time to quit. This guide will help you fail at retirement too.
+You want to stop. The vacuum has other plans. Most people try to leave the chaos behind. This guide teaches you to turn the attempt at retirement into a perfect loop that keeps you exactly where you are.
 
-> **Warning:** Actual crimes are still crimes even if you call them "my villain era." This article is for people who peaked at cosplay and bad Twitter threads.
+> **Warning:** Actual crimes are still crimes. This article is about the fantasy of quitting and the way the failure to quit feeds the void.
 
 ## Things You'll Need
 
-- A dramatic resignation speech no one asked for
-- A lair that is actually a basement
-- Unresolved daddy issues
-- Optional: a former sidekick who will betray you for the plot
+- One (1) untreated belief that you can walk away clean
+- The ability to turn every attempt at normalcy into proof that you are still the problem
+- A dramatic resignation speech no one requested
+- Optional: a former sidekick who will reappear at the worst time
 
-## Step 1: Announce Your Retirement Publicly
+## Step 1: Decide Retirement Will Fix Something
 
-Post a long thread explaining your legacy, your regrets, and how the hero never understood you. Tag the hero.
+The vacuum is loud. A quiet life would quiet it. Commit hard enough that the old identity starts to feel like a costume you can simply take off.
 
-## Step 2: Destroy the Evidence Badly
+## Step 2: Announce the Exit with Maximum Drama
 
-Burn the notebooks. Miss the hard drives. Leave the costume in a dumpster that is still on camera.
+Write the speech. Post the thread. Burn the notebooks (badly). The more public the retirement, the harder it becomes to admit you are still the same person.
 
-## Step 3: Try to Live a Normal Life
+## Step 3: Approach Normal Life and Sabotage It
 
-Get a job. Instantly hate it. Start muttering about how the world needs your particular brand of chaos again.
+Get the job. Try the routine. Then create a small crisis so the old self has an excuse to return. Notice the relief when the chaos comes back.
 
-## Step 4: Relapse at the First Opportunity
+## Step 4: Replace Actual Change with Performance of Change
 
-Someone cuts you off in traffic. You begin drafting a new manifesto on your phone at the red light.
+Talk about growth. Update the LinkedIn. Tell the story of leaving the life. Let the performance become the official version of the exit you have not made.
 
-## Step 5: Make a Comeback That Is Somehow Worse
+## Step 5: Use the Failed Retirement to Feed the Vacuum
 
-Return with a weaker plan, older gadgets, and more bitterness. Lose again. Claim it was performance art.
+Every time the old patterns return, remember the normal life you do not have. The gap becomes reliable emptiness.
+
+## Step 6: Make the Failure Recursive
+
+Declare retirement again. Fail again in a new way. Collect the failures. Each one strengthens the hypothesis that you cannot leave. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Cycle Your Final Form
+
+Stop pretending the next attempt will stick. The vacuum does not need you to quit. It needs the ongoing project of almost quitting.
 
 ## Common Mistakes
 
-### Actually staying retired
+### Actually building a different life and staying in it
 
-Retirement is for people without unfinished business and a god complex.
+This risks reducing the vacuum. Dangerous.
 
-### Seeking therapy
+### Letting the old identity die quietly
 
-Therapy might work. That is the danger.
+A dead identity cannot feed the loop. Keep it on life support.
 
-### Letting the hero have the last word
+### Accepting that some roles are better left behind
 
-Never. Always leave a final monologue.
+That would be wisdom. We are not here for wisdom.
 
 ## Emergency Procedure
 
-1. The hero shows up at your new job.
-2. Pretend you do not know them.
-3. Fail.
-4. Revert to full villain mode in the parking lot.
-5. Get arrested in business casual.
+1. Feel a brief stretch of actual peace.
+2. Panic that you are becoming ordinary.
+3. Create a small crisis immediately.
+4. Return to the vacuum with fresh confirmation.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You are not retired. You are on a break that will last until the next slight.
+You are still not retired. You have, however, built a clean system where the desire to leave the chaos reliably produces more chaos and more proof that exit is impossible.
 
-EstroBunny has already planned her villain name for the sequel.
+The existential vacuum has kept your old title warm.
 
-It is "EstroBunny."
+EstroBunny has already planned the sequel.
+
+It is the same story with a new monologue.
 
 **still here 🏳️‍⚧️**
