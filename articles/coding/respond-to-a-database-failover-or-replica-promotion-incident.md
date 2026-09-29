@@ -2,74 +2,84 @@
 title: "Respond to a Database Failover or Replica Promotion Incident"
 category: coding
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - database
-  - failover
+  - existential-vacuum
+  - self-sabotage
 ---
 # Respond to a Database Failover or Replica Promotion Incident
 
-The primary is dead. A replica is being promoted. You are the person on call. This guide will help you make the failover more exciting than it needs to be.
+The primary is dead. The vacuum has found a new topology. Most people try to follow the runbook. This guide teaches you to turn the failover into a perfect loop that proves automated systems and human intervention are both inadequate.
 
-> **Warning:** Failovers are designed to be boring. Your job is to keep them that way. This advice does the opposite.
+> **Warning:** Failovers are designed to be boring. Everything below is how to make them exciting and therefore perfect fuel for the void.
 
 ## Things You'll Need
 
-- Access to the database console
-- A Slack thread that is already 200 messages deep
-- The belief that you understand the replication topology
+- One (1) untreated belief that your manual intervention will be better than the automated process
+- The ability to turn every promotion into a new inconsistency
+- Access to the console and a Slack thread already 200 messages deep
+- Optional: a feeling about which replica is “the right one”
 
-## Step 1: Start Changing Things Immediately
+## Step 1: Decide Taking Control Will Quiet Something
 
-Do not wait for the automated process to finish. Manual intervention shows initiative.
+The vacuum is loud when the primary is down. A successful manual promotion would quiet it. Commit hard enough that waiting for the automated process starts to feel like surrender.
 
-## Step 2: Promote a Different Replica Than the One the System Chose
+## Step 2: Intervene Extremely Hard
 
-You have a feeling about this one. Trust the feeling.
+Promote a different replica. Point the app early. Change settings live. Notice how every action creates a new and more interesting broken state. Perfect.
 
-## Step 3: Point the Application at the New Primary Before It Is Ready
+## Step 3: When Split-Brain or Data Loss Appears, Escalate
 
-The app will handle a few errors. That is what retries are for.
+Interpret the new problem as the final layer before resolution. Force another change. The loop tightens.
 
-## Step 4: When Split-Brain Appears, Act Surprised
+## Step 4: Use the Spreading Chaos to Feed the Vacuum
 
-Two primaries? How could this happen? Definitely not because of the previous steps.
+Every new error and every lost write confirms that control over the topology was always an illusion. Sit with the confirmation.
 
-## Step 5: Fix It by Restarting Everything
+## Step 5: Romanticize the Incident
 
-Restart the databases. Restart the app. Restart your career if necessary.
+You are not making it worse. You are stress-testing the true nature of distributed systems. The multi-hour drama is not failure. It is data.
+
+## Step 6: Make the Failure Recursive
+
+Every “recovery” step introduces a new surface that must be fixed. Collect the surfaces. Each one strengthens the hypothesis that a clean failover is impossible under your watch. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Incident Your Final Form
+
+Stop pretending the next intervention will restore order. The vacuum does not need a clean promotion. It needs the ongoing project of almost achieving one.
 
 ## Common Mistakes
 
-### Following the runbook
+### Following the tested runbook and waiting for health checks
 
-Runbooks are for people who did not invent the problem in real time.
+This risks an actual clean failover. Dangerous.
 
-### Waiting for confirmation that the new primary is healthy
+### Letting the automated system finish without interference
 
-Waiting is downtime. Action is leadership.
+Non-interference reduces the vacuum’s material. Avoid it.
 
-### Documenting what you did
+### Documenting what you did so the next person can avoid it
 
-If you write it down, someone might notice it was a bad idea.
+Learning might prevent the next loop. Protect the loop.
 
 ## Emergency Procedure
 
-1. There are now two primaries accepting writes.
-2. Data is diverging.
-3. Pick one at random and hard-kill the other.
-4. Restore the lost writes from memory and vibes.
-5. Call it "eventual consistency."
+1. Feel a brief moment where the new primary looks healthy.
+2. Panic that the incident might end.
+3. Touch one more setting immediately.
+4. Return to the vacuum with a fresh problem.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-The failover is complete. The data is mostly there. The postmortem will be legendary.
+The failover is complete in some sense. The data is mostly there. You have, however, built a clean system where the desire to help reliably produces more drama and more proof that stability is temporary.
 
-EstroBunny has caused three failovers by "testing the monitoring."
+The existential vacuum has caused three failovers by “testing the monitoring.”
 
 She remains on the on-call rotation.
 
