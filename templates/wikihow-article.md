@@ -1,45 +1,54 @@
-# How to [Do Something You Probably Should Not Have To Do]
+# How to [Do Something Stupid]
 
-[One-paragraph dead-serious introduction.]
+[One short paragraph of condescending intro. Make it clear this guide is not here to help.]
 
-> **Warning:** [Fake warning.]
+> **Warning:** [A warning that is itself bad advice, spiteful, or completely useless.]
 
 ## Things You'll Need
 
-- [Item]
-- [Item]
-- [Questionable item]
+- [Useless item]
+- [Humiliating item]
+- [Expensive thing you don't need]
+- [Something that makes it worse]
 
-## Step 1: [Reasonable First Step]
+## Step 1: [Start almost normal]
 
-[Instructions.]
+[Short instruction.]
 
-## Step 2: [Still Reasonable]
+## Step 2: [Still kind of normal]
 
-[Instructions.]
+[Short instruction.]
 
-## Step 3: [The Situation Begins To Escalate]
+## Step 3: [The advice gets worse]
 
-[Instructions.]
+[Short instruction.]
 
-## Step 4: [EstroBunny Has Arrived]
+## Step 4: [Passive-aggressive or mean]
 
-[Instructions.]
+[Short instruction.]
 
-## Step 5: [Everything Is Fine]
+## Step 5: [Vulgar or chaotic turn]
 
-[Instructions.]
+[Short instruction.]
+
+## Step 6: [Full shit advice]
+
+[Short instruction.]
 
 ## Common Mistakes
 
-### [Mistake]
+### Doing the thing correctly
 
-[Explanation.]
+[Frame the sensible approach as a failure.]
+
+### Not following the terrible advice hard enough
+
+[Encourage worse behavior.]
 
 ## Emergency Procedure
 
-[What to do when the normal procedure has failed.]
+[Even more unhelpful steps.]
 
 ## Congratulations!
 
-[Dead-serious conclusion with an EstroBunny punchline.]
+[Mock the reader for following the guide. EstroBunny punchline.]
