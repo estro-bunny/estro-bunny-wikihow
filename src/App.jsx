@@ -205,7 +205,7 @@ export default function App() {
       </section>
 
       <section className="article-toolbar"><span>{filtered.length === 1 ? "1 DOCUMENT" : filtered.length + " DOCUMENTS"} MATCHED</span><span>METADATA-DRIVEN // PATHS PRESERVED</span></section>
-      <section className="article-grid">
+      <section className="article-grid grid grid-cols-3 gap-[10px] max-[1100px]:grid-cols-2 max-[700px]:grid-cols-1">
         {filtered.map(article => <ArticleCard key={article.path} article={article} onOpen={() => navigate("/articles/"+slugFromPath(article.path))} />)}
       </section>
       {!filtered.length && <div className="empty-state panel"><strong>NO DOCUMENTS FOUND.</strong><span>The filters have achieved containment. This is suspicious.</span><button onClick={clearFilters}>RESTORE CHAOS</button></div>}
@@ -219,12 +219,12 @@ function Filter({label,value,setValue,options,labels}) {
 }
 
 function ArticleCard({article,onOpen}) {
-  return <article className="article-card panel">
-    <div className="card-top"><span className="category-badge">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge chaos-"+article.chaos}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
-    <h2>{article.title}</h2>
-    <div className="card-meta"><span>{typeLabels[article.type] || article.type}</span><span>{article.status.toUpperCase()}</span></div>
-    <div className="tag-cloud">{article.tags?.slice(0,5).map(item => <span key={item}>#{item}</span>)}</div>
-    <div className="card-footer"><span>{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS REGISTERED"}</span><button onClick={onOpen}>OPEN ARTICLE →</button></div>
+  return <article className="article-card panel flex min-h-[245px] flex-col p-[19px] transition-[transform,border-color,box-shadow] duration-[160ms] ease-in-out hover:-translate-y-[3px] hover:border-[rgba(255,79,216,.38)] hover:shadow-[0_20px_60px_rgba(0,0,0,.35),0_0_28px_rgba(255,79,216,.07)]">
+    <div className="card-top flex items-center justify-between gap-2"><span className="category-badge">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge chaos-"+article.chaos+" max-w-[55%] overflow-hidden text-ellipsis whitespace-nowrap"}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
+    <h2 className="my-[18px] mb-3 font-mono text-[16px] font-extrabold leading-[1.2] text-white">{article.title}</h2>
+    <div className="card-meta flex items-center justify-start gap-2"><span>{typeLabels[article.type] || article.type}</span><span>{article.status.toUpperCase()}</span></div>
+    <div className="tag-cloud my-[14px] flex flex-wrap gap-[5px]">{article.tags?.slice(0,5).map(item => <span key={item}>#{item}</span>)}</div>
+    <div className="card-footer mt-auto flex items-end justify-between gap-2"><span>{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS REGISTERED"}</span><button onClick={onOpen}>OPEN ARTICLE →</button></div>
   </article>;
 }
 
