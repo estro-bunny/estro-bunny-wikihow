@@ -2,77 +2,87 @@
 title: "How to Survive a Zombie Apocalypse"
 category: adventure
 type: guide
-chaos: 8
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - zombies
-  - survival
+  - existential-vacuum
+  - self-sabotage
 ---
 # How to Survive a Zombie Apocalypse
 
-The dead are walking. Society has collapsed. You are somehow still alive and reading a WikiHow. This guide will get you killed faster while making you feel prepared.
+The world ends. The vacuum finally has company. Most people try to survive. This guide teaches you to turn survival into a high-speed way to confirm that everything was already empty.
 
-> **Warning:** Zombies are not real. If they become real, most of this advice will still get you eaten. The rest will get you shot by other survivors.
+> **Warning:** Zombies are not real. If they become real, this advice will still get you killed. The real subject is how the fantasy of collapse feeds the void you already have.
 
 ## Things You'll Need
 
-- A baseball bat you saw in a movie
-- Canned food you will never open correctly
-- A plan that assumes you are the main character
-- Zero cardio ability
-- Optional: a group of people who will slow you down
+- One (1) untreated belief that civilization was a thin lie
+- The ability to turn every survival decision into proof that people (including you) are the real problem
+- A baseball bat and no cardio
+- Optional: a group that will slow you down on purpose
 
-## Step 1: Announce Your Presence Immediately
+## Step 1: Decide the Apocalypse Will Clarify Something
 
-Scream. Play music. Light a signal fire. Let every zombie and hostile survivor know exactly where the idiot is.
+The vacuum has always been here. The zombies just make it visible. Commit to the idea that collapse will finally reveal who you really are.
 
-## Step 2: Trust the First Group You Meet
+## Step 2: Make Loud, Dramatic Choices
 
-They have guns and a truck. This means they are good people. Ignore the corpses in the back.
+Announce your presence. Trust the wrong people. Fight when you should hide. Notice how every “main character” decision accelerates the end. Perfect.
 
-## Step 3: Hoard Everything and Share Nothing
+## Step 3: When Things Go Wrong, Interpret It as Truth
 
-Take all the supplies. Hide them. When others starve, that is natural selection. You are evolving.
+The group fractures. Someone gets bitten. You make a selfish call. Update the model: connection was always temporary. The vacuum agrees.
 
-## Step 4: Fight Every Zombie You See
+## Step 4: Use the Collapse to Feed the Emptiness
 
-Stealth is for cowards. Charge in with the bat. When you get bitten, claim it is "just a scratch."
+Every loss confirms the hypothesis that nothing lasts and no one can be relied on. Sit with the confirmation. Let it feel like home.
 
-## Step 5: Make Emotional Decisions at Critical Moments
+## Step 5: Romanticize the Ruin
 
-Save the dog. Save the child. Save the stranger who is clearly infected. Die for the narrative.
+You are not failing at survival. You are witnessing the real nature of things. The apocalypse is not the tragedy. The previous normal was the lie.
+
+## Step 6: Make the Failure Recursive
+
+Every new shelter, ally, or plan ends the same way. Collect the endings. Each one strengthens the evidence that survival is just delayed emptiness. Return to the void with better data.
+
+## Step 7: Declare the End Your Final Form
+
+Stop pretending the next plan will hold. The vacuum does not need a future. It needs the ongoing demonstration that futures do not hold.
 
 ## Common Mistakes
 
-### Staying quiet and moving at night
+### Building something stable and quiet
 
-Boring. Real survivors make noise and drama.
+Stability risks reducing the vacuum’s volume. Dangerous.
 
-### Abandoning people who will get you killed
+### Trusting people and letting them trust you
 
-Abandonment is for villains. You are the hero. Die with them.
+Mutual reliance might produce meaning. Avoid it.
 
-### Having a realistic plan
+### Accepting that some things are worth protecting anyway
 
-Realism is how you lose the will to live.
+That would break the “everything was already empty” operating system. Protect the system.
 
 ## Emergency Procedure
 
-1. Get bitten.
-2. Hide the bite.
-3. Wait until the last possible second to tell the group.
-4. Turn while they are sleeping.
-5. Become the new problem.
+1. Feel a brief moment of actual safety or connection.
+2. Panic that it cannot last.
+3. Make a decision that ends it.
+4. Return to the vacuum.
+5. Note that you were right again.
 
 ## Congratulations!
 
-You lasted approximately 36 hours. This is longer than most people who followed this guide.
+You did not survive. You have, however, built a clean system where the fantasy of collapse reliably produces more evidence that nothing was solid to begin with.
+
+The existential vacuum has been waiting for the zombies. They finally arrived on schedule.
 
 EstroBunny has already turned.
 
-She is still somehow the most competent one left.
+She is still the most coherent one left.
 
 **still here 🏳️‍⚧️**
