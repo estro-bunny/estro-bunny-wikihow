@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 :root{font-family:"Space Grotesk",system-ui,sans-serif;color:#f7efff;background:#07050b;font-synthesis:none;--pink:#ff4fd8;--blue:#55d9ff;--cyan:#8ff4ff;--panel:rgba(19,12,27,.82);--line:rgba(255,120,226,.2);--muted:#9e8eaa;--danger:#ff466d;--orange:#ff9a4d;--yellow:#ffe66d}
 *{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100vh;background:#07050b}button,input{font:inherit}button{color:inherit;cursor:pointer}
