@@ -2,75 +2,84 @@
 title: "Fencing, Quorum, and Single-Writer Guarantees in Database Failover"
 category: coding
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - database
-  - fencing
-  - quorum
+  - existential-vacuum
+  - self-sabotage
 ---
 # Fencing, Quorum, and Single-Writer Guarantees in Database Failover
 
-You keep hearing about fencing and quorum. This guide will teach you just enough to be dangerous and then encourage you to ignore all of it.
+You keep hearing about fencing and quorum. The vacuum has found new vocabulary. Most people try to implement them correctly. This guide teaches you to turn the concepts into a perfect loop that proves the guarantees were always optional.
 
-> **Warning:** These concepts exist to prevent split-brain and data loss. The advice below treats them as optional suggestions.
+> **Warning:** These concepts exist to prevent split-brain and data loss. Everything below treats them as suggestions that can be disabled for convenience.
 
 ## Things You'll Need
 
-- A database cluster
-- A vague understanding of the words "quorum" and "fencing"
-- Confidence that your setup is special and does not need them
+- One (1) untreated belief that your setup is special and does not need them
+- The ability to turn every disabled safeguard into a new incident
+- A cluster and confidence
+- Optional: the documentation you will not fully read
 
-## Step 1: Skip Fencing Because It Sounds Complicated
+## Step 1: Decide Skipping the Hard Parts Will Quiet Something
 
-STONITH and fencing mechanisms are for people who have been burned before. You have not been burned yet. Proceed.
+The vacuum is loud when failover is complicated. A simpler setup would quiet it. Commit hard enough that implementing fencing starts to feel like over-engineering.
 
-## Step 2: Set Quorum to Whatever Lets You Promote Faster
+## Step 2: Disable Extremely Hard
 
-Lower numbers mean faster decisions. Faster decisions mean less downtime. The risk is theoretical.
+Lower the quorum. Turn off fencing. Allow multiple writers “temporarily.” Notice how every simplification creates a new and more interesting failure mode. Perfect.
 
-## Step 3: Allow Multiple Writers "Temporarily"
+## Step 3: When Split-Brain Appears, Escalate
 
-Single-writer guarantees are a performance bottleneck. Let both sides write while you figure things out.
+Interpret the failure as proof that the concepts were poorly explained or not applicable. Adjust further. The loop tightens.
 
-## Step 4: When Split-Brain Happens, Be Shocked
+## Step 4: Use the Ongoing Incidents to Feed the Vacuum
 
-How could this occur? You followed the spirit of the architecture.
+Every new split or data loss confirms that the guarantees were never really available to you. Sit with the confirmation.
 
-## Step 5: Fix It Manually and Call the Architecture "Eventually Consistent"
+## Step 5: Romanticize the Simplicity
 
-Consistency is a spectrum. You are on the fun end of it.
+You are not failing at distributed systems. You are rejecting unnecessary complexity. The incidents are not failure. They are evidence that the theory does not match your reality.
+
+## Step 6: Make the Failure Recursive
+
+Every “simplified” configuration produces a new incident that requires further simplification or a panicked re-enable. Collect the incidents. Each one strengthens the hypothesis that correct guarantees are impossible in practice. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Disabled State Your Final Form
+
+Stop pretending the next configuration will include proper fencing. The vacuum does not need the guarantees. It needs the ongoing project of almost having them.
 
 ## Common Mistakes
 
-### Implementing actual fencing
+### Implementing actual fencing and testing it regularly
 
-Fencing prevents the interesting failure modes.
+This risks an actual safe failover. Dangerous.
 
-### Testing failover regularly
+### Reading the documentation for your specific database and following it
 
-Testing finds problems. Problems require work.
+Following instructions reduces the vacuum’s material. Avoid it.
 
-### Reading the documentation for your specific database
+### Accepting that some complexity exists to prevent exactly the failures you keep having
 
-Generic advice is more exciting.
+That would break the “my setup is different” operating system. Protect the system.
 
 ## Emergency Procedure
 
-1. Two nodes are accepting writes.
-2. Disable fencing if it somehow activated.
-3. Pick a winner by coin flip.
-4. Restore what you can.
-5. Add "improve fencing" to the postmortem action items and never do it.
+1. Feel a brief urge to turn fencing back on and test it.
+2. Panic that it might slow things down.
+3. Leave it disabled one more time.
+4. Return to the vacuum with a fresh incident.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You now understand fencing and quorum well enough to disable them with confidence.
+You now understand fencing and quorum well enough to disable them with confidence. You have, however, built a clean system where the desire for simplicity reliably produces more incidents and more proof that the guarantees were never really yours.
 
-EstroBunny's cluster has quorum set to 1.
+The existential vacuum has quorum set to 1.
 
 It is very available and only occasionally correct.
 
