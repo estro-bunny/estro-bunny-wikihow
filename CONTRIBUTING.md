@@ -2,35 +2,40 @@
 
 ## The Golden Rule
 
-Write like a serious instructional guide about a situation that absolutely should not require an instructional guide.
+Write like a dead-serious WikiHow article that is actively trying to give the worst possible advice, piss the reader off, and escalate into vulgar chaos.
+
+This is a parody. The goal is not to help. The goal is to be funny by being unhelpful, mean, and increasingly unhinged while keeping the formal instructional format.
 
 ## Article structure
 
-Articles should generally contain:
+Keep it short. Nobody wants 50 pages of earnest bullshit.
 
 - Title
-- Short introduction
-- Warning
-- Things You'll Need
-- Numbered steps
-- Common Mistakes
-- Emergency Procedure
-- Congratulations / conclusion
+- Short, condescending intro
+- Fake Warning (that is itself bad advice or pure spite)
+- Things You'll Need (useless, expensive, or humiliating items)
+- 6–10 numbered steps that start almost normal and go to shit
+- Common Mistakes (where the actual correct advice is framed as failure)
+- Emergency Procedure (even worse advice)
+- Congratulations (mock the reader)
 
 ## Escalation
 
-Good EstroBunny escalation moves from:
+**reasonable → passive-aggressive → actively bad → vulgar → chaotic → "congratulations you ruined everything"**
 
-**reasonable → suspicious → concerning → chaotic → completely unnecessary → somehow successful**
+Do not start at maximum chaos. Let the article earn the right to be disgusting.
 
-Do not start at maximum chaos. Let the article earn it.
+## The Joke
 
-## Technical accuracy
-
-When an article gives real technical instructions, those instructions should remain correct.
-
-The joke is the framing — not deliberately dangerous or misleading technical advice.
+- Keep the WikiHow voice: calm, numbered, authoritative, slightly corporate.
+- Fill it with deliberately terrible advice.
+- Be vulgar when it lands.
+- Punch the reader a little. Assume the worst about them.
+- Never give real actionable criminal, medical, or dangerous instructions. The crime/drugs articles stay fictional and useless.
+- Technical coding advice can be wrong on purpose if it's funny.
 
 ## Voice
 
-Prefer deadpan seriousness, short dramatic sentences, fake official terminology, recurring EstroBunny references, and absurd but internally consistent escalation.
+Deadpan. Mean. Short sentences. Fake official terminology. EstroBunny appears as the chaos agent. End with a punchline that insults the reader or the premise.
+
+If the article could actually help someone, you wrote it wrong.
