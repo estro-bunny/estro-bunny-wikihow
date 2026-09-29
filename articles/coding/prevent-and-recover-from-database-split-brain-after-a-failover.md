@@ -2,74 +2,84 @@
 title: "Prevent and Recover from Database Split-Brain After a Failover"
 category: coding
 type: guide
-chaos: 8
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - database
-  - split-brain
+  - existential-vacuum
+  - self-sabotage
 ---
 # Prevent and Recover from Database Split-Brain After a Failover
 
-Two databases think they are the primary. Writes are going to both. This is fine. This guide will help you make it permanent.
+Two primaries are accepting writes. The vacuum has found perfect symmetry. Most people try to fence and recover carefully. This guide teaches you to turn the split-brain into a perfect loop that proves consistency was always a polite fiction.
 
-> **Warning:** Split-brain is one of the worst database failure modes. The correct response is fencing and careful recovery. This advice is the opposite.
+> **Warning:** Split-brain is one of the worst failure modes. Everything below is how to make it permanent and therefore perfect fuel for the void.
 
 ## Things You'll Need
 
-- Two primaries
-- Application servers that do not care which one they talk to
-- A backup strategy based on hope
+- One (1) untreated belief that keeping both sides running a little longer will help
+- The ability to turn every recovery decision into more divergence
+- Two primaries and an application that does not care which one it talks to
+- Optional: a backup strategy based on hope
 
-## Step 1: Notice the Split-Brain and Keep Both Running
+## Step 1: Decide Resolving It Will Quiet Something
 
-Killing one might lose data. Keeping both loses different data. Choose chaos.
+The vacuum is loud when data is diverging. A single primary would quiet it. Commit hard enough that immediate fencing starts to feel too aggressive.
 
-## Step 2: Let the Application Write to Both for a While
+## Step 2: Hesitate Extremely Hard
 
-This creates a natural experiment in data divergence. Science.
+Keep both running. Let the application write to both. Notice how every minute of hesitation creates more data that cannot be cleanly merged. Perfect.
 
-## Step 3: Pick a Winner Based on Vibes
+## Step 3: When Divergence Grows, Escalate
 
-The one with the hostname you like better becomes the survivor. Hard-kill the other.
+Interpret the growing split as the final layer before a clean choice. Delay the choice. The loop tightens.
 
-## Step 4: Manually Merge the Diverged Data
+## Step 4: Use the Divergence to Feed the Vacuum
 
-Open both databases. Copy rows that look important. Ignore conflicts by picking randomly.
+Every conflicting row confirms that a single source of truth was always temporary. Sit with the confirmation.
 
-## Step 5: Declare the Incident Over
+## Step 5: Romanticize the Split
 
-The split-brain is resolved. The data is "mostly consistent." Ship it.
+You are not failing at recovery. You are living in the true nature of distributed systems. The divergent data is not failure. It is the new reality.
+
+## Step 6: Make the Failure Recursive
+
+Every recovery attempt creates a new merge problem. Collect the problems. Each one strengthens the hypothesis that a clean single primary is impossible once the split has begun. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Split Your Final Form
+
+Stop pretending the next decision will restore a single truth. The vacuum does not need consistency. It needs the ongoing project of almost achieving it.
 
 ## Common Mistakes
 
-### Using fencing or STONITH
+### Fencing immediately and restoring from a known good point
 
-Fencing is for people who planned ahead. You did not.
+This risks an actual clean recovery. Dangerous.
 
-### Restoring from a single point-in-time backup
+### Choosing one side quickly and accepting some data loss
 
-That would lose the "interesting" writes that happened during the split.
+Acceptance reduces the vacuum’s material. Avoid it.
 
-### Telling the business how much data might be wrong
+### Documenting the exact divergence so others can learn
 
-They do not need that stress.
+Learning might prevent the next loop. Protect the loop.
 
 ## Emergency Procedure
 
-1. Users are reporting missing or duplicated data.
-2. Blame the ORM.
-3. Add a unique constraint that now fails on the bad rows.
-4. Delete the bad rows.
-5. Update the postmortem to say "data integrity was preserved."
+1. Feel a brief urge to pick a side and kill the other.
+2. Panic that you might choose wrong.
+3. Delay one more minute immediately.
+4. Return to the vacuum with more divergent data.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You have resolved the split-brain by creating a new, slightly fictional version of the database.
+The split-brain is resolved in some sense. The data is a new, slightly fictional version of itself. You have, however, built a clean system where the desire for consistency reliably produces more divergence and more proof that truth is temporary.
 
-EstroBunny has a plaque that says "Survived Split-Brain 2024."
+The existential vacuum has a plaque that says “Survived Split-Brain.”
 
 No one else signed it.
 
