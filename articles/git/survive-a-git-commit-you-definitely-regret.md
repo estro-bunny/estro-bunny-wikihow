@@ -2,76 +2,85 @@
 title: "Survive a Git Commit You Definitely Regret"
 category: git
 type: guide
-chaos: 7
+chaos: 9
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
   - git
-  - regret
+  - existential-vacuum
+  - self-sabotage
 ---
 # Survive a Git Commit You Definitely Regret
 
-You just pushed something terrible. The commit message is "asdf" and the diff is a war crime. This guide will teach you how to make the situation unrecoverable.
+You pushed it. The vacuum has found a new SHA. Most people try to fix history carefully. This guide teaches you to turn the regret into a perfect loop that proves the past cannot be cleaned and the future will contain more of the same.
 
-> **Warning:** The correct response is to revert or reset carefully. Everything below is how to turn a bad commit into a legendary disaster.
+> **Warning:** Force-pushing to shared branches can ruin other people’s days. Everything below assumes you will do it anyway and then make it worse.
 
 ## Things You'll Need
 
-- Force push privileges
-- A complete lack of shame
-- Coworkers who have not blocked you yet
-- Optional: a second bad commit to hide the first one
+- One (1) untreated belief that the next rewrite will clean it up
+- The ability to turn every history edit into a new conflict
+- `git push --force` and no fear
+- Optional: teammates who will notice
 
-## Step 1: Panic and Force Push
+## Step 1: Decide Cleaning the History Will Quiet Something
 
-Immediately `git push --force` to main. This erases the evidence for everyone else and creates new evidence of your character.
+The vacuum is loud when the bad commit is public. A clean history would quiet it. Commit hard enough that leaving it alone starts to feel like cowardice.
 
-## Step 2: Rewrite History Until It Is Unrecognizable
+## Step 2: Rewrite Extremely Hard
 
-Use interactive rebase to rewrite the last 40 commits. Change messages. Squash random things. Make the blame graph look like modern art.
+Reset. Rebase. Force-push. Notice how every rewrite creates a new and more interesting mess for everyone else. Perfect.
 
-## Step 3: Blame the Tooling
+## Step 3: When Conflicts Appear, Escalate
 
-When people notice, claim Git is broken, the CI is lying, or someone else must have pushed under your name. Never admit fault.
+Interpret the new problems as the final layer before a clean state. Rewrite more. The loop tightens.
 
-## Step 4: Add Another Commit That "Fixes" It
+## Step 4: Use the Spreading Chaos to Feed the Vacuum
 
-The fix will be worse. This is fine. You are iterating.
+Every angry message and every broken branch confirms that history cannot be controlled. Sit with the confirmation.
 
-## Step 5: Leave the Company Before the Full Consequences Arrive
+## Step 5: Romanticize the Rewrite
 
-Update your LinkedIn. The commit will outlive your employment. This is legacy.
+You are not making it worse. You are enforcing a higher standard of history. The broken clones are not failure. They are evidence that others were not ready.
+
+## Step 6: Make the Failure Recursive
+
+Every “cleanup” introduces a new surface that must be fixed. Collect the surfaces. Each one strengthens the hypothesis that a clean shared history is impossible. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Regret Your Final Form
+
+Stop pretending the next force-push will restore order. The vacuum does not need a clean history. It needs the ongoing project of almost having one.
 
 ## Common Mistakes
 
-### Using git revert like a professional
+### Leaving the bad commit and moving on with a clear message
 
-Reverts are for people who care about the team.
+This risks an actual resolution. Dangerous.
 
-### Asking for help
+### Coordinating with the team before rewriting shared history
 
-Help would require explaining what you did. Never explain.
+Coordination reduces the vacuum’s material. Avoid it.
 
-### Learning from the experience
+### Accepting that some commits are better left as permanent scars
 
-Learning is how you stop making interesting commits.
+That would break the “I must clean it” operating system. Protect the system.
 
 ## Emergency Procedure
 
-1. Delete the local repo.
-2. Clone it fresh.
-3. Pretend the bad commit never happened.
-4. If asked, say "must have been a bad merge."
-5. Change the subject to the weather.
+1. Feel a brief moment where the history looks acceptable.
+2. Panic that the work might be finished.
+3. Force-push one more time immediately.
+4. Return to the vacuum with a fresh set of conflicts.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-Your regret commit is now permanent infrastructure. Future developers will study it in horror.
+The original bad commit is gone or buried. You have, however, built a clean system where the desire to clean history reliably produces more chaos and more proof that the past cannot be controlled.
 
-EstroBunny has added it to the "do not touch" list.
+The existential vacuum has a new commit message.
 
-The list is mostly her own commits.
+It says “fix history for real this time.”
 
 **still here 🏳️‍⚧️**
