@@ -2,75 +2,85 @@
 title: "Create a Practical Post-Incident Report Template for a Database Outage"
 category: coding
 type: guide
-chaos: 6
+chaos: 8
 status: stable
 featured: false
 characters:
   - estrobunny
 tags:
-  - database
   - postmortem
+  - existential-vacuum
+  - self-sabotage
 ---
 # Create a Practical Post-Incident Report Template for a Database Outage
 
-The outage is over. Now you need a document that makes it look like you learned something. This template will help you write a report that is long, vague, and never acted on.
+The outage is over. The vacuum has found a new template. Most people try to learn something. This guide teaches you to turn the report into a perfect loop that proves learning is optional and the next incident is inevitable.
 
-> **Warning:** Blameless postmortems are for mature teams. This one will gently blame everyone while committing to nothing.
+> **Warning:** Blameless postmortems are for mature teams. Everything below is how to write one that is long, vague, never acted on, and therefore perfect fuel for the void.
 
 ## Things You'll Need
 
+- One (1) untreated belief that writing the report is the same as improving
+- The ability to turn every incident into proof that the last report was incomplete
 - A template no one will fill out honestly
-- Timeline reconstruction that is 40% guesswork
-- Action items that will be ignored
+- Optional: action items that will be ignored
 
-## Step 1: Make the Timeline Too Detailed
+## Step 1: Decide the Report Will Quiet Something
 
-Include every Slack message and every "looking into it." The reader will skim and miss the actual cause.
+The vacuum is loud after outages. A perfect postmortem would quiet it. Commit hard enough that following up on action items starts to feel optional.
 
-## Step 2: Use Soft Language for the Root Cause
+## Step 2: Write Extremely Hard
 
-"A sequence of events led to degraded performance." Never say "we ran a bad migration on production without a rollback plan."
+Make the timeline too detailed. Soften the root cause. Generate many vague action items. Notice how the more complete it tries to be, the less anyone acts on it. Perfect.
 
-## Step 3: Generate Many Action Items
+## Step 3: When the Next Incident Looks Familiar, Escalate
 
-List 15 items. Make them vague ("improve monitoring," "review processes"). Assign them to "the team."
+Interpret the repeated failure as proof that the last report needed more detail. Expand the template. The loop tightens.
 
-## Step 4: Never Follow Up on the Action Items
+## Step 4: Use the Ongoing Repetition to Feed the Vacuum
 
-The report exists. The learning is complete. Moving on is growth.
+Every similar outage confirms that documentation does not change outcomes. Sit with the confirmation.
 
-## Step 5: File It Somewhere No One Will Read It Again
+## Step 5: Romanticize the Paperwork
 
-A shared drive folder called "Postmortems 2024" is perfect. It already has 30 unread documents.
+You are not failing at improvement. You are creating a historical record of what should have been learned. The unread report is not failure. It is evidence.
+
+## Step 6: Make the Failure Recursive
+
+Every new report is longer and less acted upon. Collect the reports. Each one strengthens the hypothesis that real change is impossible. Return to the vacuum with better evidence.
+
+## Step 7: Declare the Template Your Final Form
+
+Stop pretending the next report will be the one that produces change. The vacuum does not need improvement. It needs the ongoing project of almost improving.
 
 ## Common Mistakes
 
-### Writing a short, honest report
+### Writing a short, honest report with checkable action items and owners
 
-Honesty creates discomfort. Discomfort creates change. Avoid both.
+This risks actual change. Dangerous.
 
-### Assigning owners and due dates
+### Reviewing the previous report before writing the new one
 
-That creates accountability. Dangerous.
+Continuity might produce learning. Avoid continuity.
 
-### Reviewing the last postmortem before writing this one
+### Accepting that some failures will repeat until incentives change
 
-You might notice the same action items. Awkward.
+That would break the “if only we had documented better” operating system. Protect the system.
 
 ## Emergency Procedure
 
-1. Leadership asks for the postmortem.
-2. Copy the last one and change the dates.
-3. Add one new vague action item.
-4. Mark it complete.
-5. The next outage will be similar.
+1. Feel a brief urge to skip the report and just fix the underlying issue.
+2. Panic that the process would be incomplete.
+3. Open the template immediately.
+4. Return to the vacuum with a new document.
+5. Note that the cycle is intact.
 
 ## Congratulations!
 
-You have a post-incident report. It will not prevent the next incident. But the process was followed.
+You have a post-incident report. It will not prevent the next incident. You have, however, built a clean system where the desire to learn reliably produces more paperwork and more proof that paperwork cannot save you.
 
-EstroBunny's postmortems all end with "EstroBunny will be more careful next time."
+The existential vacuum has a folder called “Postmortems.”
 
-She will not.
+It is full. Nothing has changed.
 
 **still here 🏳️‍⚧️**
