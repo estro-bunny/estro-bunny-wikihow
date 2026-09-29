@@ -165,9 +165,9 @@ export default function App() {
     return <ContainmentConsole {...{level,setLevel,copies,setCopies,ducks,terminal,setTerminal,checklist,setChecklist,logs,setLogs}} onBack={() => setView("articles")} />;
   }
 
-  return <div className="app library-app">
+  return <div className="library-app min-h-screen relative overflow-hidden">
     <div className="scanlines"/>
-    <header className="topbar">
+    <header className="mx-auto flex min-h-[76px] w-[calc(100%-36px)] max-w-[1420px] items-center justify-between border-b border-[var(--line)]">
       <div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>PRACTICAL GUIDES FOR IMPRACTICAL SITUATIONS</span></div></div>
       <div className="top-status"><span className="dot"/> {articles.length} ARTICLES <span className="version">CONTENT INDEX ONLINE</span></div>
     </header>
@@ -201,7 +201,7 @@ export default function App() {
       </section>
       {!filtered.length && <div className="empty-state panel"><strong>NO DOCUMENTS FOUND.</strong><span>The filters have achieved containment. This is suspicious.</span><button onClick={clearFilters}>RESTORE CHAOS</button></div>}
     </main>
-    <footer><span>ESTROBUNNY WIKIHOW // CONTENT INDEX</span><span>still here 🏳️‍⚧️</span><span>STATUS: {filtered.length ? "OPERATIONAL" : "CONTAINED"}</span></footer>
+    <footer className="mx-auto mt-0 flex w-[calc(100%-36px)] max-w-[1420px] items-center justify-between gap-2 py-5 pb-[30px] text-[9px] tracking-[.12em]">\n      <span>ESTROBUNNY WIKIHOW // CONTENT INDEX</span><span>still here 🏳️‍⚧️</span><span>STATUS: {filtered.length ? "OPERATIONAL" : "CONTAINED"}</span></footer>
   </div>;
 }
 
