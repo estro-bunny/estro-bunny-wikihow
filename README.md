@@ -19,6 +19,20 @@ Every guide should look like a legitimate instructional manual while becoming in
 
 **Dead-serious presentation. Increasingly unserious circumstances.**
 
+## Interaction principle
+
+> **Chaos is not complexity.**
+
+When an article needs interaction, start with **one ordinary mechanic**. Give it consequences. Escalate those consequences. Document what happened.
+
+Do not add a second mechanic just because the page can have one.
+
+The preferred pattern is:
+
+**one mechanic → consequence → escalation → documentation**
+
+This keeps the interaction meaningful instead of turning chaos into visual clutter. See docs/interaction-design.md for the full design rule.
+
 ## First principle
 
 > If it can be solved calmly, solve it calmly.
