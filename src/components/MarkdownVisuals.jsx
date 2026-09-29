@@ -2,8 +2,9 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ArticleHero, ArticleStep, ArticleDiagram, ArticleWarning, ArticleExample, ArticleCompletion, ArticleDecorative } from "./ArticleVisuals";
+import ChaosInteraction from "./ChaosInteraction";
 
-const openingPattern = /^:::(hero|step|diagram|warning|example|completion|decorative)(?:\s+(.*))?\s*$/;
+const openingPattern = /^:::(hero|step|diagram|warning|example|completion|decorative|chaos)(?:\s+(.*))?\s*$/;
 
 function parseArguments(raw = "") {
   const value = raw.trim();
@@ -106,6 +107,7 @@ export function ArticleVisualBlock({ block, renderMarkdown }) {
   if (block.type === "example") return <ArticleExample {...common} variant={args[0] || "default"} caption={caption} />;
   if (block.type === "completion") return <ArticleCompletion {...common} status={args.join(" ") || "PROCEDURE COMPLETE"} caption={caption} />;
   if (block.type === "decorative") return <ArticleDecorative {...common} variant={args[0] || "inline"} />;
+  if (block.type === "chaos") return <ChaosInteraction />;
   return null;
 }
 
