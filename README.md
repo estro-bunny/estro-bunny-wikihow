@@ -1,28 +1,24 @@
 # EstroBunny WikiHow 🐰💻
 
-> **Practical guides for impractical situations.**
+> **Shit advice for people who should know better.**
 
-Welcome to **EstroBunny WikiHow** — a dead-serious instructional universe for surviving coding disasters, Steam chaos, questionable decisions, internet nonsense, and other situations that absolutely did not need to happen.
-
-## Categories
-
-- 🐰 **EstroBunny** — bunny-related emergencies
-- 💻 **Git & Coding** — repositories, commits, debugging, and regret
-- 🎮 **Steam** — libraries, games, UI chaos, and gamer problems
-- 🌐 **Internet Chaos** — surviving the web
-- 🧠 **Questionable Decisions** — you know what you did
-- 🚨 **Emergency Procedures** — when everything is already on fire
+Welcome to **EstroBunny WikiHow** — a vulgar, deadpan parody of instructional guides. The goal is not to help. The goal is to give deliberately terrible advice, escalate into chaos, and mildly piss the reader off while keeping the formal WikiHow format.
 
 ## Tone
 
-Every guide should look like a legitimate instructional manual while becoming increasingly unhinged.
+Dead-serious presentation. Actively unhelpful content. Short. Mean. Increasingly vulgar.
 
-**Dead-serious presentation. Increasingly unserious circumstances.**
+If an article could actually improve someone's life, it was written wrong.
+
+## Categories
+
+- 🐰 **Life** — happiness, relationships, talking to people (badly)
+- 💻 **Coding & Git** — debugging, outages, regret
+- 🚨 **Adventure / Crime** — fictional heists, zombies, bureaucracy, and other bad ideas
+- 🧠 **Questionable Decisions** — you asked for this
 
 ## First principle
 
-> If it can be solved calmly, solve it calmly.
->
-> If it cannot be solved calmly, document what happened.
+> Give the worst advice possible while sounding completely official about it.
 
 **still here 🏳️‍⚧️**
