@@ -204,3 +204,56 @@ export default function App() {
     <footer><span>ESTROBUNNY WIKIHOW // VACUUM INDEX</span><span>still here 🏳️‍⚧️</span><span>STATUS: {filtered.length ? "OPERATIONAL" : "CONTAINED"}</span></footer>
   </div>;
 }
+
+function Filter({label,value,setValue,options,labels}) {
+  return <label className="filter"><span>{label}</span><select value={value} onChange={e => setValue(e.target.value)}><option value="all">ALL</option>{options.map(option => <option key={option} value={option}>{labels?.[option] ?? option}</option>)}</select></label>;
+}
+
+function ArticleCard({article,onOpen}) {
+  return <article className="article-card panel">
+    <div className="card-top"><span className="category-badge">{categoryLabels[article.category] || article.category}</span><span className={"chaos-badge chaos-"+article.chaos}>{chaosLabels[article.chaos] || "CHAOS "+article.chaos}</span></div>
+    <h2>{article.title}</h2>
+    <div className="card-meta"><span>{typeLabels[article.type] || article.type}</span><span>{article.status.toUpperCase()}</span></div>
+    <div className="tag-cloud">{article.tags?.slice(0,5).map(item => <span key={item}>#{item}</span>)}</div>
+    <div className="card-footer"><span>{article.characters?.length ? "🐰 "+article.characters.join(" · ") : "NO CHARACTERS // ONLY THE VOID"}</span><button onClick={onOpen}>OPEN ARTICLE →</button></div>
+  </article>;
+}
+
+function NotFound({onBack}) {
+  return <div className="app library-app"><main><div className="empty-state panel"><strong>404 // DOCUMENT ESCAPED THE LOOP</strong><span>This article has achieved perfect nonexistence. The vacuum approves.</span><button onClick={onBack}>RETURN TO THE VOID</button></div></main></div>;
+}
+
+function ContainmentConsole({onBack}) {
+  return <div className="app library-app"><main><div className="empty-state panel"><strong>FORM 19-C CONSOLE</strong><span>Containment console temporarily absorbed by the vacuum. The forms continue without us.</span><button onClick={onBack}>RETURN TO THE VOID</button></div></main></div>;
+}
+
+function ArticlePage({article,onBack}) {
+  return <div className="app wiki-page">
+    <div className="scanlines"/>
+    <header className="topbar"><div className="brand"><div className="bunny-mark">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div><div><strong>ESTROBUNNY // WIKIHOW</strong><span>SHIT ADVICE FOR PEOPLE WHO SHOULD KNOW BETTER</span></div></div><div className="top-status"><span className="dot"/> ARTICLE ONLINE <span className="version">{article.status.toUpperCase()}</span></div></header>
+    <main>
+      <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <button onClick={onBack}>ESTROBUNNY WIKIHOW</button><span>/</span>
+        <button onClick={onBack}>{categoryLabels[article.category] || article.category}</button><span>/</span>
+        <strong>{article.title}</strong>
+      </nav>
+      <article className="panel" style={{padding:"1.5rem",marginTop:"1rem"}}>
+        <h1>{article.title}</h1>
+        <div className="card-meta" style={{marginBottom:"1rem"}}><span>{typeLabels[article.type] || article.type}</span><span>{chaosLabels[article.chaos] || "CHAOS"}</span></div>
+        <pre style={{whiteSpace:"pre-wrap",fontFamily:"inherit",lineHeight:1.5}}>{article.body}</pre>
+      </article>
+      <button onClick={onBack} style={{marginTop:"1rem"}}>← RETURN TO THE VOID</button>
+    </main>
+    <footer><span>ESTROBUNNY WIKIHOW // VACUUM INDEX</span><span>still here 🏳️‍⚧️</span></footer>
+  </div>;
+}
+
+function ReadingProgressBar({percentage}) {
+  return <div className="reading-progress" style={{position:"fixed",top:0,left:0,height:3,width:percentage+"%",background:"#0ff",zIndex:9999}}/>;
+}
+
+const levels = [
+  {id:0,name:"NORMAL",color:"cyan",desc:"Form 19-C is behaving normally."},{id:1,name:"UNUSUAL PAPERWORK",color:"yellow",desc:"A new form has appeared unexpectedly."},{id:2,name:"CONTRADICTORY",color:"orange",desc:"Two documents now disagree."},{id:3,name:"SELF-REPLICATION",color:"red",desc:"Additional copies are appearing."},{id:4,name:"BUREAUCRATIC RECURSION",color:"red",desc:"The forms require each other."},{id:5,name:"ADMINISTRATIVE CATASTROPHE",color:"magenta",desc:"A form explaining a form has appeared."}
+];
+const checklistSeed = ["Original Form 19-C identified","Current version preserved","Contradictory instructions recorded","Photocopier secured","Printer secured","Unnecessary stationery removed","Authoritative clarification requested","EstroBunny removed from the printer area","Greg kept outside the evidence register","Rubber ducks accounted for"];
+const initialLogs = [["21:14:02","SYSTEM","Form 19-C containment console initialized."],["21:14:09","SCAN","Original document located. No immediate replication detected."],["21:14:31","WARN","Form 19-C(a) references Form 19-C(b)."],["21:14:32","WARN","Form 19-C(b) references Form 19-C(a)."],["21:14:47","ESTROBUNNY","I have an idea."],["21:14:48","SYSTEM","ESCALATION RECOMMENDED."]];
